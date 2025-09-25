@@ -78,3 +78,29 @@ header {
 body {
     background-color: #131729;
 }
+
+/*---- Footer ----*/
+
+footer {
+    background-color: #21294A;
+}
+
+.title-footer {
+    color: #4DF3F7
+}
+
+ul li { /*---- acomodar ----*/
+    color: #FFFFFF;
+    font-size: 15px;
+}
+
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+
+
