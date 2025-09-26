@@ -80,18 +80,44 @@ body {
     background-color: #131729;
 }
 
+.home-cards {
+display: flex;
+}
+
+.card {
+    height: 150px;
+    width: 200px;
+    background-color: black;
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: 0 100px 100px rgb(0, 0, 0);
+}
+
 /*---- Footer ----*/
 
 footer {
     background-color: #21294A;
     color: #7f8c8d;
-    border-top: 1px solid #4DF3F7;
+    padding-top: 5rem;
+    position: relative;
 }
 
 .title-footer {
+    font-weight: normal;
     padding-top: 3rem;
     padding-bottom: 0.5rem;
     color: #4DF3F7
+}
+
+.footer-bmo img{
+    height: 80px;
+}
+
+.footer-bmo {
+    position: absolute;
+    right: 50px;         /* 50px del borde derecho */
+    top: -5px;          /*  */
+    z-index: 10;         /* Por encima del contenido */
 }
 
 .footer-logo img {
@@ -112,6 +138,9 @@ y con grid-column y grid-row posiciono elementos específicos donde necesito, co
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Una fracción del espacio disponible - 5 columnas de igual tamaño */
     gap: 3rem; /* Espacio entre columnas y filas - más limpio que usar margins*/
     margin-bottom: 2rem;
+    border-top: 1px solid #4DF3F7;
+    max-width: 1450px;
+    margin: 0 auto;
 }
 
 .footer-desc {
@@ -119,6 +148,10 @@ y con grid-column y grid-row posiciono elementos específicos donde necesito, co
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.footer-desc p {
+    font-size: 20px;
 }
 
 /* Lo pongo en la columna 5 fila 2 (para que este debajo de "Métodos de pago"*/
@@ -129,8 +162,10 @@ y con grid-column y grid-row posiciono elementos específicos donde necesito, co
 
 .text-copy {
     border-top: 1px solid #4DF3F7; /* Línea divisora */
+    max-width: 1450px;
+    margin: 0 auto;
     padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 4rem; /* Fijarse s deberia ser 5rem como el de arriba */
     text-align: center;
     color: #7f8c8d;
     font-size: 15px;
