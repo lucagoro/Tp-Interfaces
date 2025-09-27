@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página de Registro</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="registro-container">
+      <section class="form-box">
+        <h1>Crear Cuenta</h1>
+        <form id="registroForm">
+          <input type="text" id="nombre" placeholder="Nombre" required />
+          <input type="text" id="apellido" placeholder="Apellido" required />
+          <input
+            type="email"
+            id="email"
+            placeholder="Correo electrónico"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="Contraseña"
+            required
+          />
+          <input type="text" id="telefono" placeholder="Teléfono (opcional)" />
+
+          <button type="submit" class="btn">Continuar</button>
+          <button type="button" class="btn google">Continuar con Google</button>
+          <button type="button" class="btn facebook">
+            Continuar con Facebook
+          </button>
+        </form>
+
+        <p class="link">
+          ¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a>
+        </p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
