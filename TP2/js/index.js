@@ -1,31 +1,48 @@
 // === Elementos del DOM ===
+
+ // === menu hamburguesa ===
 const menuIcon = document.getElementById('menu-icon');
 const menu = document.getElementById('menu');
-const closeMenuBtn = document.getElementById('close-menu');
+const closeBtns=document.querySelectorAll('.close-nav');
 const overlay = document.getElementById('overlay');
 const categoriasToggle = document.getElementById('Btn-categorias');
 const categoriasDropdown = document.getElementById('dropdown');
 const categoriasLi = categoriasToggle.closest('.categorías');
+ // === perfil ===
+const profilIcon = document.getElementById('profil-icon');
+const profil= document.getElementById('nav-profil');
 
 // === Funciones ===
-function abrirMenu() {
-  menu.classList.add('show');
+function openPanel(panel) {
+  panel.classList.add('show');
   overlay.classList.add('show');
 }
 
-function cerrarMenu() {
-  menu.classList.remove('show');
+function closePanel(panel) {
+  panel.classList.remove('show');
   overlay.classList.remove('show');
 }
 
-function toggleCategorias(e) {
-  e.preventDefault();
+function toggleCategorias() {
+ 
   categoriasDropdown.classList.toggle('showcategories');
   categoriasLi.classList.toggle('open');
 }
-
 // === Eventos ===
-menuIcon.addEventListener('click', abrirMenu);
-closeMenuBtn.addEventListener('click', cerrarMenu);
-overlay.addEventListener('click', cerrarMenu);
+menuIcon.addEventListener('click', () => openPanel(menu));
+profilIcon.addEventListener('click', () => openPanel(profil));
+overlay.addEventListener('click', () => {
+  closePanel(menu);
+  closePanel(profil);
+});
+
+closeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    closePanel(menu);
+    closePanel(profil);
+  });
+});
 categoriasToggle.addEventListener('click', toggleCategorias);
+
+
+
