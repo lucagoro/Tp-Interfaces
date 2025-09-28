@@ -274,9 +274,9 @@ body {
     right: 0;
     bottom: 0;
     background: linear-gradient(to right, 
-        rgba(0, 0, 0, 0.9),        /* ← Izquierda: Negro % */
-        rgba(0, 0, 0, 0.1),        /* ← Centro: Negro % */
-        transparent               /* ← Derecha: Transparente */
+        rgba(0, 0, 0, 0.95),        /* ← Izquierda: Negro % */
+        rgba(0, 0, 0, 0.5),        /* ← Centro: Negro % */
+        rgba(0, 0, 0, 0.2)               /* ← Derecha: Transparente */
     );
     z-index: 1;                    /* ← Por encima de la imagen */
     pointer-events: none;          /* ← No interfiere con clicks */
@@ -316,21 +316,28 @@ body {
     font-size: 15px;           
 }
 
+.carousel-content-below {
+    position: absolute;
+    top: 75%;                      
+    left: 5rem;                    
+    z-index: 2; 
+}
+
 .price {
-    color: grey;                 /* ← Texto blanco */
+    color: grey;                 /* ← Texto gris */
     font-size: 15px;           /* ← Tamaño grande */
     font-weight: bold;
-    margin-bottom: 0.5rem;       /* ← Espacio debajo para el botón */
+    margin-bottom: 5px;
 }
 
 /* Botón de comprar */
 .buy-button {
-    background: transparent;      /* ← Fondo transparente */
-    color: #22d3ee;              /* ← Color cian/azul claro */
-    border: 2px solid #22d3ee;   /* ← Borde del mismo color */
+    background: #091A29;      /* ← Fondo transparente */
+    color: #4DF3F7;              /* ← Color cian/azul claro */
+    border: 2px solid #4DF3F7;   /* ← Borde del mismo color */
     padding: 0.8rem 1.5rem;      /* ← Espaciado interno */
     border-radius: 8px;          /* ← Bordes redondeados */
-    font-size: 1rem;
+    font-size: 17px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;   /* ← Transición suave */
@@ -346,18 +353,91 @@ body {
 }
 
 
-.home-cards {
-display: flex;
+
+/* Cards juegos */
+.games {
+    display: flex;
+    overflow-x: hidden;               /* Oculta lo que no entra */
+    width: 100%;                      /* Ancho del contenedor */
 }
 
-.card {
-    height: 150px;
-    width: 200px;
-    background-color: black;
-    border-radius: 5px;
-    margin: 10px;
-    box-shadow: 0 100px 100px rgb(0, 0, 0);
+.games-section h4 {
+    margin-left: 20px;
+    color: white;
 }
+
+.game-card {
+    flex: 0 0 300px;                 /* No crece, no encoge, 250px fijo */
+    /* flex-shrink: 0; también funciona */
+
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    height: 205px;
+    width: 300px;
+    background: rgba(30, 41, 59, 0.9);
+    padding: 0; /* Sin padding para que la imagen ocupe todo */
+    border-radius: 5px;
+    overflow: hidden; /* Para que la imagen respete los bordes redondeados */
+    box-shadow: 
+        20px 20px 0px rgba(0, 0, 0, 0.99),      /* Sombra principal */
+        20px 20px 20px rgba(0, 0, 0, 0.99);       /* Sombra sutil adicional */
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    /* Sombra más pronunciada en hover */
+    box-shadow: 
+        20px 20px 0px rgba(0, 0, 0, 0.99),      /* Sombra principal */
+        20px 20px 20px rgba(0, 0, 0, 0.99);       /* Sombra sutil adicional */
+}
+
+/* Imagen que ocupa todo el card */
+.game-card img {
+    width: 100%;
+    height: 150px; /* Altura fija como en tu imagen */
+}
+
+/* Contenido debajo de la imagen */
+.game-info {
+    padding-right: 5px;
+    padding-left: 5px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-title {
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+}
+
+.game-hours {
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+.game-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.play-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px;
+    border-radius: 6px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
 
 /*---- Footer ----*/
 
@@ -366,6 +446,7 @@ footer {
     color: #7f8c8d;
     padding-top: 5rem;
     position: relative;
+    margin-top: 100px;
 }
 
 .title-footer {
