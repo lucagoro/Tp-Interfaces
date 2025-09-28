@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página de Registro</title>
+    <link rel="stylesheet" href="/TP2/css/auth.css" />
+    <!-- Font Awesome Free CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-pap7P4sPzXxR2kz1XrYl5r3PZ6t3Y+O1vRnnmC1M1VbKXH2Qv4jV9qEhbK/VwX2L0Z1KxwHtM3c8Z0dF5+k0Kg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <main class="registro-container">
+      <section class="form-box">
+        <h1>Registrate para empezar a jugar</h1>
+        <form id="registroForm">
+          <div class="input-container">
+            <label for="email">Direccion de correo electronico</label>
+            <input type="email" id="email" name="email" required />
+            <span class="asterisk">*</span>
+          </div>
+
+          <div class="input-container">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required />
+            <span class="asterisk">*</span>
+          </div>
+
+          <div class="input-container">
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" />
+            <span class="asterisk">*</span>
+          </div>
+
+          <label for="nickname">Nickname (opcional)</label>
+          <input type="text" id="nickname" name="nickname" />
+
+          <div class="input-container">
+            <label for="edad">Edad</label>
+            <input type="number" id="edad" name="edad" />
+            <span class="asterisk">*</span>
+          </div>
+
+          <div class="input-container">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required />
+            <i class="fa-solid fa-eye toggle-password"></i>
+            <span class="asterisk">*</span>
+          </div>
+
+          <button type="submit" class="btn">Continuar</button>
+
+          <button type="button" class="btn google">Continuar con Google</button>
+          <button type="button" class="btn facebook">
+            Continuar con Facebook
+          </button>
+        </form>
+
+        <p class="link">
+          ¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a>
+        </p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

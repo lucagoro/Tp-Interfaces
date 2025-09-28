@@ -1,0 +1,210 @@
+
+* { box-sizing: border-box; }
+html,body { height: 100%; margin: 0; font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif; }
+
+body {
+  background-color: #061016; /* base muy oscuro */
+  background-image: url('/TP2/res/fondo-registro.png'); 
+  background-size: cover;
+  background-position: center;
+  color: #e6f0f6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* overlay sutil para oscurecer el fondo y crear profundidad */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(2,6,23,0.45), rgba(3,8,18,0.8));
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Contenedor centrado */
+.registro-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  z-index: 1;
+}
+
+#form-box-login{
+    margin-top: 0px;
+}
+
+/* Caja del formulario — estilo estrecho y centrado */
+.form-box {
+  width: 320px;
+  max-width: calc(100% - 40px);
+  padding:  34px;
+  margin-top: 200px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+
+}
+.form-box label{
+    display: block;
+    text-align: left;
+    margin: 6px 0 6px 0;
+    font-weight: bold;
+    font-size: 12px;
+}
+.form-box label + input { margin-bottom: 12px; }
+/* Título grande y centrado */
+.form-box h1 {
+  margin: 80px 0 18px 0;
+  font-size: 35px;
+  line-height: 1.05;
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  text-shadow: 0 6px 24px rgba(20,30,60,0.6);
+}
+
+/* Inputs */
+.form-box input {
+  width: 100%;
+  height: 38px;
+  padding: 12px 14px;
+  background: transparent;
+  border-radius: 2px;
+  border: 2px solid rgba(16,200,220,0.95);
+  color: #dff7ff;
+  font-size: 13px;
+  outline: none;
+  box-shadow: inset 0 -2px 8px rgba(0,0,0,0.4);
+}
+.form-box input:focus {
+  box-shadow: 0 6px 30px rgba(16,200,220,0.07), 0 0 18px rgba(16,200,220,0.08) inset;
+  background: transparent;
+  color: #dff7ff; /* asegurate de mantener el color claro */
+}
+
+
+
+/* Botón principal — glow y relieve */
+.btn {
+  width: 100%;
+  height: 38px;
+  padding: 12px 14px;
+  margin: 12px 0;
+  border-radius: 2px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 15px;
+  letter-spacing: .2px;
+  transition: transform .08s ease, box-shadow .12s ease, opacity .12s;
+}
+
+/* Botón Continuar central — efecto vidrio + glow interior */
+.btn:not(.google):not(.facebook) {
+  background: #042847;
+  color:rgba(16,200,220,0.95);
+  border: 1px solid rgba(16,200,220,0.95);
+  box-shadow:
+   inset 0 0 12px rgba(16,200,220,0.95);
+}
+
+/* Hover/active efectos */
+.btn:not(.google):not(.facebook):hover {
+  transform: translateY(-2px);
+  background-color: #091A29;
+  box-shadow:
+  inset 0 0 12px rgba(16,200,220,0.95);
+}
+.btn:not(.google):not(.facebook):active { transform: translateY(0); }
+
+
+/* Botones sociales: borde neon y fondo oscuro translúcido */
+.btn.google, .btn.facebook {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 2px;
+  background:#091A29;
+  color: rgba(16,200,220,0.95);
+  border: 1px solid rgba(16,200,220,0.95);
+  box-shadow: 0 6px 22px rgba(6,20,30,0.6), 0 0 12px rgba(10,170,210,0.04) inset;
+  font-weight: 700;
+}
+
+.btn.facebook:hover,
+.btn.google:hover {
+    border-color: #023B6C;
+     box-shadow: 0 6px 10px  #023B6C ;
+}
+
+/* Icon placeholders: si tenés iconos, ponelos como fondo en .btn.google::before etc. */
+.btn.google::before,
+.btn.facebook::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.98;
+}
+
+/* ejemplo: si querés poner iconos locales, descomentá y ajustá url()
+.btn.google::before { background-image: url('icons/google.svg'); }
+.btn.facebook::before { background-image: url('icons/facebook.svg'); }
+*/
+
+/* Texto de link inferior */
+.form-box .link {
+  margin-top: 12px;
+  color: rgba(200,230,240,0.8);
+  font-size: 14px;
+}
+.form-box .link a {
+  color: #bfefff;
+  text-decoration: none;
+  font-weight: 700;
+}
+.form-box .link a:hover { text-decoration: underline; }
+
+/* Mensajes de error / success (si los muestras inline) */
+.form-box .msg {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #ffdede;
+}
+
+.input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.input-container input {
+  padding-right: 50px; /* espacio para el asterisco */
+}
+
+.input-container .asterisk {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  padding-top: 20px;
+  padding-right: 10px;
+  transform: translateY(-50%);
+  color:rgba(16,200,220,0.95);
+  pointer-events: none; /* no molesta al escribir */
+  font-weight: bold;
+}
+
+
