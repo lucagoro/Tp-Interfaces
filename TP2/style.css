@@ -12,10 +12,175 @@ header {
     background-color: #131729;
 }
 
+
+/* === Overlay === */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(19, 23, 41, 0.8);
+  z-index: 900;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* === Menú hamburguesa lateral === */
+.menu-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.menu-header #close-menu {
+  width: 22px;
+  height: 22px;
+  margin-left: 5px;
+}
+
+.menu-header .logo-beemo {
+  height: 70px;
+  margin-left: 20px;
+}
+
+#menu {
+  background-color: #131729;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+#menu.show {
+  transform: translateX(0);
+}
+/* === Grupos de menú === */
+.menu-group {
+  border-bottom: 2px solid #3B6589;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+/* === itens principal === */
+#menu ul {
+  padding: 0;
+  margin: 0;
+}
+
+#menu ul li {
+  display: flex;
+  gap: 10px;
+  padding: 5px 5px;
+  cursor: pointer;
+  align-items: center;
+}
+
+#menu ul li img {
+  width: 22px;
+  height: 22px;
+}
+
+#menu ul li a {
+  color: #ffffff;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 5px 0;
+}
+/* Hover principal */
+#menu ul li:hover {
+  background-color: #010305;
+  opacity: 0.8;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+}
+/* Hover desactivado cuando está abierto */
+#menu ul li.open:hover {
+  background-color: transparent;
+  opacity: 1;
+}
+
+/* === Categorías === */
+.categorías {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoría-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+/* === Dropdown === */
+.dropdown {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dropdown.showcategories {
+  display: flex;
+}
+
+.dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 5px;
+  cursor: pointer;
+}
+
+ #menu .dropdown li a {
+  font-size: 14px;
+  color: #4DF3F7;
+  text-decoration: none;
+  padding: 3px 0;
+  display: block;
+  line-height: 22px;
+  transition: all 0.2s ease-in-out;
+}
+
+#menu .dropdown li a:hover {
+  background-color: #010305;
+  opacity: 0.8;
+  border-radius: 5px;
+}  
+/* Íconos invisibles */
+.dropdown li img {
+  visibility: hidden;
+  width: 22px;
+  height: 22px;
+}
+
+
+
+
+/* === Navbar principal === */
 .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #131729;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  padding: 10px 20px;
+
+}
+nav.ul.div{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: row;
 }
 
 .left-side {
@@ -271,6 +436,5 @@ y con grid-column y grid-row posiciono elementos específicos donde necesito, co
     color: #7f8c8d;
     font-size: 15px;
 }
-
 
 

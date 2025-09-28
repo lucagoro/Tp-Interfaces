@@ -9,33 +9,102 @@
 </head>
    
 <body>
-     <header>
-        <nav class="navbar">
-            <div class="left-side">
-                <!-- Menú hamburguesa-->
-                <div class="menu-icon">
-                    <i class="fa-solid fa-bars"></i> 
+    <div id="overlay"> </div>
+        <header>
+            <nav class="navbar">
+                <div class="left-side">
+                    <!-- Menú hamburguesa-->
+                    <div class="menu-icon" id="menu-icon">
+                        <i class="fa-solid fa-bars"></i> 
+                    </div>
+                    <div class="nav-links" id="menu">
+                        <div class="menu-header">
+                            <img src="images/icono-salir.png" alt="salir" id="close-menu" >
+                            <img src="images/logo.png" alt="logo Beemo" class="logo-beemo">
+                        </div>
+                        <!-- grupo 1 -->
+                        <ul class="menu-group">
+                            <li>
+                                <img src="images/icono-inicio.png" alt="icono Inicio">
+                                <a href="#">Inicio</a>
+                            </li>
+                            <li class="categorías">
+                                <div id="Btn-categorias" class="categoría-toggle">
+                                    <img src="images/icono-categoria.png" alt="icono Categoría">
+                                    <a href="#">Categorías</a>
+                                </div>
+                                <ul class="dropdown" id="dropdown">
+                                    <li>
+                                        <img src="images/blank.png" alt=""> 
+                                        <a href="#">Acción</a>
+                                    </li>
+                                    <li>
+                                        <img src="images/blank.png" alt="" >
+                                        <a href="#">En Pareja</a>
+                                    </li>   
+                                    <li>
+                                        <img src="images/blank.png" alt="">
+                                        <a href="#">Recomendados</a>
+                                    </li>
+                                    <li>
+                                        <img src="images/blank.png" alt="">
+                                        <a href="#">Gratis</a>
+                                    </li>
+                                    <li>
+                                        <img src="images/blank.png" alt="" >
+                                        <a href="#">Descuentos</a>
+                                    </li>
+                                    <li><img src="images/blank.png" alt="">
+                                        <a href="#">Carreras</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <!-- grupo 2 -->    
+                         <ul class="menu-group">
+                            <li>
+                                <img src="images/icono-compartir.png" alt="icono Compartir app">
+                                <a href="#">Compartir App</a>
+                            </li>
+                            <li>
+                                <img src="images/icono-contactanos.png" alt="icono contactanos">
+                                <a href="#">contactanos</a>
+                            </li>
+                        </ul>
+                        <ul>
+                             <li>
+                                <img src="images/icono-ayuda.png" alt="icono ayuda">
+                                <a href="#">ayuda</a>
+                             </li>
+                        </ul>
+                    </div>
+                    <!-- Logo -->
+                    <a href="#" class="logo">
+                        <img src="images/logo.png" alt="BMO Games"> 
+                    </a>
                 </div>
-                <!-- Logo -->
-                <a href="#" class="logo">
-                    <img src="images/logo.png" alt="BMO Games"> 
+
+                <!-- Buscador -->
+                <form action="" class="search-bar">
+                    <input type="text" placeholder="Buscar juego">
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                <!-- Perfil -->
+                <a href="#" class="profil-icon">
+                    <i class="fa-solid fa-user"></i>
                 </a>
+            </nav>
             </div>
+        </header>
 
-            <!-- Buscador -->
-            <form action="" class="search-bar">
-                <input type="text" placeholder="Buscar juego">
-                <button type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
 
-            <!-- Perfil -->
-             <a href="#" class="profil-icon">
-                <i class="fa-solid fa-user"></i>
-             </a>
-        </nav>
-    </header>
+        <!-- Body -->
+        <div class="home-cards">
+        <div class="card">
 
     <!-- Body -->
 
@@ -57,97 +126,102 @@
      <div class="home-cards">
      <div class="card">
 
-     </div>
 
-     <div class="card">
+        </div>
+
+        <div class="card">
+            
+        </div>
+
+        <div class="card">
+            
+        </div>
+        </div>
         
-     </div>
-
-     <div class="card">
-        
-     </div>
-     </div>
-    
 
 
-    <footer>
-        <div class="footer-content">
-        <div class="footer-desc">
-            <div class="footer-bmo">
-                <img src="images/beemo.png" alt="Beemo">
+        <footer>
+            <div class="footer-content">
+            <div class="footer-desc">
+                <div class="footer-bmo">
+                    <img src="images/beemo.png" alt="Beemo">
+                </div>
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="BMO Games">
+                </div>
+                <p>BMO games tu portal para jugar y comprar videojuegos</p>
             </div>
-            <div class="footer-logo">
-                <img src="images/logo.png" alt="BMO Games">
+            <!-- Compañia -->
+            <div>
+                <h2 class="title-footer">Compañia</h2>
+                <ul>
+                    <li>Acerca de</li>
+                    <li>Inicio</li>
+                    <li>Categoría</li>
+                    <li>Noticias</li>
+                    <li>Blog/Foro</li>
+                    <li>Inversionistas</li>
+                    <li>Prensa/Media kit</li>
+                    <li>Afiliados/Partners</li>
+                    <li>Contacto directo</li>
+                    <li>Carreras/Trabaja con nosotros</li>
+                </ul>
             </div>
-            <p>BMO games tu portal para jugar y comprar videojuegos</p>
-        </div>
-        <!-- Compañia -->
-        <div>
-            <h2 class="title-footer">Compañia</h2>
-            <ul>
-                <li>Acerca de</li>
-                <li>Inicio</li>
-                <li>Categoría</li>
-                <li>Noticias</li>
-                <li>Blog/Foro</li>
-                <li>Inversionistas</li>
-                <li>Prensa/Media kit</li>
-                <li>Afiliados/Partners</li>
-                <li>Contacto directo</li>
-                <li>Carreras/Trabaja con nosotros</li>
-            </ul>
-        </div>
 
-        <!-- Recursos -->
-        <div>
-            <h2 class="title-footer">Recursos</h2>
-            <ul>
-                <li>Consultas sobre el reglamento</li>
-                <li>Reglas de la comunidad</li>
-                <li>Comunidad</li>
-                <li>Política de contenido</li>
-                <li>Soporte</li>
-                <li>Preguntas frecuentes(FAQ)</li>
-                <li>Centro de ayuda</li>
-                <li>Guías y tutoriales</li>
-                <li>Foros de usuarios</li>
-                <li>Reportar un problema</li>
-            </ul>
-        </div>
+            <!-- Recursos -->
+            <div>
+                <h2 class="title-footer">Recursos</h2>
+                <ul>
+                    <li>Consultas sobre el reglamento</li>
+                    <li>Reglas de la comunidad</li>
+                    <li>Comunidad</li>
+                    <li>Política de contenido</li>
+                    <li>Soporte</li>
+                    <li>Preguntas frecuentes(FAQ)</li>
+                    <li>Centro de ayuda</li>
+                    <li>Guías y tutoriales</li>
+                    <li>Foros de usuarios</li>
+                    <li>Reportar un problema</li>
+                </ul>
+            </div>
 
-        <!-- Legal -->
-        <div>
-            <h2 class="title-footer">Legal</h2>
-            <ul>
-                <li>Licencias</li>
-                <li>Políticas de privacidad</li>
-                <li>Términos y condiciones</li>
-                <li>Cookies y preferencias</li>
-                <li>Propiedad intelectual</li>
-                <li>Derechos del consumidor</li>
-                <li>Reembolsos y devoluciones</li>
-            </ul>
-        </div>
+            <!-- Legal -->
+            <div>
+                <h2 class="title-footer">Legal</h2>
+                <ul>
+                    <li>Licencias</li>
+                    <li>Políticas de privacidad</li>
+                    <li>Términos y condiciones</li>
+                    <li>Cookies y preferencias</li>
+                    <li>Propiedad intelectual</li>
+                    <li>Derechos del consumidor</li>
+                    <li>Reembolsos y devoluciones</li>
+                </ul>
+            </div>
 
-        
-        <!-- Métodos de pago -->
-        <div>
-            <h2 class="title-footer">Métodos de pago</h2>
-            <!-- Completar --> 
-        </div>
+            
+            <!-- Métodos de pago -->
+            <div>
+                <h2 class="title-footer">Métodos de pago</h2>
+                <!-- Completar --> 
+            </div>
 
-        <!-- Contacto -->
-         <div class="footer-contact">
-            <h2 class="title-footer">Contacto</h2>
-            <!-- Completar -->
-         </div>
-         </div>
-         <div class="text-copy">
-            <p>© 2025 BMO Games. Todos los derechos reservados.</p>
-         </div>
-        
-        
+            <!-- Contacto -->
+            <div class="footer-contact">
+                <h2 class="title-footer">Contacto</h2>
+                <!-- Completar -->
+            </div>
+            </div>
+            <div class="text-copy">
+                <p>© 2025 BMO Games. Todos los derechos reservados.</p>
+            </div>
+            
+            
 
-    </footer>
+        </footer>
+   
+    <!-- Conectamos JavaScript -->
+  <script src="js/index.js"></script>
+
 </body>
 </html>
