@@ -1,0 +1,219 @@
+:root {
+  --bg: #0f1720;
+  --card: #11202a;
+  --muted: #9fb0c0;
+  --accent: #1fb6ff;
+  --gap: 20px;
+  --radius: 10px;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: var(--bg);
+  color: #e6f1f6;
+  padding: 24px;
+}
+
+.container {
+  max-width: 1200px;
+  
+  margin: 50px auto;
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "main sidebar"
+    "description description"
+    "bottom-left bottom-right";
+}
+
+.main {
+  grid-area: main;
+  background: linear-gradient(180deg, #0b1520 0%, rgba(0, 0, 0, 0.2));
+  padding: 12px;
+  border-radius: var(--radius);
+}
+
+.main img {
+  width: 100%;
+  height: 400px;
+  display: block;
+  border-radius: 2px;
+  border: 1px solid;
+border-color:rgba(16,200,220,0.95) ;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: var(--card);
+  padding: 12px;
+  border-radius: var(--radius);
+}
+
+.sidebar-title {
+  margin: 0 0 12px 0;
+  color: #cfeefb;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.small-card {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.05));
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.small-card img {
+  width: 80px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.small-card .info {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.game-title {
+  font-weight: 600;
+  color: #dff7ff;
+}
+
+.price {
+  font-size: 12px;
+}
+
+.btn {
+  margin-left: auto;
+  background: var(--accent);
+  color: #04202b;
+  font-weight: 700;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.description {
+  grid-area: description;
+  width: 95%;
+  background: transparent;
+  padding: 12px 0;
+}
+
+.description p.fin-descripcion {
+  margin-bottom: 20px; /* espacio extra antes de la línea */
+  position: relative;
+}
+
+.description p.fin-descripcion::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color:rgba(16,200,220,0.95); /* línea celeste */
+  margin-top: 10px;
+}
+
+.description h4{
+    margin-bottom: 10px;
+}
+.title {
+  font-size: 18px;
+  margin: 8px 0;
+  color: #cfeefb;
+}
+.descripcion{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    padding: 0 10px;
+    margin-bottom: 10px
+}
+.descripcion h4{
+    margin: 0;
+}
+.description .pregunta{
+    color:rgba(16,200,220,0.95) ;
+    font-size: 20px;
+}
+.text {
+  color: #cfeefb;
+  line-height: 1.55;
+  font-size: 14px;
+   border-top: 1px solid rgba(16,200,220,0.95); /* línea celeste al inicio */
+  padding-top: 10px;
+}
+
+.description .text p {
+      margin-bottom: 20px;
+}
+
+.bottom-left {
+  grid-area: bottom-left;
+  background: var(--card);
+  padding: 12px;
+  border-radius: var(--radius);
+}
+
+.gallery {
+  display: grid;
+  gap: 10px;
+}
+
+.hero-video {
+  height: 220px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #081018, #102433);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+
+.thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.thumb {
+  height: 100px;
+  border-radius: 6px;
+  background: #07121a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+
+.bottom-right {
+  grid-area: bottom-right;
+  background: var(--card);
+  padding: 12px;
+  border-radius: var(--radius);
+}
+
+.bottom-title {
+  margin-top: 0;
+  color: #cfeefb;
+}
+
+.screenshots {
+  display: grid;
+  gap: 10px;
+}
+
+

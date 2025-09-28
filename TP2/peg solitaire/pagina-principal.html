@@ -8,7 +8,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/TP2/style.css" />
+    <link rel="stylesheet" href="/TP2/css/juego.css">
   </head>
 
   <body>
@@ -22,8 +23,8 @@
                     </div>
                     <div class="nav-links" id="menu">
                         <div class="menu-header">
-                            <img src="images/icono-salir.png" alt="salir" id="close-menu" >
-                            <img src="images/logo.png" alt="logo Beemo" class="logo-beemo">
+                            <img src="TP2/images/icono-salir.png" alt="salir" id="close-menu" >
+                            <img src="TP2/images/logo.png" alt="logo Beemo" class="logo-beemo">
                         </div>
                         <!-- grupo 1 -->
                         <ul class="menu-group">
@@ -107,29 +108,81 @@
 
 
     <!-- Body -->
+    <div class="container">
 
-    <!-- Carrusel grande -->
-    <div class="carousel">
-      <div class="carousel-img">
-        <img src="images/fondo1-carrusel.jpeg" alt="The last of us" />
-        <!-- Preguntar el alt -->
+  <!-- Imagen principal -->
+        <div class="main">
+             <img src="imagen-principal.png" alt="Imagen principal del juego">
+              <h2 class="title">Peg Solitaire: Naruto Shippuden</h2>
+        </div>
+
+  <!-- Columna derecha: cards pequeñas -->
+<aside class="sidebar">
+    <div class="cards-grid">
+      <div class="small-card">
+        <img src="https://via.placeholder.com/160x90" alt="">
+        <div class="info">
+          <div class="game-title">Double Dragon</div>
+          <div class="price">1,012 USD</div>
+        </div>
+        <button class="btn">Comprar</button>
       </div>
-      <div class="carousel-content">
-        <img src="images/titulo.png" alt="The last of us" />
-        <p><span>16+ </span>Lo más vendido</p>
-        <button class="buy-button">Comprar ahora</button>
-        <div class="price">15,99 US$</div>
+
+      <div class="small-card">
+        <img src="https://via.placeholder.com/160x90" alt="">
+        <div class="info">
+          <div class="game-title">League of Legends</div>
+          <div class="price">Gratis</div>
+        </div>
+        <button class="btn">Abrir</button>
+      </div>
+
+      <div class="small-card">
+        <img src="https://via.placeholder.com/160x90" alt="">
+        <div class="info">
+          <div class="game-title">The Last of Us</div>
+          <div class="price">11.25 USD</div>
+        </div>
+        <button class="btn">Comprar</button>
       </div>
     </div>
+  </aside>
 
-    <!-- Cards de juegos -->
-    <div class="home-cards">
-      <div class="card"></div>
+  <!-- Descripción (fila completa) -->
 
-      <div class="card"></div>
-
-      <div class="card"></div>
+  <section class="description">
+    <div class="descripcion">
+        <i class="fa-solid fa-circle-question pregunta"></i>
+    <h4>Descripción</h4>
     </div>
+    
+    <div class="text">
+      <p>Un desafío solitario lleno de estrategia ninja. Poné a prueba tu mente mientras movés fichas inspiradas en tus personajes favoritos del mundo shinobi. Cada salto es un golpe certero, cada eliminación una técnica bien ejecutada: el objetivo, quedarte con la última ficha en pie.</p>
+        <p class="fin-descripcion">
+        Pero no es tan fácil: deberás planear con precisión cada movimiento, anticipar al rival invisible —el tablero— y demostrar que tu lógica es tan afilada como un kunai.
+        ¡Superá el reto, desbloqueá logros ocultos y probá si realmente podés alcanzar la perfección shinobi con una sola ficha sobreviviente en el centro del tablero!</p>
+      <p> — Desarrolladores: Troncoso Abril, Gorosito Luca, Laffitte Agostina</p>
+      <p>Plataforma: Browser (Desktop)</p>
+      <p>Páginas Wiki: Wikipedia - Fandom</p>
+    </div>
+  </section>
+
+  <!-- Bottom left -->
+  <div class="bottom-left gallery">
+    <div class="hero-video">[Video o imagen grande — Galería principal]</div>
+  </div>
+
+  <!-- Bottom right -->
+  <div class="bottom-right">
+    <div class="screenshots">
+      <div class="thumb">Imagen 1</div>
+      <div class="thumb">Imagen 2</div>
+    </div>
+  </div>
+
+</div>
+
+    
 
     <footer>
       <div class="footer-content">
@@ -206,6 +259,6 @@
         <p>© 2025 BMO Games. Todos los derechos reservados.</p>
       </div>
     </footer>
-    <script src="js/index.js"></script>
+    <script src="/TP2/js/index.js"></script>
   </body>
 </html>
