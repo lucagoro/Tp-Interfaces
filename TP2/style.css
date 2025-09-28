@@ -245,6 +245,107 @@ body {
     background-color: #131729;
 }
 
+/* Carrousel grande */
+.carousel {
+    width: 100%;           /* Ocupa todo el ancho */
+    height: 450px;         /* Altura fija del carrusel */
+    position: relative;    /* Punto de referencia para elementos absolute */
+    margin-bottom: 3rem;   /* Espacio debajo del carrusel */
+}
+
+.carousel-img {
+    position: relative;        /* Se superponen unos sobre otros */
+    width: 100%; height: 100%; /* Ocupan todo el contenedor */
+}
+
+.carousel-img img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+    object-position: center; 
+}
+
+/* Degradado overlay */
+.carousel-img::before {
+    content: '';                    /* ← Elemento invisible */
+    position: absolute;             /* ← Se superpone a la imagen */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0.9),        /* ← Izquierda: Negro % */
+        rgba(0, 0, 0, 0.1),        /* ← Centro: Negro % */
+        transparent               /* ← Derecha: Transparente */
+    );
+    z-index: 1;                    /* ← Por encima de la imagen */
+    pointer-events: none;          /* ← No interfiere con clicks */
+}
+
+.carousel-content {
+    position: absolute;
+    top: 50%;                      
+    left: 3rem;                    
+    transform: translateY(-80%);   /* */
+    z-index: 2;                    
+}
+
+/* Imagen del título */
+.carousel-content img {
+    max-width: 300px;              
+    height: auto;
+    display: block;                /* ← Para que el <p> vaya debajo */
+    margin-bottom: -25px;           /* ← Espacio entre título y texto */
+}
+
+/* Texto debajo del título */
+.carousel-content p {
+    color: #8f8f8f;                  /* ← Texto gris */
+    font-size: 15px;              
+    margin: 0 0 1.5rem 0;         /* ← Espacio debajo para el precio */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8); /* ← Sombra para legibilidad */
+    padding-left: 40px;
+}
+
+/* El span para el "16+" */
+.carousel-content p span {
+    background: #585858;          /* ← Fondo gris para la edad */
+    color: white;
+    padding: 0.2rem 0.2rem;       /* ← Espaciado interno */
+    margin-right: 0.5rem;         /* ← Espacio después del 16+ */
+    font-size: 15px;           
+}
+
+.price {
+    color: grey;                 /* ← Texto blanco */
+    font-size: 15px;           /* ← Tamaño grande */
+    font-weight: bold;
+    margin-bottom: 0.5rem;       /* ← Espacio debajo para el botón */
+}
+
+/* Botón de comprar */
+.buy-button {
+    background: transparent;      /* ← Fondo transparente */
+    color: #22d3ee;              /* ← Color cian/azul claro */
+    border: 2px solid #22d3ee;   /* ← Borde del mismo color */
+    padding: 0.8rem 1.5rem;      /* ← Espaciado interno */
+    border-radius: 8px;          /* ← Bordes redondeados */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;   /* ← Transición suave */
+    text-transform: none;        /* ← Sin mayúsculas forzadas */
+}
+
+/* Hover del botón */
+.buy-button:hover {
+    background: #22d3ee;         /* ← Fondo del color del borde */
+    color: #0f172a;              /* ← Texto oscuro */
+    transform: translateY(-2px); /* ← Ligero movimiento hacia arriba */
+    box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3); /* ← Sombra azul */
+}
+
+
 .home-cards {
 display: flex;
 }
