@@ -7,7 +7,7 @@ html,body { height: 100%; margin: 0; font-family: 'Inter', 'Segoe UI', Roboto, A
 /* Fondo: si tenés una imagen tipo starry/bg, poné su url en background-image */
 body {
   background-color: #061016; /* base muy oscuro */
-  background-image: url('fondo-stars.jpg'); /* reemplazá por tu imagen si la tenés */
+  background-image: url('/TP2/res/fondo-registro.png'); 
   background-size: cover;
   background-position: center;
   color: #e6f0f6;
@@ -31,7 +31,7 @@ body::before {
 /* Contenedor centrado */
 .registro-container {
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,40 +39,32 @@ body::before {
   z-index: 1;
 }
 
+#form-box-login{
+    margin-top: 0px;
+}
+
 /* Caja del formulario — estilo estrecho y centrado */
 .form-box {
-  width: 420px;
+  width: 320px;
   max-width: calc(100% - 40px);
-  padding: 32px 34px;
-  background: linear-gradient(180deg, rgba(10,18,24,0.5), rgba(6,10,14,0.6));
+  padding:  34px;
+  margin-top: 200px;
   border-radius: 12px;
-  border: 1px solid rgba(120,100,255,0.12);
-  box-shadow:
-    0 6px 30px rgba(2,8,18,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.02);
   text-align: center;
-  z-index: 2;
   position: relative;
-  backdrop-filter: blur(6px) saturate(120%);
-}
 
-/* Neon top border like screenshot */
-.form-box::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: 8px;
-  right: 8px;
-  height: 4px;
-  border-radius: 4px;
-  background: linear-gradient(90deg, rgba(106,92,255,0.9), rgba(14,165,233,0.95));
-  box-shadow: 0 6px 20px rgba(80,60,200,0.18);
-  opacity: 0.95;
 }
-
+.form-box label{
+    display: block;
+    text-align: left;
+    margin: 6px 0 0 0;
+    font-weight: bold;
+    font-size: 12px;
+}
+.form-box label + input { margin-bottom: 12px; }
 /* Título grande y centrado */
 .form-box h1 {
-  margin: 0 0 18px 0;
+  margin: 80px 0 18px 0;
   font-size: 30px;
   line-height: 1.05;
   color: #ffffff;
@@ -84,34 +76,28 @@ body::before {
 /* Inputs */
 .form-box input {
   width: 100%;
+  height: 38px;
   padding: 12px 14px;
-  margin: 10px 0;
   background: transparent;
-  border-radius: 6px;
-  border: 2px solid rgba(32,150,160,0.15);
+  border-radius: 2px;
+  border: 2px solid rgba(16,200,220,0.95);
   color: #dff7ff;
-  font-size: 14px;
+  font-size: 13px;
   outline: none;
-  transition: border-color .18s ease, box-shadow .18s ease, background .18s;
   box-shadow: inset 0 -2px 8px rgba(0,0,0,0.4);
 }
-
-/* Placeholder color */
-.form-box input::placeholder { color: rgba(210,235,242,0.25); }
-
-/* focus neón */
 .form-box input:focus {
-  border-color: rgba(16,200,220,0.95);
   box-shadow: 0 6px 30px rgba(16,200,220,0.07), 0 0 18px rgba(16,200,220,0.08) inset;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  background: transparent;
+  color: #dff7ff; /* asegurate de mantener el color claro */
 }
 
-/* Campos requeridos: pequeño asterisco a la derecha (si lo añadís vía label, igual se verá) */
-.form-box label { display:block; margin-bottom:6px; font-size:13px; color: #bcdce6; }
+
 
 /* Botón principal — glow y relieve */
 .btn {
   width: 100%;
+  height: 38px;
   padding: 12px 14px;
   margin: 12px 0;
   border-radius: 8px;
@@ -125,62 +111,43 @@ body::before {
 
 /* Botón Continuar central — efecto vidrio + glow interior */
 .btn:not(.google):not(.facebook) {
-  background: linear-gradient(180deg, rgba(18,110,140,0.18), rgba(6,24,30,0.22));
-  color: #e6fbff;
-  border: 1px solid rgba(30,210,230,0.12);
+  background: #042847;
+  color:rgba(16,200,220,0.95);
+  border: 1px solid rgba(16,200,220,0.95);
   box-shadow:
-    0 8px 30px rgba(6,30,40,0.6),
-    0 0 30px rgba(14,200,230,0.06);
+   inset 0 0 12px rgba(16,200,220,0.95);
 }
 
 /* Hover/active efectos */
 .btn:not(.google):not(.facebook):hover {
   transform: translateY(-2px);
+  background-color: #091A29;
   box-shadow:
-    0 12px 40px rgba(8,30,40,0.7),
-    0 0 36px rgba(14,200,230,0.12);
+  inset 0 0 12px rgba(16,200,220,0.95);
 }
 .btn:not(.google):not(.facebook):active { transform: translateY(0); }
 
-/* Separador "o" estilizado */
-.form-box .separator {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 8px 0 12px;
-  color: rgba(200,230,240,0.42);
-  font-size: 13px;
-}
-.form-box .separator::before,
-.form-box .separator::after {
-  content: "";
-  height: 1px;
-  flex:1;
-  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(160,220,230,0.06));
-  border-radius: 999px;
-}
 
 /* Botones sociales: borde neon y fondo oscuro translúcido */
 .btn.google, .btn.facebook {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 38px;
   gap: 10px;
   padding: 10px 12px;
   border-radius: 8px;
-  background: rgba(0,0,0,0.25);
-  color: #e6fbff;
-  border: 1px solid rgba(12,170,200,0.12);
+  background:#091A29;
+  color: rgba(16,200,220,0.95);
+  border: 1px solid rgba(16,200,220,0.95);
   box-shadow: 0 6px 22px rgba(6,20,30,0.6), 0 0 12px rgba(10,170,210,0.04) inset;
   font-weight: 700;
 }
 
-/* Google / Facebook specific tiny color markers */
-.btn.google {
-  border-color: rgba(236,64,122,0.08);
-}
-.btn.facebook {
-  border-color: rgba(59,89,152,0.14);
+.btn.facebook:hover,
+.btn.google:hover {
+    border-color: #023B6C;
+     box-shadow: 0 6px 10px  #023B6C ;
 }
 
 /* Icon placeholders: si tenés iconos, ponelos como fondo en .btn.google::before etc. */
@@ -221,10 +188,26 @@ body::before {
   color: #ffdede;
 }
 
-/* Tamaños pequeños / responsive */
-@media (max-width: 480px) {
-  .form-box { padding: 22px; width: 94%; border-radius: 10px; }
-  .form-box h1 { font-size: 22px; }
-  .btn { font-size: 14px; padding: 10px; }
-  .form-box input { padding: 10px; }
+.input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
 }
+
+.input-container input {
+  padding-right: 50px; /* espacio para el asterisco */
+}
+
+.input-container .asterisk {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  padding-top: 20px;
+  padding-right: 10px;
+  transform: translateY(-50%);
+  color:rgba(16,200,220,0.95);
+  pointer-events: none; /* no molesta al escribir */
+  font-weight: bold;
+}
+
+
