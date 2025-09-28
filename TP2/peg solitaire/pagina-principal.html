@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMO Games</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/TP2/style.css" />
+    <link rel="stylesheet" href="/TP2/css/juego.css">
+  </head>
+
+  <body>
+    <div id="overlay"> </div>
+        <header>
+            <nav class="navbar">
+                <div class="left-side">
+                    <!-- Menú hamburguesa-->
+                    <div class="menu-icon" id="menu-icon">
+                        <i class="fa-solid fa-bars"></i> 
+                    </div>
+                    <div class="nav-links" id="menu">
+                        <div class="menu-header">
+                            <img src="TP2/images/icono-salir.png" alt="salir" id="close-menu" >
+                            <img src="TP2/images/logo.png" alt="logo Beemo" class="logo-beemo">
+                        </div>
+                        <!-- grupo 1 -->
+                        <ul class="menu-group">
+                            <li>
+                                <img src="images/icono-inicio.png" alt="icono Inicio">
+                                <a href="#">Inicio</a>
+                            </li>
+                            <li class="categorías">
+                                <div id="Btn-categorias" class="categoría-toggle">
+                                    <img src="images/icono-categoria.png" alt="icono Categoría">
+                                    <a href="#">Categorías</a>
+                                </div>
+                                <ul class="dropdown" id="dropdown">
+                                    <li>
+                                        <img src="images/blank.png" alt=""> 
+                                        <a href="#">Acción</a>
+                                    </li>
+                                    <li>
+                                        <img src="images/blank.png" alt="" >
+                                        <a href="#">En Pareja</a>
+                                    </li>   
+                                    <li>
+                                        <img src="images/blank.png" alt="">
+                                        <a href="#">Recomendados</a>
+                                    </li>
+                                    <li>
+                                        <img src="images/blank.png" alt="">
+                                        <a href="#">Gratis</a>
+                                    </li>
+                                    <li>
+                                        <img src="images/blank.png" alt="" >
+                                        <a href="#">Descuentos</a>
+                                    </li>
+                                    <li><img src="images/blank.png" alt="">
+                                        <a href="#">Carreras</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <!-- grupo 2 -->    
+                         <ul class="menu-group">
+                            <li>
+                                <img src="images/icono-compartir.png" alt="icono Compartir app">
+                                <a href="#">Compartir App</a>
+                            </li>
+                            <li>
+                                <img src="images/icono-contactanos.png" alt="icono contactanos">
+                                <a href="#">contactanos</a>
+                            </li>
+                        </ul>
+                        <ul>
+                             <li>
+                                <img src="images/icono-ayuda.png" alt="icono ayuda">
+                                <a href="#">ayuda</a>
+                             </li>
+                        </ul>
+                    </div>
+                    <!-- Logo -->
+                    <a href="#" class="logo">
+                        <img src="images/logo.png" alt="BMO Games"> 
+                    </a>
+                </div>
+
+                <!-- Buscador -->
+                <form action="" class="search-bar">
+                    <input type="text" placeholder="Buscar juego">
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                <!-- Perfil -->
+                <a href="#" class="profil-icon">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+            </nav>
+            </div>
+        </header>
+
+
+
+    <!-- Body -->
+    <div class="container">
+
+  <!-- Imagen principal -->
+        <div class="main">
+             <img src="/TP2/images/ft-principal (1).png" alt="Imagen principal del juego">
+              <h2 class="title">Peg Solitaire: Naruto Shippuden</h2>
+        </div>
+
+  <!-- Columna derecha: cards pequeñas -->
+<aside class="sidebar">
+    <div class="cards-grid">
+      <div class="small-card">
+        <img src="https://via.placeholder.com/160x90" alt="">
+        <div class="info">
+          <div class="game-title">Double Dragon</div>
+          <div class="price">1,012 USD</div>
+        </div>
+        <button class="btn">Comprar</button>
+      </div>
+
+      <div class="small-card">
+        <img src="https://via.placeholder.com/160x90" alt="">
+        <div class="info">
+          <div class="game-title">League of Legends</div>
+          <div class="price">Gratis</div>
+        </div>
+        <button class="btn">Abrir</button>
+      </div>
+
+      <div class="small-card">
+        <img src="https://via.placeholder.com/160x90" alt="">
+        <div class="info">
+          <div class="game-title">The Last of Us</div>
+          <div class="price">11.25 USD</div>
+        </div>
+        <button class="btn">Comprar</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Descripción (fila completa) -->
+
+  <section class="description">
+    <div class="descripcion">
+        <i class="fa-solid fa-circle-question pregunta"></i>
+    <h4>Descripción</h4>
+    </div>
+    
+    <div class="text">
+      <p>Un desafío solitario lleno de estrategia ninja. Poné a prueba tu mente mientras movés fichas inspiradas en tus personajes favoritos del mundo shinobi. Cada salto es un golpe certero, cada eliminación una técnica bien ejecutada: el objetivo, quedarte con la última ficha en pie.</p>
+        <p class="fin-descripcion">
+        Pero no es tan fácil: deberás planear con precisión cada movimiento, anticipar al rival invisible —el tablero— y demostrar que tu lógica es tan afilada como un kunai.
+        ¡Superá el reto, desbloqueá logros ocultos y probá si realmente podés alcanzar la perfección shinobi con una sola ficha sobreviviente en el centro del tablero!</p>
+      <p> — Desarrolladores: Troncoso Abril, Gorosito Luca, Laffitte Agostina</p>
+      <p>Plataforma: Browser (Desktop)</p>
+      <p>Páginas Wiki: Wikipedia - Fandom</p>
+    </div>
+  </section>
+
+<div class="bottom-left gallery">
+  <div class="hero-video">
+    <img src="/TP2/images/ft-prue.png" alt="">
+        <div class="play-overlay play-button-css"></div>
+  </div>
+</div>
+
+<div class="bottom-right">
+  <div class="screenshots">
+    <div class="thumb"><img src="/TP2/images/prueba-ft-tablero.png" alt=""></div>
+    <div class="thumb"><img src="/TP2/images/otra.png" alt=""></div>
+  </div>
+</div>
+
+
+</div>
+
+    
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-desc">
+          <div class="footer-bmo">
+            <img src="images/beemo.png" alt="Beemo" />
+          </div>
+          <div class="footer-logo">
+            <img src="images/logo.png" alt="BMO Games" />
+          </div>
+          <p>BMO games tu portal para jugar y comprar videojuegos</p>
+        </div>
+        <!-- Compañia -->
+        <div>
+          <h2 class="title-footer">Compañia</h2>
+          <ul>
+            <li>Acerca de</li>
+            <li>Inicio</li>
+            <li>Categoría</li>
+            <li>Noticias</li>
+            <li>Blog/Foro</li>
+            <li>Inversionistas</li>
+            <li>Prensa/Media kit</li>
+            <li>Afiliados/Partners</li>
+            <li>Contacto directo</li>
+            <li>Carreras/Trabaja con nosotros</li>
+          </ul>
+        </div>
+
+        <!-- Recursos -->
+        <div>
+          <h2 class="title-footer">Recursos</h2>
+          <ul>
+            <li>Consultas sobre el reglamento</li>
+            <li>Reglas de la comunidad</li>
+            <li>Comunidad</li>
+            <li>Política de contenido</li>
+            <li>Soporte</li>
+            <li>Preguntas frecuentes(FAQ)</li>
+            <li>Centro de ayuda</li>
+            <li>Guías y tutoriales</li>
+            <li>Foros de usuarios</li>
+            <li>Reportar un problema</li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h2 class="title-footer">Legal</h2>
+          <ul>
+            <li>Licencias</li>
+            <li>Políticas de privacidad</li>
+            <li>Términos y condiciones</li>
+            <li>Cookies y preferencias</li>
+            <li>Propiedad intelectual</li>
+            <li>Derechos del consumidor</li>
+            <li>Reembolsos y devoluciones</li>
+          </ul>
+        </div>
+
+        <!-- Métodos de pago -->
+        <div>
+          <h2 class="title-footer">Métodos de pago</h2>
+          <!-- Completar -->
+        </div>
+
+        <!-- Contacto -->
+        <div class="footer-contact">
+          <h2 class="title-footer">Contacto</h2>
+          <!-- Completar -->
+        </div>
+      </div>
+      <div class="text-copy">
+        <p>© 2025 BMO Games. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+    <script src="/TP2/js/index.js"></script>
+  </body>
+</html>
