@@ -17,9 +17,9 @@
                     <div class="menu-icon" id="menu-icon">
                         <i class="fa-solid fa-bars"></i> 
                     </div>
-                    <div class="nav-links" id="menu">
+                    <div class="nav-burger" id="menu">
                         <div class="menu-header">
-                            <img src="images/icono-salir.png" alt="salir" id="close-menu" >
+                            <img src="images/icono-salir.png" alt="salir" class="close-nav" >
                             <img src="images/logo.png" alt="logo Beemo" class="logo-beemo">
                         </div>
                         <!-- grupo 1 -->
@@ -31,7 +31,7 @@
                             <li class="categorías">
                                 <div id="Btn-categorias" class="categoría-toggle">
                                     <img src="images/icono-categoria.png" alt="icono Categoría">
-                                    <a href="#">Categorías</a>
+                                    <span>Categorías</span>
                                 </div>
                                 <ul class="dropdown" id="dropdown">
                                     <li>
@@ -69,13 +69,13 @@
                             </li>
                             <li>
                                 <img src="images/icono-contactanos.png" alt="icono contactanos">
-                                <a href="#">contactanos</a>
+                                <a href="#">Contactanos</a>
                             </li>
                         </ul>
                         <ul>
                              <li>
                                 <img src="images/icono-ayuda.png" alt="icono ayuda">
-                                <a href="#">ayuda</a>
+                                <a href="#">Ayuda</a>
                              </li>
                         </ul>
                     </div>
@@ -94,9 +94,42 @@
                 </form>
 
                 <!-- Perfil -->
-                <a href="#" class="profil-icon">
+                <a href="#" class="profil-icon" id="profil-icon">
                     <i class="fa-solid fa-user"></i>
                 </a>
+                 <div class="nav-burger" id="nav-profil" >
+                    <ul class="menu-group">
+                         <div class="profil-header">
+                            <div>
+                                <img src="images/foto-perfil.png" alt="foto perfil" >
+                                <span>Hola Luca!!</span>
+                            </div>
+                            <img src="images/icono-salir.png" alt="salir" class="close-nav" >
+                        </div>
+                        <li>
+                            <img src="images/icono-juego.png" alt="icono Juego">
+                            <a href="#">Mis juegos</a>
+                        </li>
+                        <li>
+                            <img src="images/icono-editar.png" alt="icono icono-editar">
+                            <a href="#">Editar perdil</a>
+                        </li>
+                    </ul>
+                    <ul class="menu-group">
+                        <li>
+                            <img src="images/icono-configuracion.png" alt="icono cofiguracion">
+                            <a href="#">Configuracion</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <img src="images/icono-cerrar-sesion.png" alt="icono icono-cerrar-sesion">
+                            <a href="#">Cerrar sesion</a>
+                        </li>
+                    </ul>
+                </div>
+
+
             </nav>
             </div>
         </header>
