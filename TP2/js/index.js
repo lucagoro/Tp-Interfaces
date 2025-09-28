@@ -1,26 +1,31 @@
-const Btnmenu = document.getElementById('menu-icon');
+// === Elementos del DOM ===
+const menuIcon = document.getElementById('menu-icon');
 const menu = document.getElementById('menu');
-const Btncategorias = document.getElementById('Btn-categorias');
-const categorias = document.getElementById('dropdown');
-const cruz=document.getElementById('close-menu');
-
+const closeMenuBtn = document.getElementById('close-menu');
 const overlay = document.getElementById('overlay');
+const categoriasToggle = document.getElementById('Btn-categorias');
+const categoriasDropdown = document.getElementById('dropdown');
+const categoriasLi = categoriasToggle.closest('.categorías');
 
-// Agrega el event listener
-Btnmenu.addEventListener('click', () => {
-  menu.classList.toggle('show');
-  overlay.classList.toggle('show');
-});
-Btncategorias.addEventListener('click', (e) => {
- e.preventDefault(); 
- categorias.classList.toggle('showcategories');
-});
+// === Funciones ===
+function abrirMenu() {
+  menu.classList.add('show');
+  overlay.classList.add('show');
+}
 
-overlay.addEventListener('click', () => {
+function cerrarMenu() {
   menu.classList.remove('show');
   overlay.classList.remove('show');
-});
-cruz.addEventListener('click', () => {
-    menu.classList.remove('show');
-    overlay.classList.remove('show');
-   });
+}
+
+function toggleCategorias(e) {
+  e.preventDefault();
+  categoriasDropdown.classList.toggle('showcategories');
+  categoriasLi.classList.toggle('open');
+}
+
+// === Eventos ===
+menuIcon.addEventListener('click', abrirMenu);
+closeMenuBtn.addEventListener('click', cerrarMenu);
+overlay.addEventListener('click', cerrarMenu);
+categoriasToggle.addEventListener('click', toggleCategorias);
