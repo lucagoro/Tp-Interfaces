@@ -71,7 +71,7 @@ header {
   padding-bottom: 10px;
   margin-bottom: 15px;
 }
-/* === itens principal === */
+/* === items principal === */
 .nav-burger ul {
   padding: 0;
   margin: 0;
@@ -207,8 +207,8 @@ header {
   justify-content: space-between;
   background-color: #131729;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  padding: 10px 20px;
-
+  margin: -20px;
+  padding: 5px 20px 5px 20px;
 }
 nav.ul.div{
     display: flex;
@@ -229,7 +229,7 @@ nav.ul.div{
 }
 
 .logo img {
-    height: 60px;
+    height: 100px;
 }
 
 .profil-icon i {
@@ -248,12 +248,14 @@ nav.ul.div{
 }
 
 .search-bar input {
-    width: 200px;
+    width: 250px;
     padding: 8px 35px 8px 15px;
     border: 1px solid #4DF3F7;
     border-radius: 20px;
     background: #2C3C4F;
     color: #4DF3F7;
+    opacity: 0.5;
+    font-weight: bold;
 }
 
 .search-bar input::placeholder {
@@ -263,12 +265,12 @@ nav.ul.div{
 
 .search-bar button {
     position: absolute;
-    left: 10px;
+    left: 15px;
     background: none;
     border: none;
     color: #4DF3F7;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 /*---- Body ----*/
@@ -384,9 +386,11 @@ body {
     box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3); /* ← Sombra azul */
 }
 
-
-
 /* Cards juegos */
+.games-section {
+  margin-top: -20px;
+}
+
 .games {
     display: flex;
     overflow-x: hidden;               /* Oculta lo que no entra */
@@ -394,22 +398,23 @@ body {
 }
 
 .games-section h4 {
-    margin-left: 20px;
+    margin-left: 35px;
     color: white;
 }
 
 .game-card {
-    flex: 0 0 300px;                 /* No crece, no encoge, 250px fijo */
+    flex: 0 0 280px;                 /* No crece, no encoge, 250px fijo */
     /* flex-shrink: 0; también funciona */
 
-    margin-left: 20px;
+    margin-left: 35px;
     margin-top: 10px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     height: 205px;
     width: 300px;
-    background: rgba(30, 41, 59, 0.9);
+    background: #131729;
     padding: 0; /* Sin padding para que la imagen ocupe todo */
     border-radius: 5px;
+    border: 1px solid black;
     overflow: hidden; /* Para que la imagen respete los bordes redondeados */
     box-shadow: 
         20px 20px 0px rgba(0, 0, 0, 0.99),      /* Sombra principal */
@@ -456,17 +461,30 @@ body {
 }
 
 .play-button {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 5px;
+    background: #091A29;
+    color: #D2FCFD;
+    border: 1px solid #5F6FB5;
+    padding: 5px 10px;
     border-radius: 6px;
     font-size: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.play-button:hover {
+.buy-button-card {
+  background: #091A29;
+  color: #4DF3F7;             
+  border: 1px solid #4DF3F7;
+  padding: 5px 10px;
+  font-size: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+
+
+.play-button:hover, .buy-button-card:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
@@ -475,7 +493,7 @@ body {
 
 footer {
     background-color: #21294A;
-    color: #7f8c8d;
+    color: #ffffffdb;
     padding-top: 5rem;
     position: relative;
     margin-top: 100px;
@@ -483,7 +501,7 @@ footer {
 
 .title-footer {
     font-weight: normal;
-    padding-top: 3rem;
+    padding-top: 2rem;
     padding-bottom: 0.5rem;
     color: #4DF3F7
 }
@@ -507,6 +525,15 @@ ul li { /*---- acomodar ----*/
     font-size: 15px;
     padding: 1px;
 }
+
+ul li a {
+    color: #ffffffdb;
+}
+
+ul li a:hover {
+  text-decoration: underline;
+}
+
 
 /*Usé CSS Grid porque me permite crear layouts complejos de forma simple. Con grid-template-columns defino las columnas,
 y con grid-column y grid-row posiciono elementos específicos donde necesito, como poner 'Contacto' debajo de 'Métodos de pago
@@ -537,6 +564,8 @@ y con grid-column y grid-row posiciono elementos específicos donde necesito, co
 .footer-contact {
     grid-column: 5; 
     grid-row: 2;
+    margin-top: -90px;
+    padding-bottom: 2rem;
 }
 
 .text-copy {
@@ -546,8 +575,34 @@ y con grid-column y grid-row posiciono elementos específicos donde necesito, co
     padding-top: 1rem;
     padding-bottom: 4rem; /* Fijarse s deberia ser 5rem como el de arriba */
     text-align: center;
-    color: #7f8c8d;
+    color: #ffffffdb;
     font-size: 15px;
+}
+
+
+.payment-icon img{
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.payment-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.social-icon img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+
 }
 
 
