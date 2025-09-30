@@ -8,57 +8,57 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="/TP2/style.css" />
-    <link rel="stylesheet" href="/TP2/css/juego.css">
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/juego.css">
   </head>
 
   <body>
     <div id="overlay"> </div>
         <header>
-            <nav class="navbar">
+             <nav class="navbar">
                 <div class="left-side">
                     <!-- Menú hamburguesa-->
                     <div class="menu-icon" id="menu-icon">
                         <i class="fa-solid fa-bars"></i> 
                     </div>
-                    <div class="nav-links" id="menu">
+                    <div class="nav-burger" id="menu">
                         <div class="menu-header">
-                            <img src="/TP2/images/icono-salir.png" alt="salir" id="close-menu" >
-                            <img src="/TP2/images/logo.png" alt="logo Beemo" class="logo-beemo">
+                            <img src="../images/icono-salir.png" alt="salir" class="close-nav" >
+                            <img src="../images/logo.png" alt="logo Beemo" class="logo-beemo">
                         </div>
                         <!-- grupo 1 -->
                         <ul class="menu-group">
                             <li>
-                                <img src="/TP2/images/icono-inicio.png" alt="icono Inicio">
+                                <img src="../images/icono-inicio.png" alt="icono Inicio">
                                 <a href="#">Inicio</a>
                             </li>
                             <li class="categorías">
                                 <div id="Btn-categorias" class="categoría-toggle">
-                                    <img src="/TP2/images/icono-categoria.png" alt="icono Categoría">
-                                    <a href="#">Categorías</a>
+                                    <img src="../images/icono-categoria.png" alt="icono Categoría">
+                                    <span>Categorías</span>
                                 </div>
                                 <ul class="dropdown" id="dropdown">
                                     <li>
-                                        <img src="/TP2/images/blank.png" alt=""> 
+                                        <img src="../images/blank.png" alt=""> 
                                         <a href="#">Acción</a>
                                     </li>
                                     <li>
-                                        <img src="/TP2/images/blank.png" alt="" >
+                                        <img src="../images/blank.png" alt="" >
                                         <a href="#">En Pareja</a>
                                     </li>   
                                     <li>
-                                        <img src="/TP2/images/blank.png" alt="">
+                                        <img src="../images/blank.png" alt="">
                                         <a href="#">Recomendados</a>
                                     </li>
                                     <li>
-                                        <img src="/TP2/images/blank.png" alt="">
+                                        <img src="../images/blank.png" alt="">
                                         <a href="#">Gratis</a>
                                     </li>
                                     <li>
-                                        <img src="/TP2/images/blank.png" alt="" >
+                                        <img src="../images/blank.png" alt="" >
                                         <a href="#">Descuentos</a>
                                     </li>
-                                    <li><img src="/TP2/images/blank.png" alt="">
+                                    <li><img src="../images/blank.png" alt="">
                                         <a href="#">Carreras</a>
                                     </li>
                                 </ul>
@@ -68,24 +68,24 @@
                         <!-- grupo 2 -->    
                          <ul class="menu-group">
                             <li>
-                                <img src="/TP2/images/icono-compartir.png" alt="icono Compartir app">
+                                <img src="../images/icono-compartir.png" alt="icono Compartir app">
                                 <a href="#">Compartir App</a>
                             </li>
                             <li>
-                                <img src="/TP2/images/icono-contactanos.png" alt="icono contactanos">
-                                <a href="#">contactanos</a>
+                                <img src="../images/icono-contactanos.png" alt="icono contactanos">
+                                <a href="#">Contactanos</a>
                             </li>
                         </ul>
                         <ul>
                              <li>
-                                <img src="/TP2/images/icono-ayuda.png" alt="icono ayuda">
-                                <a href="#">ayuda</a>
+                                <img src="../images/icono-ayuda.png" alt="icono ayuda">
+                                <a href="#">Ayuda</a>
                              </li>
                         </ul>
                     </div>
                     <!-- Logo -->
                     <a href="#" class="logo">
-                        <img src="/TP2/images/logo.png" alt="BMO Games"> 
+                        <img src="../images/logo.png" alt="BMO Games"> 
                     </a>
                 </div>
 
@@ -98,9 +98,42 @@
                 </form>
 
                 <!-- Perfil -->
-                <a href="#" class="profil-icon">
+                <a href="#" class="profil-icon" id="profil-icon">
                     <i class="fa-solid fa-user"></i>
                 </a>
+                 <div class="nav-burger" id="nav-profil" >
+                    <ul class="menu-group">
+                         <div class="profil-header">
+                            <div>
+                                <img src="../images/foto-perfil.png" alt="foto perfil" >
+                                <span>Hola Luca!!</span>
+                            </div>
+                            <img src="../images/icono-salir.png" alt="salir" class="close-nav" >
+                        </div>
+                        <li>
+                            <img src="../images/icono-juego.png" alt="icono Juego">
+                            <a href="#">Mis juegos</a>
+                        </li>
+                        <li>
+                            <img src="../images/icono-editar.png" alt="icono icono-editar">
+                            <a href="#">Editar perdil</a>
+                        </li>
+                    </ul>
+                    <ul class="menu-group">
+                        <li>
+                            <img src="../images/icono-configuracion.png" alt="icono cofiguracion">
+                            <a href="#">Configuracion</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <img src="../images/icono-cerrar-sesion.png" alt="icono icono-cerrar-sesion">
+                            <a href="#">Cerrar sesion</a>
+                        </li>
+                    </ul>
+                </div>
+
+
             </nav>
             </div>
         </header>
@@ -108,44 +141,44 @@
 
 
     <!-- Body -->
-    <div class="container">
+<div class="container">
 
   <!-- Imagen principal -->
         <div class="main">
-             <img src="/TP2/images/ft-principal (1).png" alt="Imagen principal del juego">
+             <img src="../images/ft-principal (1).png" alt="Imagen principal del juego">
               <h2 class="title">Peg Solitaire: Naruto Shippuden</h2>
         </div>
 
   <!-- Columna derecha: cards pequeñas -->
-<aside class="sidebar">
-    <div class="cards-grid">
-      <div class="small-card">
-        <img src="https://via.placeholder.com/160x90" alt="">
-        <div class="info">
-          <div class="game-title">Double Dragon</div>
-          <div class="price">1,012 USD</div>
+  <aside class="sidebar">
+      <div class="cards-grid">
+        <div class="small-card">
+          <img src="https://via.placeholder.com/160x90" alt="">
+          <div class="info">
+            <div class="game-title">Double Dragon</div>
+            <div class="price">1,012 USD</div>
+          </div>
+          <button class="btn">Comprar</button>
         </div>
-        <button class="btn">Comprar</button>
-      </div>
 
-      <div class="small-card">
-        <img src="https://via.placeholder.com/160x90" alt="">
-        <div class="info">
-          <div class="game-title">League of Legends</div>
-          <div class="price">Gratis</div>
+        <div class="small-card">
+          <img src="https://via.placeholder.com/160x90" alt="">
+          <div class="info">
+            <div class="game-title">League of Legends</div>
+            <div class="price">Gratis</div>
+          </div>
+          <button class="btn">Abrir</button>
         </div>
-        <button class="btn">Abrir</button>
-      </div>
 
-      <div class="small-card">
-        <img src="https://via.placeholder.com/160x90" alt="">
-        <div class="info">
-          <div class="game-title">The Last of Us</div>
-          <div class="price">11.25 USD</div>
+        <div class="small-card">
+          <img src="https://via.placeholder.com/160x90" alt="">
+          <div class="info">
+            <div class="game-title">The Last of Us</div>
+            <div class="price">11.25 USD</div>
+          </div>
+          <button class="btn">Comprar</button>
         </div>
-        <button class="btn">Comprar</button>
       </div>
-    </div>
   </aside>
 
   <!-- Descripción (fila completa) -->
@@ -153,7 +186,7 @@
   <section class="description">
     <div class="descripcion">
         <i class="fa-solid fa-circle-question pregunta"></i>
-    <h4>Descripción</h4>
+       <h4>Descripción</h4>
     </div>
     
     <div class="text">
@@ -167,33 +200,48 @@
     </div>
   </section>
 
-<div class="bottom-left gallery">
-  <div class="hero-video">
-    <img src="/TP2/images/ft-prue.png" alt="">
-        <div class="play-overlay play-button-css"></div>
+  <div class="bottom-left gallery">
+    <div class="hero-video">
+      <img src="../images/ft-prue.png" alt="">
+          <div class="play-overlay play-button-css"></div>
+    </div>
   </div>
-</div>
 
-<div class="bottom-right">
-  <div class="screenshots">
-    <div class="thumb"><img src="/TP2/images/prueba-ft-tablero.png" alt=""></div>
-    <div class="thumb"><img src="/TP2/images/otra.png" alt=""></div>
+  <div class="bottom-right">
+    <div class="screenshots">
+      <div class="thumb"><img src="../images/prueba-ft-tablero.png" alt=""></div>
+      <div class="thumb"><img src="../images/otra.png" alt=""></div>
+    </div>
   </div>
-</div>
+
+  <section id="comments">
+    <div class="comment-header">
+       <img src="../images/icono-comentario.png" alt="icono-comentario">
+       <h4>Comentarios</h4>
+    </div>
+    <div class="comment-form">
+      <img src="../images/icono-user.png" alt="icono usuario">
+    <form  method="POST">
+      <input type="text" name="comentario" placeholder="¿Que piensas del juego?" required>
+     <button class="play-button" type="submit">Enviar</button>
+    </form>
+    </div>
+    <div id="comment-list">
+    <!-- Los comentarios se insertan acá -->
+    </div>
+  </section>
 
 
 </div>
-
-    
 
     <footer>
       <div class="footer-content">
         <div class="footer-desc">
           <div class="footer-bmo">
-            <img src="images/beemo.png" alt="Beemo" />
+            <img src="../images/beemo.png" alt="Beemo" />
           </div>
           <div class="footer-logo">
-            <img src="images/logo.png" alt="BMO Games" />
+            <img src="../images/logo.png" alt="BMO Games" />
           </div>
           <p>BMO games tu portal para jugar y comprar videojuegos</p>
         </div>
@@ -261,6 +309,7 @@
         <p>© 2025 BMO Games. Todos los derechos reservados.</p>
       </div>
     </footer>
-    <script src="/TP2/js/index.js"></script>
+    <script src="../js/index.js"></script>
+     <script src="../js/peg-solitare.js"></script>
   </body>
 </html>
