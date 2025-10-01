@@ -8,14 +8,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/juego.css">
   </head>
 
   <body>
-    <div id="overlay"> </div>
-        <header>
-             <nav class="navbar">
+   <div id="overlay"> </div>
+          <header>
+            <nav class="navbar">
                 <div class="left-side">
                     <!-- Menú hamburguesa-->
                     <div class="menu-icon" id="menu-icon">
@@ -23,18 +23,18 @@
                     </div>
                     <div class="nav-burger" id="menu">
                         <div class="menu-header">
-                            <img src="../images/icono-salir.png" alt="salir" class="close-nav" >
+                           <i class="fa-solid fa-xmark"></i>
                             <img src="../images/logo.png" alt="logo Beemo" class="logo-beemo">
                         </div>
                         <!-- grupo 1 -->
                         <ul class="menu-group">
                             <li>
-                                <img src="../images/icono-inicio.png" alt="icono Inicio">
+                               <i class="fa-solid fa-house-chimney"></i>
                                 <a href="#">Inicio</a>
                             </li>
                             <li class="categorías">
                                 <div id="Btn-categorias" class="categoría-toggle">
-                                    <img src="../images/icono-categoria.png" alt="icono Categoría">
+                                   <i class="fa-solid fa-layer-group"></i>
                                     <span>Categorías</span>
                                 </div>
                                 <ul class="dropdown" id="dropdown">
@@ -68,17 +68,17 @@
                         <!-- grupo 2 -->    
                          <ul class="menu-group">
                             <li>
-                                <img src="../images/icono-compartir.png" alt="icono Compartir app">
+                               <i class="fa-solid fa-share-nodes"></i>
                                 <a href="#">Compartir App</a>
                             </li>
                             <li>
-                                <img src="../images/icono-contactanos.png" alt="icono contactanos">
+                                <i class="fa-solid fa-envelope"></i>
                                 <a href="#">Contactanos</a>
                             </li>
                         </ul>
                         <ul>
                              <li>
-                                <img src="../images/icono-ayuda.png" alt="icono ayuda">
+                               <i class="fa-solid fa-circle-info"></i>
                                 <a href="#">Ayuda</a>
                              </li>
                         </ul>
@@ -108,26 +108,26 @@
                                 <img src="../images/foto-perfil.png" alt="foto perfil" >
                                 <span>Hola Luca!!</span>
                             </div>
-                            <img src="../images/icono-salir.png" alt="salir" class="close-nav" >
+                         <i class="fa-solid fa-xmark"></i>
                         </div>
                         <li>
-                            <img src="../images/icono-juego.png" alt="icono Juego">
+                          <i class="fa-solid fa-gamepad"></i>
                             <a href="#">Mis juegos</a>
                         </li>
                         <li>
-                            <img src="../images/icono-editar.png" alt="icono icono-editar">
+                            <i class="fa-solid fa-pen-to-square"></i>
                             <a href="#">Editar perdil</a>
                         </li>
                     </ul>
                     <ul class="menu-group">
                         <li>
-                            <img src="../images/icono-configuracion.png" alt="icono cofiguracion">
+                           <i class="fa-solid fa-gear"></i>
                             <a href="#">Configuracion</a>
                         </li>
                     </ul>
                     <ul>
                         <li>
-                            <img src="../images/icono-cerrar-sesion.png" alt="icono icono-cerrar-sesion">
+                            <i class="fa-solid fa-circle-xmark"></i>
                             <a href="#">Cerrar sesion</a>
                         </li>
                     </ul>
@@ -137,8 +137,6 @@
             </nav>
             </div>
         </header>
-
-
 
     <!-- Body -->
 <div class="container">
@@ -216,16 +214,45 @@
 
   <section id="comments">
     <div class="comment-header">
-       <img src="../images/icono-comentario.png" alt="icono-comentario">
+       <i class="fa-solid fa-message"></i>
        <h4>Comentarios</h4>
     </div>
     <div class="comment-form">
-      <img src="../images/icono-user.png" alt="icono usuario">
+      <i class="fa-solid fa-user"></i>
     <form  method="POST">
       <input type="text" name="comentario" placeholder="¿Que piensas del juego?" required>
-     <button class="play-button" type="submit">Enviar</button>
+     <button class="play-button" type="submit"><i class="fa-solid fa-angles-right"></i></button>
     </form>
     </div>
+    <div class="comment">
+       <div class="comment-new-header">
+           <i class="fa-solid fa-user"></i>
+           <span>Usuario Anónimo</span>
+           <small>9/10/2024 14:00</small>
+      </div>
+          <p>Terrible jueguito! Me gustó mucho la temática! 10/10 </p>
+      <div class="comment-footer" >
+          <i class="fa-solid fa-thumbs-up"></i>
+          <small>0</small>
+          <i class="fa-solid fa-thumbs-down"></i>
+          <small>0</small>
+          <a href="#">Responder</a>
+       </div>
+    </div>
+    <div class="comment"> 
+       <div class="comment-new-header">
+           <i class="fa-solid fa-user"></i>
+           <span>Usuario Anónimo</span>
+           <small>1/10/2025 11:00</small>
+      </div>
+          <p>Acabo de pasar un buen rato jugando al Peg Solitaire y fue mucho más absorbente de lo que esperaba para un juego tan sencillo en apariencia. Al principio parece fácil: solo saltar una ficha sobre otra y retirarla del tablero, pero a medida que avanzas y quedan menos piezas, la dificultad se dispara. Me gustó mucho esa sensación de tener que planear varios movimientos por adelantado, casi como resolver un rompecabezas lógico paso a paso. Cada vez que lograba encadenar saltos perfectos sentía una satisfacción enorme, y al mismo tiempo, cada error me hacía retroceder mentalmente para analizar en qué momento arruiné la secuencia.</p>
+      <div class="comment-footer" >
+           <i class="fa-solid fa-thumbs-up"></i>
+            <small>1</small>
+            <i class="fa-solid fa-thumbs-down"></i>
+            <small>0</small>
+            <a href="#">Responder</a>
+      </div></div>
     <div id="comment-list">
     <!-- Los comentarios se insertan acá -->
     </div>
