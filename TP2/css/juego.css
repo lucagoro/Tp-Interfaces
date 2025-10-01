@@ -60,36 +60,110 @@ border-color:rgba(16,200,220,0.95) ;
 
 .cards-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px; /* Espacio entre los cards */
+
 }
 
-.small-card {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding: 8px;
+/* Tarjeta de juego individual */
+
+.game-card {
+  flex: 0 0 180px;                /* No crece, no encoge, ancho fijo de 180px */
+  /* flex-shrink: 0; también funciona para evitar que se reduzca */
+  margin-left: 20px;              
+  margin-top: 5px;             
+  margin-bottom: 8px;             /* Menor separación abajo */
+  height: 120px;                /* Alto fijo */
+  width: 180px;                   /* Ancho fijo */
+  background: #131729;            
+  border-radius: 5px;             
+  border: 1px solid black;        
+  overflow: hidden;               /* La imagen respeta los bordes redondeados */
+  box-shadow: 
+    20px 20px 0px rgba(0, 0, 0, 0.99),      /* Sombra principal */
+    20px 20px 20px rgba(0, 0, 0, 0.99);     /* Sombra sutil adicional */
+  position: relative;             /* Para posicionar elementos hijos si es necesario */
 }
 
-.small-card img {
-  width: 80px;
-  height: 48px;
-  object-fit: cover;
-  border-radius: 6px;
+/* Efecto al pasar el mouse: eleva la tarjeta y resalta la sombra */
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.7),      /* Sombra principal */
+    0 2px 8px rgba(0, 0, 0, 0.3);         /* Sombra sutil adicional */
 }
 
-.small-card .info {
-  font-size: 13px;
-  color: var(--muted);
+/* Imagen que ocupa la parte superior de la tarjeta */
+.game-card img {
+  width: 100%;                  /* Ocupa todo el ancho */
+  height: 80px;                 /* Nuevo alto de la imagen */
+  border: 1px solid black;      /* Borde negro alrededor de la imagen */
+  border-radius: 5px 5px 0 0;   /* Bordes redondeados solo arriba */
+  object-fit: cover;            /* La imagen se recorta para llenar el espacio */
 }
 
+/* Contenido debajo de la imagen */
+.game-info {
+  color: white;                 /* Texto blanco */
+  display: flex;                /* Layout en columna */
+  flex-direction: column;
+  gap: 0px;                     /* Sin espacio extra entre elementos internos */
+  height: 52px;                 /* Más alto para mostrar el precio */
+}
+
+/* Título del juego */
 .game-title {
-  font-weight: 600;
-  color: #dff7ff;
+  font-size: 11px;              /* Tamaño de fuente más chico */
+  margin-bottom: 1px;           /* Menos espacio debajo del título */
+  font-weight: 600;             /* Negrita */
+  line-height: 1.1;             /* Altura de línea compacta */
 }
 
-.price {
-  font-size: 12px;
+/* Horas jugadas o información secundaria */
+.game-hours {
+  color: #9ca3af;               /* Gris claro */
+  font-size: 11px;              /* Tamaño pequeño */
+  margin-bottom: 2px;           /* Espacio debajo */
+}
+
+/* Precio del juego */
+.game-price {
+  font-size: 10px; /* Más chico */
+}
+
+/* Contenedor superior para título y botones */
+.game-top {
+  display: flex;                /* Layout en fila */
+  justify-content: space-between;/* Espacio entre título y botón */
+  align-items: center;          /* Centrado vertical */
+  margin-bottom: 2px;
+}
+
+/* Botón para jugar */
+.play-button {
+  background: #091A29;          /* Fondo oscuro */
+  color: #D2FCFD;               /* Texto celeste claro */
+  border: 1px solid #5F6FB5;    /* Borde celeste */
+  padding: 2px 6px;             /* Espaciado interno más chico */
+  border-radius: 5px;           /* Bordes redondeados */
+  font-size: 9px;               /* Más chico */
+  cursor: pointer;              /* Cursor de mano */
+  transition: all 0.3s ease;    /* Transición suave */
+  margin-top: 0;
+}
+
+/* Botón para comprar */
+.buy-button-card {
+  background: #091A29;           /* Fondo oscuro */
+  color: #4DF3F7;                /* Texto celeste */
+  border: 1px solid #4DF3F7;     /* Borde celeste */
+  padding: 2px 6px;              /* Espaciado interno más chico */
+  font-size: 9px;                /* Más chico */
+  border-radius: 5px;            /* Bordes redondeados */
+  transition: all 0.3s ease;     /* Transición suave */
+  cursor: pointer;               /* Cursor de mano */
+  margin-top: 0;
 }
 
 .btn {
@@ -236,6 +310,8 @@ border-color:rgba(16,200,220,0.95) ;
   background: rgba(0, 0, 0, 0.9);
   transform: translate(-50%, -50%) scale(1.1);
 }
+
+
  /* Estilos para la sección de comentarios */
 .comment-header{
   display: flex;
