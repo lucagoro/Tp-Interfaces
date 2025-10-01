@@ -8,6 +8,87 @@
     font-family: 'Inter', sans-serif;
 }
 
+/* ===== LOADING SCREEN ===== */
+
+/* Contenedor principal del loading */
+.loading-screen {
+    position: fixed;        /* Fijo en la pantalla, no se mueve con scroll */
+    top: 0; left: 0;       /* Esquina superior izquierda */
+    width: 100%;           /* Ocupa todo el ancho */
+    height: 100%;          /* Ocupa toda la altura */
+    background: #131729;   /* Fondo oscuro */
+    display: flex;         /* Flexbox para centrar contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;   /* Centra verticalmente */
+    z-index: 9999;         /* Por encima de todo el contenido */
+    transition: opacity 0.5s ease; /* Transición suave al desaparecer */
+}
+
+/* Clase que se agrega con JavaScript para ocultar el loading */
+.loading-screen.hidden {
+    opacity: 0;            /* Se vuelve transparente - Podria ser visibility: hidden; */
+    pointer-events: none;  /* No interfiere con clicks después de oculto */
+}
+
+/* Contenedor del spinner, barra y porcentaje */
+.loading-content {
+    text-align: center;    /* Centra el texto del porcentaje */
+}
+
+/* ===== SPINNER CIRCULAR ===== */
+.loading-spinner {
+    width: 80px;
+    height: 80px;
+    /* Borde gris claro (casi invisible) */
+    border: 6px solid #2C3C4F;
+    /* Borde superior azul que gira */
+    border-top: 6px solid #4DF3F7;
+    border-radius: 100%;    /* Lo hace circular */
+    margin: 0 auto 20px auto; /* Centra y da espacio debajo */
+    animation: spin 1s linear infinite;
+    /* 1s = duración de una vuelta completa
+       linear = velocidad constante
+       infinite = gira para siempre */
+}
+
+/* KEYFRAME: define cómo gira el spinner */
+@keyframes spin {
+    0% {                   /* Estado inicial */
+        transform: rotate(0deg);   /* Sin rotación */
+    }
+    100% {                 /* Estado final */
+        transform: rotate(360deg); /* Una vuelta completa */
+    }
+}
+
+/* ===== BARRA DE PROGRESO ===== */
+
+/* Contenedor de la barra (fondo gris) */
+.loading-bar {
+    width: 300px;          /* Ancho fijo */
+    height: 8px;           /* Altura delgada */
+    background-color: #2C3C4F;
+    border-radius: 4px;    /* Bordes redondeados */
+    overflow: hidden;      /* Oculta lo que se salga */
+    margin-bottom: 10px;   
+}
+
+/* Barra interna que crece (azul/morado) */
+.loading-progress {
+    height: 100%;          /* Altura completa del contenedor */
+    background: linear-gradient(90deg, #4DF3F7, #0d9e94);
+    width: 0%;             /* Inicia vacía (JavaScript la crece) */
+    transition: width 0.1s ease; /* Transición suave al crecer */
+    border-radius: 4px;    /* Bordes redondeados */
+}
+
+/* ===== PORCENTAJE ===== */
+.loading-percent {
+    color: white;          /* Texto blanco */
+    font-size: 20px;     /* Tamaño grande */
+    font-weight: bold;     /* Negrita */
+}
+
 header {
     background-color: #131729;
 }
@@ -372,14 +453,30 @@ body {
     transition: all 0.5s ease;   /* ← Transición suave */
     text-transform: none;        /* ← Sin mayúsculas forzadas */
     box-shadow: 0 4px 5px rgba(0, 169, 195, 0.516); 
+    overflow: hidden;
+    background-size: 200% 100%; /* Hace que el fondo sea el doble de ancho para poder animar el gradiente */
 }
 
-/* Hover del botón */
-.buy-button:hover {
-    background: #4DF3F7;         /* ← Fondo del color del borde */
-    color: #091A29;              /* ← Texto oscuro */
-    transform: translateY(-2px); /* ← Ligero movimiento hacia arriba */
-    box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3); /* ← Sombra azul */
+button:hover {
+  background-image: linear-gradient(
+    90deg,
+    rgb(38, 140, 181) 0%,
+    #4DF3F7 30%,
+    #11a9ab 60%,
+    rgb(38, 140, 181) 100%
+  );
+  color: #091A29;
+  background-position: 200% 0;
+  animation: shine 2s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 /* Cards juegos */
