@@ -3,7 +3,7 @@
  // === menu hamburguesa ===
 const menuIcon = document.getElementById('menu-icon');
 const menu = document.getElementById('menu');
-const closeBtns=document.querySelectorAll('.close-nav');
+const closeBtns=document.querySelectorAll('.fa-xmark');
 const overlay = document.getElementById('overlay');
 const categoriasToggle = document.getElementById('Btn-categorias');
 const categoriasDropdown = document.getElementById('dropdown');

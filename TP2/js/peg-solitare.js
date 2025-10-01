@@ -22,15 +22,15 @@ form.addEventListener('submit', function(event) {
         newcomment.className = 'comment';
         newcomment.innerHTML = `
        <div class="comment-new-header">
-                 <img src="../images/icono-user.png" alt="icono usuario">
+               <i class="fa-solid fa-user"></i>
                <span>Usuario Anónimo</span>
                  <small>${new Date().toLocaleString()}</small>
        </div>
                 <p>${commentText}</p>
         <div class="comment-footer" >
-                 <img src="../images/icono-me-gusta.png" alt="like">
+                 <i class="fa-solid fa-thumbs-up"></i>
                 <small>0</small>
-                 <img src="../images/icono-no-me-gusta.png" alt="dislike">
+                <i class="fa-solid fa-thumbs-down"></i>
                  <small>0</small>
                  <a href="#">Responder</a>
         </div>
