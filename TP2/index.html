@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMO Games</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+
+  </head>
+
+  <body>
+    <div id="overlay"> </div>
+        <header>
+            <nav class="navbar">
+                <div class="left-side">
+                    <!-- Menú hamburguesa-->
+                    <div class="menu-icon" id="menu-icon">
+                        <i class="fa-solid fa-bars"></i> 
+                    </div>
+                    <div class="nav-burger" id="menu">
+                        <div class="menu-header">
+                           <i class="fa-solid fa-xmark"></i>
+                            <img src="images/logo.png" alt="logo Beemo" class="logo-beemo">
+                        </div>
+                        <!-- grupo 1 -->
+                        <ul class="menu-group">
+                            <li>
+                               <i class="fa-solid fa-house-chimney"></i>
+                                <a href="#">Inicio</a>
+                            </li>
+                            <li class="categorías">
+                                <div id="Btn-categorias" class="categoría-toggle">
+                                   <i class="fa-solid fa-layer-group"></i>
+                                    <span>Categorías</span>
+                                </div>
+                                <ul class="dropdown" id="dropdown">
+                                    <li>
+                                        <img src="images/blank.png" alt=""> 
+                                        <a href="#">Acción</a>
+                                    </li>
+                                    <li>
+                                        <img src="images/blank.png" alt="" >
+                                        <a href="#">En Pareja</a>
+                                    </li>   
+                                    <li>
+                                        <img src="images/blank.png" alt="">
+                                        <a href="#">Recomendados</a>
+                                    </li>
+                                    <li>
+                                        <img src="images/blank.png" alt="">
+                                        <a href="#">Gratis</a>
+                                    </li>
+                                    <li>
+                                        <img src="images/blank.png" alt="" >
+                                        <a href="#">Descuentos</a>
+                                    </li>
+                                    <li><img src="images/blank.png" alt="">
+                                        <a href="#">Carreras</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <!-- grupo 2 -->    
+                         <ul class="menu-group">
+                            <li>
+                               <i class="fa-solid fa-share-nodes"></i>
+                                <a href="#">Compartir App</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-envelope"></i>
+                                <a href="#">Contactanos</a>
+                            </li>
+                        </ul>
+                        <ul>
+                             <li>
+                               <i class="fa-solid fa-circle-info"></i>
+                                <a href="#">Ayuda</a>
+                             </li>
+                        </ul>
+                    </div>
+                    <!-- Logo -->
+                    <a href="#" class="logo">
+                        <img src="images/logo.png" alt="BMO Games"> 
+                    </a>
+                </div>
+
+                <!-- Buscador -->
+                <form action="" class="search-bar">
+                    <input type="text" placeholder="Buscar juego">
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                <!-- Perfil -->
+                <a href="#" class="profil-icon" id="profil-icon">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                 <div class="nav-burger" id="nav-profil" >
+                    <ul class="menu-group">
+                         <div class="profil-header">
+                            <div>
+                                <img src="images/foto-perfil.png" alt="foto perfil" >
+                                <span>Hola Luca!!</span>
+                            </div>
+                         <i class="fa-solid fa-xmark"></i>
+                        </div>
+                        <li>
+                          <i class="fa-solid fa-gamepad"></i>
+                            <a href="#">Mis juegos</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <a href="#">Editar perdil</a>
+                        </li>
+                    </ul>
+                    <ul class="menu-group">
+                        <li>
+                           <i class="fa-solid fa-gear"></i>
+                            <a href="#">Configuracion</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-circle-xmark"></i>
+                            <a href="#">Cerrar sesion</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </nav>
+            </div>
+        </header>
+
+    <!-- Body -->
+     
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+            <div class="loading-percent" id="loadingPercent">0%</div>
+        </div>
+    </div>
+
+    <!-- Carrusel grande -->
+     <div class="carousel">
+        <div class="carousel-img">
+            <img src="images/fondo1-carrusel.jpeg" alt="The last of us"> <!-- Preguntar el alt -->
+        </div>
+        <div class="carousel-content">
+            <img src="images/titulo.png" alt="The last of us">
+            <p><span>16+ </span>Lo más vendido</p>
+        </div>
+        <div class="carousel-content-below">
+            <div class="price">15,99 US$</div>
+            <button class="buy-button">Comprar ahora</button>
+            </div>
+     </div>
+
+
+    <!-- Cards de juegos -->
+    <!-- Mis juegos -->
+    <section class="games-section">
+        <h4>Mis juegos</h4>
+        
+        <div class ="carousel-viewport">
+              <i class="fa-solid fa-chevron-right carousel__btn--next"></i>
+            <ul class="carousel-track">
+                <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="play-button">Jugar</button>
+                            </div>
+                                <p class="game-hours">35 horas jugadas esta semana</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="carousel-slide">
+                     <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="play-button">Jugar</button>
+                            </div>
+                                <p class="game-hours">35 horas jugadas esta semana</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="play-button">Jugar</button>
+                            </div>
+                                <p class="game-hours">35 horas jugadas esta semana</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+          <i class="fa-solid fa-chevron-left carousel__btn--prev"></i>
+        </div>
+    </section>
+
+    <!-- Acción -->
+    <section class="games-section">
+        <h4>Acción</h4>
+
+        <div class ="carousel-viewport">
+              <i class="fa-solid fa-chevron-right carousel__btn--next"></i>
+            <ul class="carousel-track">
+                <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+            <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+            <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li> <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+          <i class="fa-solid fa-chevron-left carousel__btn--prev"></i>
+        </div>
+        
+
+    </section>
+
+    <!-- Para jugar en pareja -->
+    <section class="games-section">
+        <h4>Para jugar en pareja</h4>
+       
+        <div class ="carousel-viewport">
+              <i class="fa-solid fa-chevron-right carousel__btn--next"></i>
+            <ul class="carousel-track">
+                <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+            <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+            <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li> <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="carousel-slide">
+                    <div class="game-card">
+                        <img src="images/hrizon.jpg" alt="Hrizon">
+                        <div class="game-info">
+                            <div class="game-top">
+                                <h3 class="game-title">Hrizon</h3>
+                                <button class="buy-button-card">Comprar</button>
+                            </div>
+                                <p class="game-price">12,20 US$</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+          <i class="fa-solid fa-chevron-left carousel__btn--prev"></i>
+        </div>
+        
+
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-desc">
+          <div class="footer-bmo">
+            <img src="images/beemo.png" alt="Beemo" />
+          </div>
+          <div class="footer-logo">
+            <img src="images/logo.png" alt="BMO Games" />
+          </div>
+          <p>BMO games tu portal para jugar y comprar videojuegos</p>
+        </div>
+        <!-- Compañia -->
+        <div>
+          <h2 class="title-footer">Compañia</h2>
+          <ul>
+            <li><a href="#">Acerca de</a></li>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Categoría</a></li>
+            <li><a href="#">Noticias</a></li>
+            <li><a href="#">Blog/Foro</a></li>
+            <li><a href="#">Inversionistas</a></li>
+            <li><a href="#">Prensa/Media kit</a></li>
+            <li><a href="#">Afiliados/Partners</a></li>
+            <li><a href="#">Contacto directo</a></li>
+            <li><a href="#">Carreras/Trabaja con nosotros</a></li>
+          </ul>
+        </div>
+
+        <!-- Recursos -->
+        <div>
+          <h2 class="title-footer">Recursos</h2>
+          <ul>
+            <li><a href="#">Consultas sobre el reglamento</a></li>
+            <li><a href="#">Reglas de la comunidad</a></li>
+            <li><a href="#">Comunidad</a></li>
+            <li><a href="#">Política de contenido</a></li>
+            <li><a href="#">Soporte</a></li>
+            <li><a href="#">Preguntas frecuentes(FAQ)</a></li>
+            <li><a href="#">Centro de ayuda</a></li>
+            <li><a href="#">Guías y tutoriales</a></li>
+            <li><a href="#">Foros de usuarios</a></li>
+            <li><a href="#">Reportar un problema</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h2 class="title-footer">Legal</h2>
+          <ul>
+            <li><a href="#">Licencias</a></li>
+            <li><a href="#">Políticas de privacidad</a></li>
+            <li><a href="#">Términos y condiciones</a></li>
+            <li><a href="#">Cookies y preferencias</a></li>
+            <li><a href="#">Propiedad intelectual</a></li>
+            <li><a href="#">Derechos del consumidor</a></li>
+            <li><a href="#">Reembolsos y devoluciones</a></li>
+          </ul>
+        </div>
+
+        <!-- Métodos de pago -->
+        <div>
+          <h2 class="title-footer">Métodos de pago</h2>
+          <div class="payment-methods">
+            <div class="payment-icon"><img src="images/VISA-removebg-preview.png" alt="Visa"></div>
+            <div class="payment-icon"><img src="images/AmericanExpress-removebg-preview.png" alt="American Express"></div>
+            <div class="payment-icon"><img src="images/Discover-removebg-preview.png" alt="Discover"></div>
+            <div class="payment-icon"><img src="images/btc-removebg-preview.png" alt="Bitcoin"></div>
+            <div class="payment-icon"><img src="images/Gpay-removebg-preview.png" alt="Gpay"></div>
+            <div class="payment-icon"><img src="images/MasterCard-removebg-preview (1).png" alt="MasterCard"></div>
+            <div class="payment-icon"><img src="images/Paypal-removebg-preview.png" alt="PayPal"></div>
+            <div class="payment-icon"><img src="images/Mercadopago-removebg-preview.png" alt="Mercado Pago"></div>
+          </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="footer-contact">
+          <h2 class="title-footer">Contacto</h2>
+          <div class="contact">
+            <a href="#" class="social-icon"><img src="images/ig-removebg-preview.png" alt="Instagram"></a>
+            <a href="#" class="social-icon x"><img src="images/X-removebg-preview.png" alt="X"></a>
+            <a href="#" class="social-icon"><img src="images/youtube-removebg-preview.png" alt="Youtube"></a>
+            <a href="#" class="social-icon"><img src="images/github-removebg-preview.png" alt="Github"></a>
+            <a href="#" class="social-icon"><img src="images/reddit-removebg-preview.png" alt="Reddit"></a>
+            <a href="#" class="social-icon"><img src="images/ds-removebg-preview.png" alt="Discord"></a>
+            <a href="#" class="social-icon"><img src="images/fb-removebg-preview.png" alt="Facebook"></a>
+            <a href="#" class="social-icon"><img src="images/gmail-removebg-preview.png" alt="Gmail"></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-copy">
+        <p>© 2025 BMO Games. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+    <script src="js/index.js"></script>
+     <script src="js/carrusel.js"></script>
+  </body>
+</html>

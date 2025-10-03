@@ -1,0 +1,118 @@
+
+/*---- Footer ----*/
+
+footer {
+    background-color: #21294A;
+    color: #ffffffdb;
+    padding-top: 5rem;
+    position: relative;
+    margin-top: 100px;
+}
+
+.title-footer {
+    font-weight: normal;
+    padding-top: 2rem;
+    padding-bottom: 0.5rem;
+    color: #4DF3F7
+}
+
+.footer-bmo img{
+    height: 80px;
+}
+
+.footer-bmo {
+    position: absolute;
+    right: 50px;         /* 50px del borde derecho */
+    top: -5px;          /*  */
+    z-index: 10;         /* Por encima del contenido */
+}
+
+.footer-logo img {
+    height: 120px;
+}
+
+ul li { /*---- acomodar ----*/
+    font-size: 15px;
+    padding: 1px;
+}
+
+ul li a {
+    color: #ffffffdb;
+}
+
+ul li a:hover {
+  text-decoration: underline;
+}
+
+
+/*Usé CSS Grid porque me permite crear layouts complejos de forma simple. Con grid-template-columns defino las columnas,
+y con grid-column y grid-row posiciono elementos específicos donde necesito, como poner 'Contacto' debajo de 'Métodos de pago
+' en la misma columna. Es más eficiente que Flexbox para layouts bidimensionales*/
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Una fracción del espacio disponible - 5 columnas de igual tamaño */
+    gap: 3rem; /* Espacio entre columnas y filas - más limpio que usar margins*/
+    margin-bottom: 2rem;
+    border-top: 1px solid #4DF3F7;
+    max-width: 1450px;
+    margin: 0 auto;
+}
+
+.footer-desc {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer-desc p {
+    font-size: 20px;
+}
+
+/* Lo pongo en la columna 5 fila 2 (para que este debajo de "Métodos de pago"*/
+.footer-contact {
+    grid-column: 5; 
+    grid-row: 2;
+    margin-top: -90px;
+    padding-bottom: 2rem;
+}
+
+.text-copy {
+    border-top: 1px solid #4DF3F7; /* Línea divisora */
+    max-width: 1450px;
+    margin: 0 auto;
+    padding-top: 1rem;
+    padding-bottom: 4rem; /* Fijarse s deberia ser 5rem como el de arriba */
+    text-align: center;
+    color: #ffffffdb;
+    font-size: 15px;
+}
+
+
+.payment-icon img{
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.payment-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.social-icon img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+
+}
+
+
