@@ -89,266 +89,6 @@
     font-weight: bold;     /* Negrita */
 }
 
-header {
-    background-color: #131729;
-}
-/* === Overlay === */
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(19, 23, 41, 0.8);
-  z-index: 100;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-#overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-/* === Menú hamburguesa lateral === */
-.menu-header, .profil-header{
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.menu-header .close-nav,#nav-profil .profil-header .close-nav {
-  width: 22px;
-  height: 22px;
-  margin-left: 5px;
-}
-
-.menu-header .logo-beemo {
-  height: 70px;
-  margin-left: 20px;
-}
-
-#menu {
-  background-color: #131729;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 250px;
-  height: 100vh;
-  padding: 20px;
-  overflow-y: auto;
-  z-index: 200;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-}
-
-#menu.show {
-  transform: translateX(0);
-}
-/* === Grupos de menú === */
-.menu-group {
-  border-bottom: 2px solid #3B6589;
-  padding-bottom: 10px;
-  margin-bottom: 15px;
-}
-/* === items principal === */
-.nav-burger ul {
-  padding: 0;
-  margin: 0;
-}
-
-.nav-burger ul li {
-  display: flex;
-  gap: 10px;
-  padding: 5px 5px;
-  cursor: pointer;
-  align-items: center;
-}
-
-
-.nav-burger ul li a ,.nav-burger ul li span{
-  color: #ffffff;
-  font-size: 18px;
-  text-decoration: none;
-  padding: 5px 0;
-}
-/* Hover principal */
-.nav-burger ul li:hover {
-  background-color: #010305;
-  opacity: 0.8;
-  border-radius: 5px;
-  transition: all 0.2s ease-in-out;
-}
-/* Hover desactivado cuando está abierto */
-#menu ul li.open:hover {
-  background-color: transparent;
-  opacity: 1;
-}
-
-/* === Categorías === */
-.categorías {
-  display: flex;
-  flex-direction: column;
-}
-
-.categoría-toggle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  width: 100%;
-}
-/* === Dropdown === */
-.dropdown {
-  display: none;
-  flex-direction: column;
-  width: 100%;
-}
-
-.dropdown.showcategories {
-  display: flex;
-}
-
-.dropdown li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 5px 5px;
-  cursor: pointer;
-}
-
- #menu .dropdown li a {
-  font-size: 14px;
-  color: #4DF3F7;
-  text-decoration: none;
-  padding: 3px 0;
-  display: block;
-  line-height: 22px;
-  transition: all 0.2s ease-in-out;
-}
-
-#menu .dropdown li a:hover {
-  background-color: #010305;
-  opacity: 0.8;
-  border-radius: 5px;
-}  
-/* Íconos invisibles */
-.dropdown li img {
-  visibility: hidden;
-  width: 22px;
-  height: 22px;
-}
-/* perfil de usuario */
-#nav-profil {
-  background-color: #131729;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 250px;
-  padding: 20px;
-  overflow-y: auto;
-  z-index: 1000;
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-}
-#nav-profil.show {
-  transform: translateX(0);
-}
-#nav-profil .profil-header div img{
-  width: 40px;
-  height: 40px
-}
-#nav-profil .profil-header span {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: bold;
-    margin-left: 10px;
-}
-.profil-header div {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-}
-.nav-burger ul li .fa-solid, .fa-xmark{
-   color: #3C9597;
-}
-
-
-/* === Navbar principal === */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #131729;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  margin: -20px;
-  padding: 5px 20px 5px 20px;
-}
-nav.ul.div{
-    display: flex;
-    flex-direction: row;
-}
-
-.left-side {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.menu-icon {
-    padding-left: 10px;
-    font-size: 22px;
-    color: #3C9597;
-    cursor: pointer;
-}
-
-.logo img {
-    height: 100px;
-}
-
-.profil-icon i {
-    padding-right: 10px;
-    font-size: 22px;
-    color: #3C9597;
-}
-
-/*---- Buscador ----*/
-
-.search-bar {
-    margin: 0 20px;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.search-bar input {
-    width: 250px;
-    padding: 8px 35px 8px 15px;
-    border: 1px solid #4DF3F7;
-    border-radius: 20px;
-    background: #2C3C4F;
-    color: white;
-    opacity: 0.5;
-}
-
-.search-bar input::placeholder {
-    padding-left: 20px;
-    font-weight: bold;
-    color: #4DF3F7;
-}
-
-.search-bar button {
-    position: absolute;
-    left: 15px;
-    background: none;
-    border: none;
-    color: #4DF3F7;
-    cursor: pointer;
-    font-size: 12px;
-}
-
 /*---- Body ----*/
 
 body {
@@ -479,24 +219,29 @@ button:hover {
   }
 }
 
+/*carrusel viewport*/
+.carousel-viewport {
+  overflow: hidden; /* Oculta lo que se salga del contenedor */
+  position: relative;
+  width: 100%;
+}
 /* Cards juegos */
 .games-section {
   margin-top: -20px;
 }
 
-.games {
+.carousel-track {
     display: flex;
-    overflow-x: hidden;               /* Oculta lo que no entra */
     width: 100%;                      /* Ancho del contenedor */
+    transition: transform 0.3s ease-in-out; /* Transición suave al mover */
 }
-
 .games-section h4 {
     margin-left: 35px;
     color: white;
 }
 
 .game-card {
-    flex: 0 0 280px;                 /* No crece, no encoge, 280px fijo */
+    flex: 0 0 300px;               /* No crece, no encoge, 300px fijo */
                                     /* flex-shrink: 0; también funciona */
     margin-left: 35px;
     margin-top: 10px;
@@ -581,138 +326,35 @@ button:hover {
   cursor: pointer;
   margin-top: -5px;
 }
-/* Flecha carrusel */
-.fa-solid.fa-chevron-right {
-  position: absolute;
-  bottom: 50%;
-  left: 60%; 
-  z-index: 2;
-  color: white;
-  font-size: 30px;
-  cursor: pointer;
-}
-
-
-
 .play-button:hover, .buy-button-card:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
-
-/*---- Footer ----*/
-
-footer {
-    background-color: #21294A;
-    color: #ffffffdb;
-    padding-top: 5rem;
-    position: relative;
-    margin-top: 100px;
+ /* Botones de navegación del carrusel */
+.carousel__btn--prev,
+.carousel__btn--next {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 2;
+  padding: 10px;
+  border-radius: 10%;
+ 
+} 
+.carousel__btn--prev {
+  left: 10px;
 }
 
-.title-footer {
-    font-weight: normal;
-    padding-top: 2rem;
-    padding-bottom: 0.5rem;
-    color: #4DF3F7
+.carousel__btn--next {
+  right: 10px;
 }
 
-.footer-bmo img{
-    height: 80px;
+.carousel__btn--prev:hover,
+.carousel__btn--next:hover {
+  background: rgba(255, 255, 255, 0.2);
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
 }
-
-.footer-bmo {
-    position: absolute;
-    right: 50px;         /* 50px del borde derecho */
-    top: -5px;          /*  */
-    z-index: 10;         /* Por encima del contenido */
-}
-
-.footer-logo img {
-    height: 120px;
-}
-
-ul li { /*---- acomodar ----*/
-    font-size: 15px;
-    padding: 1px;
-}
-
-ul li a {
-    color: #ffffffdb;
-}
-
-ul li a:hover {
-  text-decoration: underline;
-}
-
-
-/*Usé CSS Grid porque me permite crear layouts complejos de forma simple. Con grid-template-columns defino las columnas,
-y con grid-column y grid-row posiciono elementos específicos donde necesito, como poner 'Contacto' debajo de 'Métodos de pago
-' en la misma columna. Es más eficiente que Flexbox para layouts bidimensionales*/
-
-.footer-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Una fracción del espacio disponible - 5 columnas de igual tamaño */
-    gap: 3rem; /* Espacio entre columnas y filas - más limpio que usar margins*/
-    margin-bottom: 2rem;
-    border-top: 1px solid #4DF3F7;
-    max-width: 1450px;
-    margin: 0 auto;
-}
-
-.footer-desc {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.footer-desc p {
-    font-size: 20px;
-}
-
-/* Lo pongo en la columna 5 fila 2 (para que este debajo de "Métodos de pago"*/
-.footer-contact {
-    grid-column: 5; 
-    grid-row: 2;
-    margin-top: -90px;
-    padding-bottom: 2rem;
-}
-
-.text-copy {
-    border-top: 1px solid #4DF3F7; /* Línea divisora */
-    max-width: 1450px;
-    margin: 0 auto;
-    padding-top: 1rem;
-    padding-bottom: 4rem; /* Fijarse s deberia ser 5rem como el de arriba */
-    text-align: center;
-    color: #ffffffdb;
-    font-size: 15px;
-}
-
-
-.payment-icon img{
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-.payment-methods {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.contact {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.social-icon img {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-
-}
-
 
