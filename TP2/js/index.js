@@ -53,7 +53,6 @@ const loadingPercent = document.getElementById("loadingPercent"); // Texto "X%"
 const loadingScreen = document.getElementById("loadingScreen"); // Contenedor completo
 
 // ===== CONFIGURACIÓN DE TIEMPOS =====
-=======
 const duration = 5000;   // Duración total: 5000ms = 5 segundos
 const interval = 50;     // Actualizar cada 50ms (20 veces por segundo)
 const increment = (100 / (duration / interval));  
