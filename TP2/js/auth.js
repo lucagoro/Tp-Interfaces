@@ -1,6 +1,6 @@
 // Validación personalizada del formulario de login
-
-// Validación personalizada del formulario de login
+// Selecciona el botón submit por clase (soporta múltiples páginas)
+let buttonSubmit = document.querySelector(".btn-submit");
 var loginForm = document.getElementById("loginForm");
 if (loginForm) {
   loginForm.addEventListener("submit", function (e) {
@@ -24,7 +24,10 @@ if (loginForm) {
       e.preventDefault();
     } else {
       e.preventDefault();
-      window.location.href = "../index.html";
+      buttonSubmit.classList.add("success");
+      setTimeout(function () {
+        window.location.href = "../index.html";
+      }, 3000);
     }
   });
 }
@@ -81,8 +84,10 @@ document
     if (!valid) {
       e.preventDefault();
     } else {
-      // Si todo es válido, redirige al index.html
       e.preventDefault();
-      window.location.href = "../index.html";
+      buttonSubmit.classList.add("success");
+      setTimeout(function () {
+        window.location.href = "../index.html";
+      }, 5000);
     }
   });
