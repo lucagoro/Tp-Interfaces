@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BMO Games</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/footer.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <link rel="stylesheet" href="css/footer.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/header.css" />
 
   </head>
 
@@ -93,7 +93,7 @@
 
                 <!-- Buscador -->
                 <form action="" class="search-bar">
-                    <input type="text" placeholder="Buscar juego">
+                    <input type="text" placeholder="Buscar juego" disabled>
                     <button type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
@@ -154,19 +154,51 @@
     </div>
 
     <!-- Carrusel grande -->
-     <div class="carousel">
-        <div class="carousel-img">
-            <img src="images/fondo1-carrusel.jpeg" alt="The last of us"> <!-- Preguntar el alt -->
-        </div>
-        <div class="carousel-content">
-            <img src="images/titulo.png" alt="The last of us">
-            <p><span>16+ </span>Lo más vendido</p>
-        </div>
-        <div class="carousel-content-below">
-            <div class="price">15,99 US$</div>
-            <button class="buy-button">Comprar ahora</button>
+        <div class="main-carousel-wrapper">
+            <button class="main-carousel-arrow left" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="main-carousel-track">
+                <div class="main-carousel-slide active">
+                    <div class="carousel-img">
+                        <img src="images/fondo1-carrusel.jpeg" alt="The last of us">
+                    </div>
+                    <div class="carousel-content">
+                        <img src="images/titulo.png" alt="The last of us">
+                        <p><span>16+ </span>Lo más vendido</p>
+                    </div>
+                    <div class="carousel-content-below">
+                        <div class="price">15,99 US$</div>
+                        <button class="buy-button">Comprar ahora</button>
+                    </div>
+                </div>
+                <div class="main-carousel-slide">
+                    <div class="carousel-img">
+                        <img src="images/hrizon.jpg" alt="The last of us">
+                    </div>
+                    <div class="carousel-content">
+                        <img src="images/titulo.png" alt="The last of us">
+                        <p><span>16+ </span>Lo más vendido</p>
+                    </div>
+                    <div class="carousel-content-below">
+                        <div class="price">15,99 US$</div>
+                        <button class="buy-button">Comprar ahora</button>
+                    </div>
+                </div>
+                <div class="main-carousel-slide">
+                    <div class="carousel-img">
+                        <img src="images/fondo1-carrusel.jpeg" alt="The last of us">
+                    </div>
+                    <div class="carousel-content">
+                        <img src="images/titulo.png" alt="The last of us">
+                        <p><span>16+ </span>Lo más vendido</p>
+                    </div>
+                    <div class="carousel-content-below">
+                        <div class="price">15,99 US$</div>
+                        <button class="buy-button">Comprar ahora</button>
+                    </div>
+                </div>
             </div>
-     </div>
+            <button class="main-carousel-arrow right" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
 
 
     <!-- Cards de juegos -->
@@ -530,6 +562,7 @@
       </div>
     </footer>
     <script src="js/index.js"></script>
-     <script src="js/carrusel.js"></script>
+    <script src="js/carrusel.js"></script>
+    <script src="js/main-carousel.js"></script>
   </body>
 </html>

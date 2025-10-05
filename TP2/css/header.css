@@ -1,5 +1,7 @@
 header {
     background-color: #131729;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 /* === Overlay === */
 #overlay {
@@ -214,7 +216,7 @@ nav.ul.div{
 }
 
 .logo img {
-    height: 100px;
+  height: 43px;
 }
 
 .profil-icon i {

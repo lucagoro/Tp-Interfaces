@@ -1,3 +1,6 @@
+/* ===== Carrusel principal (main-carousel) ===== */
+
+
 * {
     margin: 0;
     padding: 0;
@@ -96,12 +99,6 @@ body {
 }
 
 /* Carrousel grande */
-.carousel {
-    width: 100%;           /* Ocupa todo el ancho */
-    height: 400px;         /* Altura fija del carrusel */
-    position: relative;    /* Punto de referencia para elementos absolute */
-    margin-bottom: 3rem;   /* Espacio debajo del carrusel */
-}
 
 .carousel-img {
     position: relative;        /* Se superponen unos sobre otros */
@@ -109,10 +106,11 @@ body {
 }
 
 .carousel-img img {
-    width: 100%; 
-    height: 100%; 
+    width: 100%;
+    max-height: 400px;
+    height: 100%;
     object-fit: cover;
-    object-position: center; 
+    object-position: center;
 }
 
 /* Degradado overlay */
@@ -172,6 +170,55 @@ body {
     left: 5rem;                    
     z-index: 2; 
 }
+.main-carousel-slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    transition: opacity 0.4s;
+    z-index: 10;
+}
+.main-carousel-slide.active {
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.main-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    color: #fff;
+    background: rgba(0,0,0,0.35);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.main-carousel-arrow.left {
+    left: 18px;
+}
+.main-carousel-arrow.right {
+    right: 18px;
+}
+.main-carousel-arrow:hover {
+    background: rgba(77,243,247,0.7);
+    color: #091A29;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .price {
     color: grey;                 /* ← Texto gris */
@@ -227,8 +274,28 @@ button:hover {
 }
 /* Cards juegos */
 .games-section {
-  margin-top: -20px;
+    margin-top: -20px;
+    position: relative;
+    z-index: 1;
 }
+
+.games-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(19, 23, 41, 0.7); /* Fondo opaco */
+    z-index: 2;
+    pointer-events: none;
+}
+
+.games-section > * {
+    position: relative;
+    z-index: 3;
+}
+
 
 .carousel-track {
     display: flex;
