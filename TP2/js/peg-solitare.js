@@ -41,16 +41,3 @@ form.addEventListener('submit', function(event) {
          botonEnviar.style.display = "none";
     }});
 
-    /* breadcrums
-    function setBreadcrumb(rutaArray) {
-    const breadcrumb = document.getElementById("breadcrumb");
-    breadcrumb.innerHTML = ""; // Limpiar contenido anterior
-
-    rutaArray.forEach((item, index) => {
-      const link = document.createElement("a");
-      link.textContent = item.nombre;
-      link.href = item.url;
-
-      breadcrumb.appendChild(link);
-    });
-  }*/
