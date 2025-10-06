@@ -333,7 +333,7 @@ button:hover {
 }
 
 
-/* Contenedor de la imagen de la card */
+/* Contenedor de la imagen de la card - PRIMERO EL CONTENEDOR */
 .game-card-img {
     width: 100%;
     height: 150px;
@@ -344,16 +344,13 @@ button:hover {
     background: #131729;
 }
 
+/* Imagen dentro del contenedor - DESPUÉS LA IMAGEN */
 .game-card-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
-    border: none !important;
-    border-radius: 0 !important;
-    margin: 0;
-    padding: 0;
 }
 /* Contenido debajo de la imagen */
 .game-info {
