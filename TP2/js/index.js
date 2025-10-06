@@ -53,9 +53,9 @@ const loadingPercent = document.getElementById("loadingPercent"); // Texto "X%"
 const loadingScreen = document.getElementById("loadingScreen"); // Contenedor completo
 
 // ===== CONFIGURACIÓN DE TIEMPOS =====
-const duration = 5000;   // Duración total: 5000ms = 5 segundos
-const interval = 50;     // Actualizar cada 50ms (20 veces por segundo)
-const increment = (100 / (duration / interval));  
+const duration = 1000; // Duración total: 5000ms = 5 segundos
+const interval = 50; // Actualizar cada 50ms (20 veces por segundo)
+const increment = 100 / (duration / interval);
 
 // Cálculo: 100 / (5000 / 50) = 100 / 100 = 1
 // Incrementa 1% cada 50ms para llegar a 100% en 5 segundos
@@ -86,9 +86,9 @@ const loadingInterval = setInterval(() => {
 }, interval); // Se ejecuta cada 50ms
 
 //boton peg
-const peg= document.getElementById("peg");
-peg.addEventListener("click", pagJuego)
+const peg = document.getElementById("peg");
+peg.addEventListener("click", pagJuego);
 
 function pagJuego() {
-   window.location.href = "Game/pagina-principal.html"
+  window.location.href = "Game/pagina-principal.html";
 }
