@@ -12,6 +12,7 @@ body {
   font-family: Inter, system-ui, Arial, sans-serif;
   background: var(--bg);
   color: #e6f1f6;
+  text-decoration: none;
 }
 
 .container {

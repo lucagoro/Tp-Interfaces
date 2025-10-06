@@ -342,6 +342,7 @@ button:hover {
     margin: 0;
     padding: 0;
     background: #131729;
+    
 }
 
 /* Imagen dentro del contenedor - DESPUÉS LA IMAGEN */
@@ -354,6 +355,7 @@ button:hover {
 }
 /* Contenido debajo de la imagen */
 .game-info {
+     padding-top: 5px; 
     padding-right: 5px;
     padding-left: 5px;
     color: white;
@@ -404,8 +406,19 @@ button:hover {
   cursor: pointer;
   margin-top: -5px;
 }
-.play-button:hover, .buy-button-card:hover {
+.play-button:hover, .buy-button-card:hover, .free-button-card:hover {
     background: rgba(255, 255, 255, 0.2);
+}
+.free-button-card{
+     background: #091A29;
+  color: #4DF7A5;             
+  border: 1px solid #4DF7A5;
+  padding: 5px 10px;
+  font-size: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-top: -5px;
 }
 
  /* Botones de navegación del carrusel */
