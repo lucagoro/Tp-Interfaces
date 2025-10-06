@@ -12,12 +12,10 @@ body {
   font-family: Inter, system-ui, Arial, sans-serif;
   background: var(--bg);
   color: #e6f1f6;
-  padding: 24px;
 }
 
 .container {
   max-width: 1200px;
-  margin: 50px auto;
   display: grid;
   column-gap: 0px; /* Gap específico para columnas - más pequeño */
     row-gap: var(--gap); /* Mantiene el gap original para filas */
@@ -27,6 +25,7 @@ body {
     "main sidebar"
     "description description"
     "bottom-left bottom-right";
+  padding-left: 50px;
 }
 
 .main {
@@ -47,7 +46,16 @@ body {
 border-color:rgba(16,200,220,0.95) ;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 }
-
+/* === breadcrums === */
+.breadcrumb {
+  margin: 50px 0 0 12px;
+  font-size: 14px;
+  color: #cfeefb;
+  padding-left: 50px;
+}
+.breadcrumb a { 
+   color: #cfeefb;
+}
 .sidebar {
   grid-area: sidebar;
   padding: 12px;
