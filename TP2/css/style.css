@@ -132,25 +132,26 @@ body {
 .carousel-content {
     position: absolute;
     top: 50%;                      
-    left: 3rem;                    
-    transform: translateY(-80%);   /* */
-    z-index: 2;                    
+    left: 3rem;                    /* Espacio fijo desde el borde izquierdo */
+    transform: translateY(-80%);
+    z-index: 2;
+    /* (Revertido) */
 }
 
 /* Imagen del título */
 .carousel-content img {
-    max-width: 300px;              
+    max-width: 300px;
     height: auto;
-    display: block;                /* ← Para que el <p> vaya debajo */
-    margin-bottom: -25px;           /* ← Espacio entre título y texto */
+    display: block;
+    margin-bottom: 15px;           /* ← Espacio entre título y texto */
 }
 
 /* Texto debajo del título */
 .carousel-content p {
-    color: #8f8f8f;                  /* ← Texto gris */
-    font-size: 10px;              
-    margin: 0 0 1.5rem 0;         /* ← Espacio debajo para el precio */
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8); /* ← Sombra para legibilidad */
+    color: #8f8f8f;
+    font-size: 10px;
+    margin: 0 0 1.5rem 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
     padding-left: 40px;
 }
 
@@ -160,7 +161,8 @@ body {
     color: white;
     padding: 0.2rem 0.2rem;       /* ← Espaciado interno */
     margin-right: 0.5rem;         /* ← Espacio después del 16+ */
-    font-size: 10px;           
+    font-size: 10px;
+    /* (Revertido) */
 }
 
 .carousel-content-below {
@@ -277,7 +279,9 @@ button:hover {
     position: relative;
     z-index: 1;
 }
-
+.mis-juegos{
+    margin-top: 50px;
+}
 .games-section::before {
     content: '';
     position: absolute;
