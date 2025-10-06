@@ -75,6 +75,7 @@ header {
   padding: 5px 5px;
   cursor: pointer;
   align-items: center;
+  text-decoration: none;
 }
 
 
@@ -182,7 +183,7 @@ header {
     align-items: center;
     flex-grow: 1;
 }
-.nav-burger ul li .fa-solid, .fa-xmark{
+.nav-burger ul li .fa-solid, .fa-xmark, .fa-solid.fa-magnifying-glass{
    color: #3C9597;
 }
 

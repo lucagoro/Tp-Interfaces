@@ -84,3 +84,11 @@ const loadingInterval = setInterval(() => {
   // Actualizar texto del porcentaje (sin decimales)
   loadingPercent.textContent = progress + "%";
 }, interval); // Se ejecuta cada 50ms
+
+//boton peg
+const peg= document.getElementById("peg");
+peg.addEventListener("click", pagJuego)
+
+function pagJuego() {
+   window.location.href = "Game/pagina-principal.html"
+}
