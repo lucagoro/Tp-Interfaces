@@ -10,12 +10,15 @@
     <main class="registro-container">
       <section class="form-box" id="form-box-login">
         <h1>¡Hola de nuevo!</h1>
-        <form id="loginForm">
+        <form id="loginForm" novalidate>
           <div class="input-container">
             <label for="email">Direccion de correo electronico</label>
             <input type="email" id="email" name="email" />
             <div class="error-message" id="error-email">
               <span><b>✖</b> El correo electrónico es obligatorio.</span>
+            </div>
+            <div class="error-message" id="error-email-invalido">
+              <span><b>✖</b> Formato invalido</span>
             </div>
             <span class="asterisk">*</span>
           </div>
