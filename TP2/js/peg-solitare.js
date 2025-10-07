@@ -40,3 +40,4 @@ form.addEventListener('submit', function(event) {
         comment.focus();
          botonEnviar.style.display = "none";
     }});
+
