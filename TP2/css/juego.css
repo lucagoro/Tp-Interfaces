@@ -57,6 +57,9 @@ border-color:rgba(16,200,220,0.95) ;
 .breadcrumb a { 
    color: #cfeefb;
 }
+.breadcrumb a:hover {
+  color: #4DF3F7;
+}
 .sidebar {
   grid-area: sidebar;
   padding: 12px;
@@ -220,7 +223,6 @@ border-color:rgba(16,200,220,0.95) ;
     align-items: center;
     justify-content: flex-start;
     gap: 5px;
-    padding: 0 10px;
     margin-bottom: 10px;
     margin-top: 20px;
 }
@@ -362,10 +364,23 @@ border-color:rgba(16,200,220,0.95) ;
  display: flex;
  align-items: center;
  gap: 10px;  
- border-bottom: 1px solid rgba(16,200,220,0.95);
  width: 100%;
+ margin-bottom: 10px;
+ position: relative;
+ margin-bottom: 10px;
 }
 
+.comment-header::after{
+   content: "";
+  display: block;
+  height: 1px;
+  background-color:rgba(16,200,220,0.95); /* línea celeste */
+  margin-top: 10px;
+  width: 88vw;
+  position:absolute;
+  bottom: -8px;
+  left: 0;
+}
 .comment-form,.comment .comment-new-header, .comment .comment-footer {
   padding: 20px 0 0 20px;
   align-items: center;
@@ -417,6 +432,7 @@ font-size: 25px;
    padding: 0;
   margin: 0;
 }
+
 
 
 

@@ -2,15 +2,20 @@
 // Selecciona el botón submit por clase (soporta múltiples páginas)
 let buttonSubmit = document.querySelector(".btn-submit");
 var loginForm = document.getElementById("loginForm");
+
 if (loginForm) {
   loginForm.addEventListener("submit", function (e) {
-    limpiarErrores();
+    limpiarErroresLogin();
     let valid = true;
 
     // Validar email
     if (!document.getElementById("email").value.trim()) {
       var errorEmail = document.getElementById("error-email");
       errorEmail.classList.add("visible");
+      valid = false;
+    } else if (!validateEmail(document.getElementById("email").value.trim())) {
+      var errorEmailInvalido = document.getElementById("error-email-invalido");
+      errorEmailInvalido.classList.add("visible");
       valid = false;
     }
     // Validar contraseña
@@ -41,11 +46,24 @@ function limpiarErrores() {
     }
   });
 }
+function limpiarErroresLogin() {
+  const erroresLogin = [
+    "error-email",
+    "error-email-invalido",
+    "error-password",
+  ];
+  erroresLogin.forEach(function (errorId) {
+    const errorDiv = document.getElementById(errorId);
+    if (errorDiv) {
+      errorDiv.classList.remove("visible");
+    }
+  });
+}
 
 // Validación personalizada del formulario de registro
-document
-  .getElementById("registroForm")
-  .addEventListener("submit", function (e) {
+var registroForm = document.getElementById("registroForm");
+if (registroForm) {
+  registroForm.addEventListener("submit", function (e) {
     limpiarErrores(); // Borra mensajes anteriores
     let valid = true;
 
@@ -54,6 +72,10 @@ document
       var errorEmail = document.getElementById("error-email");
       errorEmail.classList.add("visible");
       valid = false;
+    } else if (!validateEmail(document.getElementById("email").value.trim())) {
+      var errorEmailInvalido = document.getElementById("error-email-invalido");
+      errorEmailInvalido.classList.add("visible");
+      valid = false;
     }
     // Validar nombre
     if (!document.getElementById("nombre").value.trim()) {
@@ -61,6 +83,7 @@ document
       errorNombre.classList.add("visible");
       valid = false;
     }
+
     // Validar apellido
     if (!document.getElementById("apellido").value.trim()) {
       var errorApellido = document.getElementById("error-apellido");
@@ -91,3 +114,10 @@ document
       }, 5000);
     }
   });
+}
+
+// Función para validar formato de email
+function validateEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
