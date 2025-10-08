@@ -47,7 +47,7 @@ body {
 border-color:rgba(16,200,220,0.95) ;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 }
-/* === breadcrums === */
+/* === breadcrumbs === */
 .breadcrumb {
   margin: 50px 0 0 12px;
   font-size: 14px;
@@ -74,7 +74,7 @@ border-color:rgba(16,200,220,0.95) ;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, 1fr);
-  gap: 8px; /* Espacio entre los cards */
+  gap: 8px; 
 
 }
 
@@ -85,9 +85,9 @@ border-color:rgba(16,200,220,0.95) ;
   /* flex-shrink: 0; también funciona para evitar que se reduzca */
   margin-left: 20px;              
   margin-top: 5px;             
-  margin-bottom: 8px;             /* Menor separación abajo */
-  height: 120px;                /* Alto fijo */
-  width: 180px;                   /* Ancho fijo */
+  margin-bottom: 8px;             
+  height: 120px;                
+  width: 180px;                  
   background: #131729;            
   border-radius: 5px;             
   border: 1px solid black;        
@@ -98,7 +98,7 @@ border-color:rgba(16,200,220,0.95) ;
   position: relative;             /* Para posicionar elementos hijos si es necesario */
 }
 
-/* Efecto al pasar el mouse: eleva la tarjeta y resalta la sombra */
+
 .game-card:hover {
   transform: translateY(-5px);
   box-shadow: 
@@ -108,58 +108,58 @@ border-color:rgba(16,200,220,0.95) ;
 
 /* Imagen que ocupa la parte superior de la tarjeta */
 .game-card img {
-  width: 100%;                  /* Ocupa todo el ancho */
-  height: 80px;                 /* Nuevo alto de la imagen */
-  border: 1px solid black;      /* Borde negro alrededor de la imagen */
-  border-radius: 5px 5px 0 0;   /* Bordes redondeados solo arriba */
-  object-fit: cover;            /* La imagen se recorta para llenar el espacio */
+  width: 100%;                  
+  height: 80px;                 
+  border: 1px solid black;      
+  border-radius: 5px 5px 0 0;   
+  object-fit: cover;            
 }
 
 /* Contenido debajo de la imagen */
 .game-info {
-  color: white;                 /* Texto blanco */
-  display: flex;                /* Layout en columna */
+  color: white;                
+  display: flex;                
   flex-direction: column;
-  gap: 0px;                     /* Sin espacio extra entre elementos internos */
-  height: 52px;                 /* Más alto para mostrar el precio */
+  gap: 0px;                    
+  height: 52px;                
 }
 
 /* Título del juego */
 .game-title {
-  font-size: 11px;              /* Tamaño de fuente más chico */
-  margin-bottom: 1px;           /* Menos espacio debajo del título */
-  font-weight: 600;             /* Negrita */
-  line-height: 1.1;             /* Altura de línea compacta */
+  font-size: 11px;              
+  margin-bottom: 1px;           
+  font-weight: 600;             
+  line-height: 1.1;             
 }
 
 /* Horas jugadas o información secundaria */
 .game-hours {
-  color: #9ca3af;               /* Gris claro */
-  font-size: 11px;              /* Tamaño pequeño */
-  margin-bottom: 2px;           /* Espacio debajo */
+  color: #9ca3af;              
+  font-size: 11px;              
+  margin-bottom: 2px;         
 }
 
 /* Precio del juego */
 .game-price {
-  font-size: 10px; /* Más chico */
+  font-size: 10px; 
 }
 
 /* Contenedor superior para título y botones */
 .game-top {
-  display: flex;                /* Layout en fila */
-  justify-content: space-between;/* Espacio entre título y botón */
-  align-items: center;          /* Centrado vertical */
+  display: flex;                
+  justify-content: space-between;
+  align-items: center;         
   margin-bottom: 2px;
 }
 
 /* Botón para jugar */
 .play-button {
-  background: #091A29;          /* Fondo oscuro */
-  color: #D2FCFD;               /* Texto celeste claro */
-  border: 1px solid #5F6FB5;    /* Borde celeste */
-  padding: 2px 6px;             /* Espaciado interno más chico */
-  border-radius: 5px;           /* Bordes redondeados */
-  font-size: 9px;               /* Más chico */
+  background: #091A29;          
+  color: #D2FCFD;              
+  border: 1px solid #5F6FB5;    
+  padding: 2px 6px;             
+  border-radius: 5px;          
+  font-size: 9px;               
   cursor: pointer;              /* Cursor de mano */
   transition: all 0.3s ease;    /* Transición suave */
   margin-top: 0;
@@ -168,14 +168,14 @@ border-color:rgba(16,200,220,0.95) ;
 
 /* Botón para comprar */
 .buy-button-card {
-  background: #091A29;           /* Fondo oscuro */
-  color: #4DF3F7;                /* Texto celeste */
-  border: 1px solid #4DF3F7;     /* Borde celeste */
-  padding: 2px 6px;              /* Espaciado interno más chico */
-  font-size: 9px;                /* Más chico */
-  border-radius: 5px;            /* Bordes redondeados */
-  transition: all 0.3s ease;     /* Transición suave */
-  cursor: pointer;               /* Cursor de mano */
+  background: #091A29;           
+  color: #4DF3F7;                
+  border: 1px solid #4DF3F7;     
+  padding: 2px 6px;              
+  font-size: 9px;               
+  border-radius: 5px;            
+  transition: all 0.3s ease;     
+  cursor: pointer;              
   margin-top: 0;
 }
 
@@ -198,7 +198,7 @@ border-color:rgba(16,200,220,0.95) ;
 }
 
 .description p.fin-descripcion {
-  margin-bottom: 20px; /* espacio extra antes de la línea */
+  margin-bottom: 20px; 
   position: relative;
 }
 
@@ -206,7 +206,7 @@ border-color:rgba(16,200,220,0.95) ;
   content: "";
   display: block;
   height: 1px;
-  background-color:rgba(16,200,220,0.95); /* línea celeste */
+  background-color:rgba(16,200,220,0.95); 
   margin-top: 10px;
 }
 
@@ -237,7 +237,7 @@ border-color:rgba(16,200,220,0.95) ;
   color: #cfeefb;
   line-height: 1.55;
   font-size: 14px;
-   border-top: 1px solid rgba(16,200,220,0.95); /* línea celeste al inicio */
+   border-top: 1px solid rgba(16,200,220,0.95); 
   padding-top: 10px;
 }
 
@@ -345,7 +345,7 @@ border-color:rgba(16,200,220,0.95) ;
  box-shadow:
     0 0 20px rgba(16, 200, 220, 0.95),
     0 0 40px rgba(16, 200, 220, 0.8),
-    0 0 60px rgba(16, 200, 220, 0.6); /* resalta el botón al pasar el mouse */
+    0 0 60px rgba(16, 200, 220, 0.6); 
     animation: pulseBounce 2s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
 }
 
@@ -374,7 +374,7 @@ border-color:rgba(16,200,220,0.95) ;
    content: "";
   display: block;
   height: 1px;
-  background-color:rgba(16,200,220,0.95); /* línea celeste */
+  background-color:rgba(16,200,220,0.95); 
   margin-top: 10px;
   width: 88vw;
   position:absolute;
