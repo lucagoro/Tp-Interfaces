@@ -1,0 +1,338 @@
+
+
+* { box-sizing: border-box; }
+html,body { height: 100%; margin: 0; font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif; }
+
+body {
+  background-color: #061016; /* base muy oscuro */
+  background-image: url('/TP2/images/fondo-registro.png'); 
+  background-size: cover;
+  background-position: center;
+  color: #e6f0f6;
+  -webkit-font-smoothing:antialiased;
+    right: 14px;
+    line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* overlay sutil para oscurecer el fondo y crear profundidad */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(2,6,23,0.45), rgba(3,8,18,0.8));
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Contenedor centrado */
+.registro-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  z-index: 1;
+}
+
+#form-box-login{
+    margin-top: 0px;
+}
+
+/* Caja del formulario — estilo estrecho y centrado */
+.form-box {
+  width: 320px;
+  max-width: calc(100% - 40px);
+  padding:  34px;
+  margin-top: 200px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative; /* Permite posicionar hijos absolutamente dentro del formulario */
+}
+.form-box label{
+    display: block;
+    text-align: left;
+    margin: 6px 0 6px 0;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+
+/* Título grande y centrado */
+.form-box h1 {
+  margin: 80px 0 18px 0;
+  font-size: 35px;
+  line-height: 1.05;
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  text-shadow: 0 6px 24px rgba(20,30,60,0.6);
+}
+
+/* Inputs */
+.form-box input {
+  width: 100%;
+  height: 38px;
+  padding: 12px 14px;
+  background: transparent;
+  border-radius: 2px;
+  border: 2px solid rgba(16,200,220,0.95);
+  color: #dff7ff;
+  font-size: 13px;
+  outline: none;
+  box-shadow: inset 0 -2px 8px rgba(0,0,0,0.4); /* Sombra interna para dar profundidad al input */
+}
+.form-box input:focus {
+  box-shadow: 0 6px 30px rgba(16,200,220,0.07), 0 0 18px rgba(16,200,220,0.08) inset; /* Sombra para resaltar el input activo */
+  background: transparent;
+  color: #dff7ff; 
+}
+.input-container {
+  position: relative; /* Permite posicionar el asterisco y el error absolutamente respecto al contenedor */
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.nickname{
+    margin-bottom: 20px;
+}
+.input-container input {
+  padding-right: 50px; /* espacio para el asterisco */
+  height: 38px;
+  margin-bottom: 0;
+}
+.input-container .asterisk {
+  position: absolute; /* Ubica el asterisco sobre el input */
+  right: 14px;
+  top: 30px;
+  transform: none;
+  color:rgba(16,200,220,0.95);
+  pointer-events: none; /* Permite que el asterisco no interfiera con el click ni el foco del input */
+  font-weight: bold;
+  background: transparent;
+  z-index: 2; /* Asegura que el asterisco quede por encima del input */
+}
+
+.error-message.visible {
+  display: block;
+}
+/* Mensajes de error debajo de los inputs */
+.error-message {
+  color: #fff;
+  font-size: 11px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  text-align: left;
+  display: none;
+  z-index: 3;
+}
+
+.input-container .error-message {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+.error-message span {
+  color: #fff;
+  font-size: 11px;
+  display: block;
+  min-height: 12px;
+  margin-top: 0;
+  padding: 0 0 0 2px;
+}
+
+.error-message b {
+  color: red
+}
+
+.captcha {
+
+  width: 100%;
+  height: 42px;
+  object-fit: cover;
+ 
+}
+/* Botón principal — glow y relieve */
+.btn {
+  width: 100%;
+  height: 38px;
+  padding: 12px 14px;
+  margin: 12px 0;
+  border-radius: 2px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer; /* Cambia el cursor a mano para indicar que es clickeable */
+  font-size: 15px;
+  border: 1.3px solid #4DF3F7;
+  letter-spacing: .2px;
+  transition: transform .08s ease, box-shadow .12s ease, opacity .12s; /* Suaviza la animación de hover y click */
+}
+
+/* 
+  Estilos base del botón
+  Aplica a todos los botones EXCEPTO los que tienen clase .google o .facebook
+*/
+.btn:not(.google):not(.facebook) {
+  background: #042847;
+  color: #4DF3F7;
+  box-shadow: inset 0 0 12px rgba(16,200,220,0.95);
+  background-size: 200% 100%;
+  background-position: 0 0;
+  transition: all 0.3s ease;
+}
+
+
+.btn:not(.google):not(.facebook):hover {
+  transform: translateY(-2px);
+    background-image: linear-gradient(
+      45deg,
+      #042847 0%,
+      #061016 30%,
+      #091A29 60%,
+      #042847 100%
+    );
+    color: #4DF3F7;
+    animation: shine-diagonal 2s infinite;
+    background-size: 200% 200%; 
+    background-position: -200% -200%;
+}
+/* Animación de éxito: igual que hover pero con clase .success */
+
+.btn:not(.google):not(.facebook).success {
+ background: #042847;
+  color: #4DF3F7;
+  box-shadow: inset 0 0 12px rgba(16,200,220,0.95);
+  background-image: linear-gradient(
+    45deg,
+    #042847 0%,
+    #061016 30%,
+    #091A29 60%,
+    #042847 100%
+  );
+  color: #4DF3F7;
+  animation: shine-diagonal-celebration 3s linear forwards;
+  background-size: 200% 200%;
+  background-position: -200% -200%;
+  filter: brightness(1.15) drop-shadow(0 0 10px #061016);
+  transform: scale(1.06) rotate(-1deg);
+}
+
+.btn.google::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  background-image: url('../images/google-icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+}
+
+.btn.facebook::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  background-image: url('../images/facebook-icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+}
+  
+
+
+
+@keyframes shine-diagonal {
+  0% {
+    background-position: -200% -200%;
+  }
+  100% {
+    background-position: 200% 200%;
+  }
+}
+
+@keyframes shine-diagonal-celebration {
+  0% {
+    transform: scale(1) rotate(0deg);
+    filter: none;
+    box-shadow: inset 0 0 12px rgba(16,200,220,0.95);
+  }
+  80% {
+    transform: scale(1.08) rotate(-1deg);
+    filter: brightness(1.12) drop-shadow(0 0 16px rgba(0,255,247,0.35));
+    box-shadow: inset 0 0 12px rgba(16,200,220,0.95), 0 0 40px 12px rgba(0,255,247,0.25), 0 0 80px 24px rgba(0,255,247,0.15);
+  }
+  90% {
+    transform: scale(1.12) rotate(1deg);
+    filter: brightness(1.18) drop-shadow(0 0 32px rgba(0,255,247,0.25));
+    box-shadow: inset 0 0 12px rgba(16,200,220,0.95), 0 0 120px 40px rgba(0,255,247,0.18), 0 0 240px 80px rgba(0,255,247,0.10);
+  }
+  100% {
+    transform: scale(1.15) rotate(-1deg);
+    filter: brightness(1.25) drop-shadow(0 0 120vw rgba(0,255,247,0.18));
+    box-shadow: inset 0 0 12px rgba(16,200,220,0.95), 0 0 120vw 60vw rgba(0,255,247,0.12), 0 0 200vw 120vw rgba(0,255,247,0.08);
+  }
+}
+
+
+
+
+/* Botones sociales: borde neon y fondo oscuro translúcido */
+.btn.google, .btn.facebook {
+  display: flex; /* Permite alinear el icono y el texto horizontalmente */
+  align-items: center; /* Centra verticalmente el contenido del botón */
+  height: 38px;
+  gap: 10px; /* Espacio entre icono y texto */
+  padding: 10px 12px;
+
+  border-radius: 2px;
+  background:#091A29;
+  color: #4DF3F7;
+  box-shadow: 0 6px 22px rgba(6,20,30,0.6), 0 0 12px rgba(10,170,210,0.04) inset; /* Sombra para dar efecto de profundidad */
+  font-weight: 700;
+}
+
+.btn.facebook:hover,
+.btn.google:hover {
+    border-color: #023B6C;
+     box-shadow: 0 6px 10px  #023B6C ;
+}
+
+.division{
+  margin: 0px;
+  font-size: 15px;
+  font-weight: bold;
+}
+/* Texto de link inferior */
+.form-box .link {
+  margin-top: 12px;
+  color: rgba(200,230,240,0.8);
+  font-size: 14px;
+}
+.form-box .link a {
+  color: #bfefff;
+  text-decoration: none;
+  font-weight: 700;
+}
+.form-box .link a:hover { text-decoration: underline; }
+
+
+
+
+
+
+
+

@@ -1,0 +1,523 @@
+:root {
+  --bg: #0f1720;
+  --card: #11202a;
+  --muted: #9fb0c0;
+  --accent: #1fb6ff;
+  --gap: 20px;
+  --radius: 10px;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: var(--bg);
+  color: #e6f1f6;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1200px;
+  display: grid;
+  column-gap: 0px; /* Gap específico para columnas - más pequeño */
+    row-gap: var(--gap); /* Mantiene el gap original para filas */
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "main sidebar"
+    "description description"
+    "bottom-left bottom-right";
+  padding-left: 50px;
+}
+
+.main {
+  grid-area: main;
+  background: linear-gradient(180deg, #0b1520 0%, rgba(0, 0, 0, 0.2));
+  padding: 12px;
+  border-radius: var(--radius);
+  height: 400px;
+  position: relative;
+}
+
+.main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /*ajusta la imagen sin deformar*/
+  display: block;
+  border-radius: 2px;
+  border: 1px solid;
+border-color:rgba(16,200,220,0.95) ;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+.iconos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  gap: 10px;
+  bottom: 20px;
+  right: 20px; 
+  z-index: 10;
+}
+#jostick{
+ cursor: pointer;
+}
+#arrow{
+  position :absolute;
+  color: #3C9597;
+  bottom: 390px;
+ left: 22px; 
+}
+.modal-controles {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contenido {
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 90%;
+    color: white;
+    position: relative;
+    border: 2px solid #3b82f6;
+    box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+}
+
+.modal-contenido h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.modal-contenido p {
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    color: #cbd5e1;
+}
+
+.control-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.control-item i {
+    font-size: 3rem;
+    color: #94a3b8;
+}
+
+.cerrar-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #94a3b8;
+    transition: color 0.3s;
+}
+
+.cerrar-modal:hover {
+    color: #fff;
+}
+
+/* === breadcrums === */
+.breadcrumb {
+  margin: 50px 0 0 12px;
+  font-size: 14px;
+  color: #cfeefb;
+  padding-left: 50px;
+}
+.breadcrumb a { 
+   color: #cfeefb;
+}
+.breadcrumb a:hover {
+  color: #4DF3F7;
+}
+.sidebar {
+  grid-area: sidebar;
+  padding: 12px;
+}
+
+.sidebar-title {
+  margin: 0 0 12px 0;
+  color: #cfeefb;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px; 
+
+}
+
+/* Tarjeta de juego individual */
+
+.game-card {
+  flex: 0 0 180px;                /* No crece, no encoge, ancho fijo de 180px */
+  /* flex-shrink: 0; también funciona para evitar que se reduzca */
+  margin-left: 20px;              
+  margin-top: 5px;             
+  margin-bottom: 8px;             
+  height: 120px;                
+  width: 180px;                  
+  background: #131729;            
+  border-radius: 5px;             
+  border: 1px solid black;        
+  overflow: hidden;               /* La imagen respeta los bordes redondeados */
+  box-shadow: 
+    20px 20px 0px rgba(0, 0, 0, 0.99),      /* Sombra principal */
+    20px 20px 20px rgba(0, 0, 0, 0.99);     /* Sombra sutil adicional */
+  position: relative;             /* Para posicionar elementos hijos si es necesario */
+}
+
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.7),      /* Sombra principal */
+    0 2px 8px rgba(0, 0, 0, 0.3);         /* Sombra sutil adicional */
+}
+
+/* Imagen que ocupa la parte superior de la tarjeta */
+.game-card img {
+  width: 100%;                  
+  height: 80px;                 
+  border: 1px solid black;      
+  border-radius: 5px 5px 0 0;   
+  object-fit: cover;            
+}
+
+/* Contenido debajo de la imagen */
+.game-info {
+  color: white;                
+  display: flex;                
+  flex-direction: column;
+  gap: 0px;                    
+  height: 52px;                
+}
+
+/* Título del juego */
+.game-title {
+  font-size: 11px;              
+  margin-bottom: 1px;           
+  font-weight: 600;             
+  line-height: 1.1;             
+}
+
+/* Horas jugadas o información secundaria */
+.game-hours {
+  color: #9ca3af;              
+  font-size: 11px;              
+  margin-bottom: 2px;         
+}
+
+/* Precio del juego */
+.game-price {
+  font-size: 10px; 
+}
+
+/* Contenedor superior para título y botones */
+.game-top {
+  display: flex;                
+  justify-content: space-between;
+  align-items: center;         
+  margin-bottom: 2px;
+}
+
+/* Botón para jugar */
+.play-button {
+  background: #091A29;          
+  color: #D2FCFD;              
+  border: 1px solid #5F6FB5;    
+  padding: 2px 6px;             
+  border-radius: 5px;          
+  font-size: 9px;               
+  cursor: pointer;              /* Cursor de mano */
+  transition: all 0.3s ease;    /* Transición suave */
+  margin-top: 0;
+}
+
+
+/* Botón para comprar */
+.buy-button-card {
+  background: #091A29;           
+  color: #4DF3F7;                
+  border: 1px solid #4DF3F7;     
+  padding: 2px 6px;              
+  font-size: 9px;               
+  border-radius: 5px;            
+  transition: all 0.3s ease;     
+  cursor: pointer;              
+  margin-top: 0;
+}
+
+.btn {
+  margin-left: auto;
+  background: var(--accent);
+  color: #04202b;
+  font-weight: 700;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.description {
+  grid-area: description;
+  width: 95%;
+  background: transparent;
+  padding: 12px 0;
+}
+
+.description p.fin-descripcion {
+  margin-bottom: 20px; 
+  position: relative;
+}
+
+.description p.fin-descripcion::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color:rgba(16,200,220,0.95); 
+  margin-top: 10px;
+}
+
+.description h4{
+    margin-bottom: 10px;
+}
+.title {
+  font-size: 18px;
+  margin: 8px 0;
+  color: #cfeefb;
+}
+.descripcion{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+.descripcion h4{
+    margin: 0;
+}
+.description .pregunta{
+    color:rgba(16,200,220,0.95) ;
+    font-size: 20px;
+}
+.text {
+  color: #cfeefb;
+  line-height: 1.55;
+  font-size: 14px;
+   border-top: 1px solid rgba(16,200,220,0.95); 
+  padding-top: 10px;
+}
+
+.description .text p :not(:last-child) {
+      margin-bottom: 20px;
+}
+
+.bottom-left {
+  grid-area: bottom-left;
+  width: 650px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-video {
+  width: 100%;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* evita que se salga la imagen */
+  position: relative;
+}
+
+.hero-video img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bottom-right {
+  grid-area: bottom-right;
+  display: grid;
+}
+
+
+.screenshots{
+    gap: 25px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.thumb img {
+  object-fit: cover;
+  height: 150px;
+  width: 300px;
+}
+
+.play-overlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.play-button-css {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+   top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(16,200,220,0.95);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+/* Animación de pulso para el botón */
+@keyframes pulseBounce {
+   0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(16,200,220,0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(16,200,220,0.8);
+  }
+}
+.play-button-css:hover {
+  background: rgba(0, 0, 0, 0.8);
+ transform: translate(-50%, -50%) scale(1.15); 
+ box-shadow:
+    0 0 20px rgba(16, 200, 220, 0.95),
+    0 0 40px rgba(16, 200, 220, 0.8),
+    0 0 60px rgba(16, 200, 220, 0.6); 
+    animation: pulseBounce 2s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
+}
+
+.play-button-css::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 20px solid white;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  margin-left: 4px;
+}
+
+ /* Estilos para la sección de comentarios */
+.comment-header{
+ display: flex;
+ align-items: center;
+ gap: 10px;  
+ width: 100%;
+ margin-bottom: 10px;
+ position: relative;
+ margin-bottom: 10px;
+}
+
+.comment-header::after{
+   content: "";
+  display: block;
+  height: 1px;
+  background-color:rgba(16,200,220,0.95); 
+  margin-top: 10px;
+  width: 88vw;
+  position:absolute;
+  bottom: -8px;
+  left: 0;
+}
+.comment-form,.comment .comment-new-header, .comment .comment-footer {
+  padding: 20px 0 0 20px;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #cfeefb;
+  line-height: 1.55;
+}
+.comment-form input[type="text"] {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 14px;
+  background-color: #0f1720;
+    color: #cfeefb;
+ 
+}
+#comment-list {
+  margin-bottom: 20px;
+
+}
+.fa-solid.fa-message{
+ color: #4DF3F7;
+}
+.fa-solid{
+   color: #3C9597;
+}
+.fa-solid.fa-user{
+font-size: 25px;
+  color: #3C9597;
+}
+#comments button {
+  display: none;
+}
+.comment .comment-footer a {
+   color: #cfeefb;
+  text-decoration: none;
+  font-size: 12px;
+}
+.comment p {
+  padding: 0 0 0 25px;
+  font-size: 14px;
+  color: #cfeefb;
+   line-height: 1.55;
+}
+#comments{
+  width: 100%;
+   padding: 0;
+  margin: 0;
+}
+
+
+
+
