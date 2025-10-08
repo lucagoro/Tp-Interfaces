@@ -1,5 +1,104 @@
+@media (max-width: 768px) {
+footer {
+    background-color: #21294A;
+    color: #ffffffdb;
+    padding: 2rem 1rem;
+    position: relative;
+    margin-top: 50px;
+}
 
-/*---- Footer ----*/
+.footer-bmo {
+    position: absolute;
+    right: 10px;
+    top: -4px;
+    z-index: 10;
+}
+
+.footer-bmo img {
+    height: 50px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna en mobile */
+    gap: 2rem;
+    border-top: 1px solid #4DF3F7;
+    padding-top: 2rem;
+}
+
+.footer-desc {
+    text-align: center;
+    order: -1; /* Aparece primero */
+}
+
+.footer-logo img {
+    height: 80px;
+    margin-bottom: 1rem;
+}
+
+.footer-desc p {
+    font-size: 14px;
+}
+
+.title-footer {
+    font-weight: normal;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    color: #4DF3F7;
+    font-size: 1.1rem;
+}
+
+ul li {
+    font-size: 13px;
+    padding: 3px 0;
+}
+
+ul li a {
+    color: #ffffffdb;
+}
+
+.payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.payment-icon img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+
+.footer-contact {
+    grid-column: auto;
+    grid-row: auto;
+    margin-top: 0;
+}
+
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.social-icon {
+    font-size: 18px;
+    color: white;
+}
+
+.text-copy {
+    border-top: 1px solid #4DF3F7;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    color: #ffffffdb;
+    font-size: 12px;
+    margin-top: 2rem;
+}
+}
+
+
+@media (min-width: 769px) {
 
 footer {
     background-color: #21294A;
@@ -118,4 +217,4 @@ y con grid-column y grid-row posiciono elementos específicos donde necesito, co
     border-radius: 100%;
 }
 
-
+}

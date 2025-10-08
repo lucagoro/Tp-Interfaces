@@ -1,4 +1,341 @@
+@media (max-width: 768px) {
+body {
+    background-color: #131729;
+}
 
+/* ===== LOADING SCREEN (Mobile) ===== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #131729;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-content {
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid #2C3C4F;
+    border-top: 5px solid #4DF3F7;
+    border-radius: 100%;
+    margin: 0 auto 15px auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-bar {
+    width: 250px;
+    max-width: 90%;
+    height: 6px;
+    background-color: #2C3C4F;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 auto 10px auto;
+}
+
+.loading-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #4DF3F7, #0d9e94);
+    width: 0%;
+    transition: width 0.1s ease;
+    border-radius: 4px;
+}
+
+.loading-percent {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* ===== CARRUSEL PRINCIPAL (Mobile) ===== */
+.main-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.main-carousel-track {
+    position: relative;
+    width: 100%;
+    height: 150px; /* Altura reducida para mobile */
+}
+
+.main-carousel-slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    transition: opacity 0.4s;
+}
+
+.main-carousel-slide.active {
+    display: block;
+    position: relative;
+}
+
+.carousel-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, 
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.9)
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.carousel-content {
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    z-index: 2;
+}
+
+.carousel-content img {
+    max-width: 100px;
+    height: auto;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.carousel-content p {
+    color: #8f8f8f;
+    font-size: 10px;
+    margin-left: 1rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+.carousel-content p span {
+    background: #585858;
+    color: white;
+    padding: 0.1rem 0.1rem;
+    margin-right: 0.3rem;
+    font-size: 10px;
+}
+
+.carousel-content-below {
+    position: absolute;
+    bottom: 1rem;
+    left: 2rem;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.price {
+    color: grey;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.buy-button {
+    background: #091A29;
+    color: #4DF3F7;
+    border: 2px solid #4DF3F7;
+    padding: 0.3rem;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    box-shadow: 0 4px 5px rgba(0, 169, 195, 0.516);
+}
+
+/* Flechas del carrusel principal */
+.main-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.main-carousel-arrow.left {
+    left: 10px;
+}
+
+.main-carousel-arrow.right {
+    right: 10px;
+}
+
+/* ===== SECCIONES DE JUEGOS (Mobile) ===== */
+.games-section {
+    margin-bottom: 0.5rem;
+}
+
+.games-section h4 {
+    color: white;
+    font-size: 1.2rem;
+    padding-left: 0.5rem;
+    margin-bottom: -0.5rem;
+}
+
+.carousel-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    width: 100%;
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    scrollbar-width: none; /* Firefox */
+}
+
+.carousel-viewport::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+.carousel-track {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.carousel-slide {
+    flex: 0 0 auto;
+}
+
+.game-card {
+    width: 250px;
+    height: 180px;
+    background: #131729;
+    border-radius: 5px;
+    border: 1px solid black;
+    overflow: hidden;
+    box-shadow: 
+        10px 10px 0px rgba(0, 0, 0, 0.99),
+        10px 10px 20px rgba(0, 0, 0, 0.99);
+    transition: transform 0.3s ease;
+}
+
+.game-card-img {
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    background: #131729;
+}
+
+.game-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.game-info {
+    padding: 0.5rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.3rem;
+}
+
+.game-title {
+    font-size: 13px;
+    margin: 0;
+}
+
+.game-hours,
+.game-price {
+    color: #9ca3af;
+    font-size: 11px;
+}
+
+.play-button,
+.buy-button-card {
+    background: #091A29;
+    color: #4DF3F7;
+    border: 1px solid #4DF3F7;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 9px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.free-button-card {
+    background: #091A29;
+    color: #4DF7A5;
+    border: 1px solid #4DF7A5;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 9px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Ocultar flechas en mobile (scroll táctil) */
+.carousel__btn--prev,
+.carousel__btn--next {
+    display: none;
+}
+
+}
+
+
+
+
+
+@media (min-width: 769px) {
 
 * {
     margin: 0;
@@ -101,7 +438,7 @@ body {
 
 .carousel-img {
     position: relative;        /* Se superponen unos sobre otros */
-    width: 100%; height: 100%; /* Ocupan todo el contenedor */
+    width: 100%; height: 400px; /* Ocupan todo el contenedor */
 }
 
 .carousel-img img {
@@ -485,7 +822,7 @@ button:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 .free-button-card{
-     background: #091A29;
+background: #091A29;
   color: #4DF7A5;             
   border: 1px solid #4DF7A5;
   padding: 5px 10px;
@@ -525,4 +862,6 @@ button:hover {
 }
 .carousel-track {
     transition: transform 1s ease;
+}
+
 }

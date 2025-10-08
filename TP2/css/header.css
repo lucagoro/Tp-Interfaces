@@ -1,3 +1,290 @@
+@media (max-width: 768px) {
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+}
+
+header {
+    background-color: #131729;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+/* === Overlay === */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(19, 23, 41, 0.8);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* === Menú hamburguesa lateral === */
+.menu-header, .profil-header{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.menu-header .close-nav,#nav-profil .profil-header .close-nav {
+  width: 22px;
+  height: 22px;
+  margin-left: 5px;
+}
+
+.menu-header .logo-beemo {
+  height: 70px;
+  margin-left: 20px;
+}
+
+#menu {
+  background-color: #131729;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 200;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+#menu.show {
+  transform: translateX(0);
+}
+/* === Grupos de menú === */
+.menu-group {
+  border-bottom: 2px solid #3B6589;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+/* === items principal === */
+.nav-burger ul {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-burger ul li {
+  display: flex;
+  gap: 10px;
+  padding: 5px 5px;
+  cursor: pointer;
+  align-items: center;
+  text-decoration: none;
+}
+
+
+.nav-burger ul li a ,.nav-burger ul li span{
+  color: #ffffff;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 5px 0;
+}
+/* Hover principal */
+.nav-burger ul li:hover {
+  background-color: #010305;
+  opacity: 0.8;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+}
+/* Hover desactivado cuando está abierto */
+#menu ul li.open:hover {
+  background-color: transparent;
+  opacity: 1;
+}
+
+/* === Categorías === */
+.categorías {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoría-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+/* === Dropdown === */
+.dropdown {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dropdown.showcategories {
+  display: flex;
+}
+
+.dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 5px;
+  cursor: pointer;
+}
+
+ #menu .dropdown li a {
+  font-size: 14px;
+  color: #4DF3F7;
+  text-decoration: none;
+  padding: 3px 0;
+  display: block;
+  line-height: 22px;
+  transition: all 0.2s ease-in-out;
+}
+
+#menu .dropdown li a:hover {
+  background-color: #010305;
+  opacity: 0.8;
+  border-radius: 5px;
+}  
+/* Íconos invisibles */
+.dropdown li img {
+  visibility: hidden;
+  width: 22px;
+  height: 22px;
+}
+/* perfil de usuario */
+#nav-profil {
+  background-color: #131729;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+#nav-profil.show {
+  transform: translateX(0);
+}
+#nav-profil .profil-header div img{
+  width: 40px;
+  height: 40px
+}
+#nav-profil .profil-header span {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.profil-header div {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+.nav-burger ul li .fa-solid, .fa-xmark, .fa-solid.fa-magnifying-glass{
+   color: #3C9597;
+}
+
+
+/* === Navbar principal === */
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: #131729;
+  margin: -20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.left-side {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-icon {
+    padding-left: 10px;
+    font-size: 20px;
+    color: #3C9597;
+    cursor: pointer;
+    order: 3;
+}
+
+.logo img {
+    height: 40px;
+    margin-left: 0px;
+}
+
+.logo {
+  order: 1;
+}
+
+.profil-icon i {
+    padding-right: 10px;
+    font-size: 20px;
+    color: #3C9597;
+    margin-left: 10px;
+    margin-right: 10px;
+    order: 2;
+}
+
+
+
+/*---- Buscador ----*/
+
+.search-bar {
+    order: 2;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-bar input {
+    width: 100px;
+    padding: 5px 15px 5px 15px;
+    border: 1px solid #4DF3F7;
+    border-radius: 20px;
+    background: #2C3C4F;
+    opacity: 0.5;
+}
+
+.search-bar input::placeholder {
+    padding-left: 20px;
+    font-weight: bold;
+    color: #4DF3F7;
+    font-size: 12px;
+}
+
+.search-bar button {
+    position: absolute;
+    left: 15px;
+    background: none;
+    border: none;
+    color: #4DF3F7;
+    cursor: pointer;
+    font-size: 12px;
+}
+}
+
+@media (min-width: 769px) {
+
 header {
     background-color: #131729;
     margin-bottom: 20px;
@@ -214,25 +501,33 @@ nav.ul.div{
     font-size: 22px;
     color: #3C9597;
     cursor: pointer;
+    order: 0;
 }
 
 .logo img {
   height: 60px;
 }
 
+.logo {
+  order: 0;
+}
+
 .profil-icon i {
     padding-right: 10px;
     font-size: 22px;
     color: #3C9597;
+    order: 0;
 }
 
 /*---- Buscador ----*/
 
 .search-bar {
+    order: 0;
     margin: 0 20px;
     display: flex;
     align-items: center;
     position: relative;
+    margin-left: 400px;
 }
 
 .search-bar input {
@@ -259,4 +554,6 @@ nav.ul.div{
     color: #4DF3F7;
     cursor: pointer;
     font-size: 12px;
+}
+
 }
