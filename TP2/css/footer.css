@@ -121,16 +121,16 @@ footer {
 
 .footer-bmo {
     position: absolute;
-    right: 50px;         /* 50px del borde derecho */
-    top: -5px;          /*  */
-    z-index: 10;         /* Por encima del contenido */
+    right: 50px;         
+    top: -5px;          
+    z-index: 10;        
 }
 
 .footer-logo img {
     height: 120px;
 }
 
-ul li { /*---- acomodar ----*/
+ul li { 
     font-size: 15px;
     padding: 1px;
 }
@@ -143,15 +143,10 @@ ul li a:hover {
   text-decoration: underline;
 }
 
-
-/*Usé CSS Grid porque me permite crear layouts complejos de forma simple. Con grid-template-columns defino las columnas,
-y con grid-column y grid-row posiciono elementos específicos donde necesito, como poner 'Contacto' debajo de 'Métodos de pago
-' en la misma columna. Es más eficiente que Flexbox para layouts bidimensionales*/
-
 .footer-content {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Una fracción del espacio disponible - 5 columnas de igual tamaño */
-    gap: 3rem; /* Espacio entre columnas y filas - más limpio que usar margins*/
+    gap: 3rem; 
     margin-bottom: 2rem;
     border-top: 1px solid #4DF3F7;
     max-width: 1450px;
@@ -182,12 +177,11 @@ y con grid-column y grid-row posiciono elementos específicos donde necesito, co
     max-width: 1450px;
     margin: 0 auto;
     padding-top: 1rem;
-    padding-bottom: 4rem; /* Fijarse s deberia ser 5rem como el de arriba */
+    padding-bottom: 4rem; 
     text-align: center;
     color: #ffffffdb;
     font-size: 15px;
 }
-
 
 .payment-icon img{
   width: 40px;

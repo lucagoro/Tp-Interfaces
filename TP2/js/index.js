@@ -81,7 +81,7 @@ const loadingInterval = setInterval(() => {
   // Actualizar ancho de la barra
   loadingProgress.style.width = progress + "%";
 
-  // Actualizar texto del porcentaje (sin decimales)
+  // Actualizar texto del porcentaje
   loadingPercent.textContent = progress + "%";
 }, interval); // Se ejecuta cada 50ms
 
