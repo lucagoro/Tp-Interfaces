@@ -17,19 +17,11 @@ body {
 
 .container {
   max-width: 1200px;
-  display: grid;
-  column-gap: 0px; /* Gap específico para columnas - más pequeño */
-    row-gap: var(--gap); /* Mantiene el gap original para filas */
-  grid-template-rows: auto auto 1fr;
-  grid-template-areas:
-    "main sidebar"
-    "description description"
-    "bottom-left bottom-right";
+
   padding-left: 50px;
 }
 
 .main {
-  grid-area: main;
   background: linear-gradient(180deg, #0b1520 0%, rgba(0, 0, 0, 0.2));
   padding: 12px;
   border-radius: var(--radius);
@@ -144,138 +136,9 @@ border-color:rgba(16,200,220,0.95) ;
 .breadcrumb a:hover {
   color: #4DF3F7;
 }
-.sidebar {
-  grid-area: sidebar;
-  padding: 12px;
-}
 
-.sidebar-title {
-  margin: 0 0 12px 0;
-  color: #cfeefb;
-}
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, 1fr);
-  gap: 8px; 
-
-}
-
-/* Tarjeta de juego individual */
-
-.game-card {
-  flex: 0 0 180px;                /* No crece, no encoge, ancho fijo de 180px */
-  /* flex-shrink: 0; también funciona para evitar que se reduzca */
-  margin-left: 20px;              
-  margin-top: 5px;             
-  margin-bottom: 8px;             
-  height: 120px;                
-  width: 180px;                  
-  background: #131729;            
-  border-radius: 5px;             
-  border: 1px solid black;        
-  overflow: hidden;               /* La imagen respeta los bordes redondeados */
-  box-shadow: 
-    20px 20px 0px rgba(0, 0, 0, 0.99),      /* Sombra principal */
-    20px 20px 20px rgba(0, 0, 0, 0.99);     /* Sombra sutil adicional */
-  position: relative;             /* Para posicionar elementos hijos si es necesario */
-}
-
-
-.game-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 
-    8px 8px 16px rgba(0, 0, 0, 0.7),      /* Sombra principal */
-    0 2px 8px rgba(0, 0, 0, 0.3);         /* Sombra sutil adicional */
-}
-
-/* Imagen que ocupa la parte superior de la tarjeta */
-.game-card img {
-  width: 100%;                  
-  height: 80px;                 
-  border: 1px solid black;      
-  border-radius: 5px 5px 0 0;   
-  object-fit: cover;            
-}
-
-/* Contenido debajo de la imagen */
-.game-info {
-  color: white;                
-  display: flex;                
-  flex-direction: column;
-  gap: 0px;                    
-  height: 52px;                
-}
-
-/* Título del juego */
-.game-title {
-  font-size: 11px;              
-  margin-bottom: 1px;           
-  font-weight: 600;             
-  line-height: 1.1;             
-}
-
-/* Horas jugadas o información secundaria */
-.game-hours {
-  color: #9ca3af;              
-  font-size: 11px;              
-  margin-bottom: 2px;         
-}
-
-/* Precio del juego */
-.game-price {
-  font-size: 10px; 
-}
-
-/* Contenedor superior para título y botones */
-.game-top {
-  display: flex;                
-  justify-content: space-between;
-  align-items: center;         
-  margin-bottom: 2px;
-}
-
-/* Botón para jugar */
-.play-button {
-  background: #091A29;          
-  color: #D2FCFD;              
-  border: 1px solid #5F6FB5;    
-  padding: 2px 6px;             
-  border-radius: 5px;          
-  font-size: 9px;               
-  cursor: pointer;              /* Cursor de mano */
-  transition: all 0.3s ease;    /* Transición suave */
-  margin-top: 0;
-}
-
-
-/* Botón para comprar */
-.buy-button-card {
-  background: #091A29;           
-  color: #4DF3F7;                
-  border: 1px solid #4DF3F7;     
-  padding: 2px 6px;              
-  font-size: 9px;               
-  border-radius: 5px;            
-  transition: all 0.3s ease;     
-  cursor: pointer;              
-  margin-top: 0;
-}
-
-.btn {
-  margin-left: auto;
-  background: var(--accent);
-  color: #04202b;
-  font-weight: 700;
-  padding: 6px 8px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-}
 
 .description {
-  grid-area: description;
   width: 95%;
   background: transparent;
   padding: 12px 0;
@@ -328,9 +191,12 @@ border-color:rgba(16,200,220,0.95) ;
 .description .text p :not(:last-child) {
       margin-bottom: 20px;
 }
-
+.bottom-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+}
 .bottom-left {
-  grid-area: bottom-left;
   width: 650px;
   height: 350px;
   display: flex;
@@ -354,7 +220,6 @@ border-color:rgba(16,200,220,0.95) ;
 }
 
 .bottom-right {
-  grid-area: bottom-right;
   display: grid;
 }
 
