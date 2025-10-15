@@ -90,5 +90,5 @@ const peg = document.getElementById("peg");
 peg.addEventListener("click", pagJuego);
 
 function pagJuego() {
-  window.location.href = "Game/pagina-principal.html";
+  window.location.href = "game/blockad.html";
 }
