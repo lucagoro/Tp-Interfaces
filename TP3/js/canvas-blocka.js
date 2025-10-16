@@ -193,7 +193,7 @@ let juegoIniciado = false;
 // Si no hay récord previo, será null
 let recordNivel = localStorage.getItem('recordBlocka') || null;
 
-let btnPlay = document.querySelector('.btn-play');
+let btnPlay = document.querySelector('.btn-play-blocka');
 let cronometro = document.querySelector('.cronometro');
 let record = document.querySelector('.record');
 
@@ -252,6 +252,8 @@ function verificarCompletado() {
         } else {
             record.textContent = `Completado en ${formatearTiempo(tiempoActual)}. Récord actual: ${formatearTiempo(parseInt(recordNivel))}`;
         }
+        let btnsLevelEnd = document.querySelector(".level-end");
+        btnsLevelEnd.classList.toggle("visible");
     }
 }
 
