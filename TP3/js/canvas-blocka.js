@@ -1,7 +1,38 @@
+// ============= BANCO DE IMÁGENES =============
+
+const bancoImagenes = [
+    '../images/blocka/naruto-blocka-1 (1).jpg',
+    '../images/blocka/naruto-blocka-2 (1).jpg',
+    '../images/blocka/naruto-blocka-3 (1).jpg',
+    '../images/blocka/naruto-blocka-4.jpg',
+    '../images/blocka/naruto-blocka-5.jpg',
+    '../images/blocka/naruto-blocka-6 (1).jpg',
+];
+
+// Función para elegir una imagen aleatoria
+function elegirImagenAleatoria() {
+    let indiceAleatorio = Math.floor(Math.random() * bancoImagenes.length);
+    return bancoImagenes[indiceAleatorio];
+}
+
+
+// ============= SISTEMA DE NIVELES =============
+
+let nivelActual = 1;
+const NIVEL_MAXIMO = 4;
+
+// Configuración de filtros por nivel
+const filtrosNivel = {
+    1: null, // Nivel 1: sin filtro
+    2: 'escalaGrises', // Nivel 2: escala de grises
+    3: 'brillo', // Nivel 3: brillo 30%
+    4: 'negativo' // Nivel 4: negativo
+};
+
 // ============= CONFIGURACIÓN INICIAL =============
 
 let canvas = document.getElementById('myCanvas');
-let ctx = canvas.getContext('2d');
+let ctx = canvas.getContext('2d', { willReadFrequently: true });
 let image1 = new Image();
 
 const canvasWidth = canvas.width;   
@@ -15,22 +46,37 @@ let rotaciones = [
 
 
 // Variable global para guardar el ImageData original
-let imageDataOriginal = null;
+let imageDataOriginal = null; 
+let imageDataSinFiltro = null;
 
-// ============= CARGA DE IMAGEN =============
 
-image1.src = '../images/blocka/naruto-blocka-2 (1).jpg'; 
+// ============= CARGA INICIAL =============
 
-image1.onload = () => {
-    // 1. Dibujar imagen ESCALADA al tamaño completo del canvas
-    ctx.drawImage(image1, 0, 0, canvasWidth, canvasHeight);
+cargarImagen(); // Llamar al inicio
+
+// ============= FUNCIÓN PARA CARGAR IMAGEN =============
+
+function cargarImagen() {
+    let nuevaImagen = elegirImagenAleatoria();
     
-    // 2. Obtener ImageData (datos de píxeles) de toda la imagen escalada
-    imageDataOriginal = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+    image1.onload = () => {
+        
+        // 1. Dibujar imagen ESCALADA
+        ctx.drawImage(image1, 0, 0, canvasWidth, canvasHeight);
+        
+        // 2. Obtener ImageData SIN FILTRO
+        imageDataSinFiltro = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+        
+        // 3. Aplicar el filtro según el nivel actual
+        let filtroActual = filtrosNivel[nivelActual];
+        imageDataOriginal = aplicarFiltro(imageDataSinFiltro, filtroActual);
+        
+        // 4. Iniciar el juego
+        inicializarJuego();
+    };
     
-    // 3. Iniciar el juego
-    inicializarJuego();
-};
+    image1.src = nuevaImagen;
+}
 
 // ============= INICIALIZAR JUEGO =============
 
@@ -122,13 +168,11 @@ function dibujarCuadrante(row, col, angulo) {
     ctx.rotate(angulo * Math.PI / 180);
     // Este if/else es para que el img del cuadrante no sobrepase los límites al rotar 90 o 270 grados
     if (angulo % 180 !== 0) {
-  ctx.drawImage(tempCanvas, -halfHeight/2, -halfWidth/2, halfHeight, halfWidth);
-} else {
-  ctx.drawImage(tempCanvas, -halfWidth/2, -halfHeight/2, halfWidth, halfHeight);
-}
-    ctx.restore();
-
-    
+        ctx.drawImage(tempCanvas, -halfHeight/2, -halfWidth/2, halfHeight, halfWidth);
+    } else {
+        ctx.drawImage(tempCanvas, -halfWidth/2, -halfHeight/2, halfWidth, halfHeight);
+    }
+    ctx.restore();    
 }
 
 // ============= DETECCIÓN DE CLICKS =============
@@ -230,6 +274,44 @@ function iniciarCronometro() {
     }, 1000);
 }
 
+
+// ============= FUNCIÓN PARA SIGUIENTE NIVEL =============
+
+function siguienteNivel() {
+    if (nivelActual < NIVEL_MAXIMO) {
+        nivelActual++;
+        console.log('Nivel actual después:', nivelActual);
+        reiniciarNivel();
+    } else {
+        alert('🎊 ¡Felicidades! Completaste todos los niveles');
+        nivelActual = 1;
+        reiniciarNivel();
+    }
+}
+
+// ============= FUNCIÓN PARA REINICIAR NIVEL =============
+function reiniciarNivel() {
+    // Ocultar botones de fin de nivel
+    let btnsLevelEnd = document.querySelector(".level-end");
+    if (btnsLevelEnd.classList.contains("visible")) {
+        btnsLevelEnd.classList.remove("visible");
+    }
+    
+    // Resetear cronómetro
+    detenerCronometro();
+    segundos = 0;
+    minutos = 0;
+    juegoIniciado = false;
+    cronometro.textContent = '00:00';
+    btnPlay.textContent = 'Comenzar';
+    
+    // Limpiar canvas
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    
+    // Cargar nueva imagen
+    cargarImagen();
+}
+
 // ============= VERIFICAR COMPLETADO =============
 function verificarCompletado() {
     let completado = true;
@@ -244,6 +326,11 @@ function verificarCompletado() {
     if (completado && juegoIniciado) {
         detenerCronometro();
         juegoIniciado = false;
+
+        // Mostrar imagen sin filtro cuando se completa
+        imageDataOriginal = imageDataSinFiltro;
+        dibujarTodo();
+
         let tiempoActual = convertirATiempoTotal(minutos, segundos);
         if (recordNivel === null || tiempoActual < parseInt(recordNivel)) {
             recordNivel = tiempoActual;
@@ -285,4 +372,95 @@ function resetearRecord() {
     }
 }
 
+// ============= APLICAR FILTROS =============
+function aplicarFiltro(imageData, tipoFiltro) {
+    if (!tipoFiltro) {
+        return imageData; // Sin filtro
+    }
 
+    // Crear una copia del ImageData para no modificar el original
+    let filtrado = ctx.createImageData(imageData.width, imageData.height);
+
+    // Copiar todos los datos
+    for (let i = 0; i < imageData.data.length; i++) {
+        filtrado.data[i] = imageData.data[i];
+    }
+
+    for (let x = 0; x < filtrado.width; x++) {
+        for (let y = 0; y < filtrado.height; y++) {
+            let r = getRed(filtrado, x, y);
+            let g = getGreen(filtrado, x, y);
+            let b = getBlue(filtrado, x, y);
+
+            let colorFiltrado;
+
+            switch(tipoFiltro) {
+                case 'escalaGrises':
+                    colorFiltrado = escalaDeGrises(r, g, b);
+                    break;
+                case 'brillo':
+                    colorFiltrado = aumentarBrillo(r, g, b);
+                    break;
+                case 'negativo':
+                    colorFiltrado = invertirColores(r, g, b);
+                    break;
+                default:
+                    colorFiltrado = { r, g, b };
+            }
+
+            // Calcular el índice y actualizar los valores
+            let index = (x + y * filtrado.width) * 4;
+            filtrado.data[index + 0] = colorFiltrado.r;
+            filtrado.data[index + 1] = colorFiltrado.g;
+            filtrado.data[index + 2] = colorFiltrado.b;
+            // filtrado.data[index + 3] ya tiene el alpha copiado
+        }
+    }
+    return filtrado;
+}
+
+
+// ============= FUNCIONES PARA OBTENER COLORES =============
+
+function getRed(imageData, x, y) {
+     let index = (x + y * imageData.width) * 4;
+     return imageData.data[index + 0];
+}
+
+ function getGreen(imageData, x, y) {
+     let index = (x + y * imageData.width) * 4;
+     return imageData.data[index + 1];
+}
+
+ function getBlue(imageData, x, y) {
+     let index = (x + y * imageData.width) * 4;
+     return imageData.data[index + 2];
+}
+
+// ============= FUNCIONES DE FILTRO =============
+
+function escalaDeGrises(r, g, b) {
+    let gray = (r + g + b) / 3;
+    return {
+        r: gray,
+        g: gray,
+        b: gray
+    };
+}
+
+function aumentarBrillo(r, g, b) {
+    let incremento = 77; // 30% de 255 ≈ 77
+    return {
+        r: Math.min(255, r + incremento),
+        g: Math.min(255, g + incremento),
+        b: Math.min(255, b + incremento)
+    };
+}
+
+function invertirColores(r, g, b) {
+    return {
+        r: 255 - r,
+        g: 255 - g,
+        b: 255 - b
+    };
+}
