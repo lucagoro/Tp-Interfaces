@@ -57,25 +57,57 @@ cargarImagen(); // Llamar al inicio
 // ============= FUNCIÓN PARA CARGAR IMAGEN =============
 
 function cargarImagen() {
-    let nuevaImagen = elegirImagenAleatoria();
-    
-    image1.onload = () => {
+  //Selecciona el contenedor de thumbnails y el grid donde se mostrarán las imágenes
+  const preview = document.querySelector(".preview-imagenes");
+  const grid = document.querySelector(".grid-thumbnails");
+
+  //Muestra el contenedor de thumbnails y limpia cualquier contenido anterior
+  preview.classList.remove("hidden");
+  grid.innerHTML = "";
+
+  let nuevaImagen = elegirImagenAleatoria();
+
+  // Recorre todas las imágenes del banco y las muestra como thumbnails
+  bancoImagenes.forEach((src) => {
+    const img = document.createElement("img");
+    img.src = src;
+    grid.appendChild(img);
+  });
+
+  // Espera 2 segundos para que el jugador vea todas las imágenes
+  setTimeout(() => {
+    const imgs = grid.querySelectorAll("img");
+    imgs.forEach((img) => {
+       const nombreElegido = decodeURIComponent(nuevaImagen.split('/').pop().trim());
+       const nombreImg = decodeURIComponent(img.src.split('/').pop().trim());
+        if (nombreImg === nombreElegido) {
+         img.classList.add("destacada");
+        }
+    });
+  }, 2000);
+     setTimeout(() => {
+    preview.classList.add("hidden");
+  }, 4000);
+   setTimeout(() => {
+        image1.onload = () => {
+            
+            // 1. Dibujar imagen ESCALADA
+            ctx.drawImage(image1, 0, 0, canvasWidth, canvasHeight);
+            
+            // 2. Obtener ImageData SIN FILTRO
+            imageDataSinFiltro = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+            
+            // 3. Aplicar el filtro según el nivel actual
+            let filtroActual = filtrosNivel[nivelActual];
+            imageDataOriginal = aplicarFiltro(imageDataSinFiltro, filtroActual);
+            
+            // 4. Iniciar el juego
+            inicializarJuego();
+        };
         
-        // 1. Dibujar imagen ESCALADA
-        ctx.drawImage(image1, 0, 0, canvasWidth, canvasHeight);
-        
-        // 2. Obtener ImageData SIN FILTRO
-        imageDataSinFiltro = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
-        
-        // 3. Aplicar el filtro según el nivel actual
-        let filtroActual = filtrosNivel[nivelActual];
-        imageDataOriginal = aplicarFiltro(imageDataSinFiltro, filtroActual);
-        
-        // 4. Iniciar el juego
-        inicializarJuego();
-    };
-    
-    image1.src = nuevaImagen;
+        image1.src = nuevaImagen;
+     }, 4200);
+
 }
 
 // ============= INICIALIZAR JUEGO =============
