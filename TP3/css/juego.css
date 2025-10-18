@@ -150,7 +150,55 @@ body {
   padding: 10px;
 }
 
+/* === preview de imágenes === */
 
+/*  Contenedor general del preview de imágenes */
+.preview-imagenes {
+  text-align: center;
+  margin-top: 50px;
+  animation: preview 0.5s ease-in-out;
+}
+.preview-imagenes h3 {
+  margin-bottom: 30px;
+  color: #cfeefb;
+}
+/* Grid que contiene los thumbnails */
+.grid-thumbnails {
+   display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  gap: 30px; /* espacio entre columnas y filas */
+  justify-content: center; /* centra el grid horizontalmente */
+  align-items: center; /* centra verticalmente dentro de cada celda */
+  margin: 0 auto;
+  max-width: 350px; 
+}
+
+.grid-thumbnails img {
+  width: 200px;
+  height: 120px;
+  object-fit: cover;
+  border: 2px solid #7700ff;
+  border-radius: 6px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.grid-thumbnails img.destacada {
+  transform: scale(1.2);
+  border-color: #da00ff;
+  box-shadow: 0 0 10px #da00ff;
+}
+.preview-imagenes.hidden {
+  display: none;
+}
+@keyframes preview {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .iconos {
   display: flex;
   align-items: center;
