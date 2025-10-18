@@ -80,7 +80,7 @@ body {
 }
 
 /* ==== CAMBIAR ==== */
-.level-end .btn-back a, .btn-next-level {
+.level-end .btn-back a, .btn-next-level, .btn-repeat {
   background: linear-gradient(
     0deg,
     rgba(10, 0, 30, 0.99) 0%,
@@ -96,7 +96,7 @@ body {
   min-width: 200px;
 }
 
-.level-end .btn-back:hover a, .btn-next-level:hover {
+.level-end .btn-back:hover a, .btn-next-level:hover ,.btn-repeat:hover {
   background: linear-gradient(
     180deg,
     rgba(60, 7, 100, 0.99) 0%,
@@ -106,12 +106,50 @@ body {
   border: 1px solid #da00ff;
   transform: translateY(-2px);
 }
+.level-fail.hidden , .btn-next-level.hidden, .btn-repeat.hidden {
+  display: none;
+}
+ .aviso-tiempo {
+  font-size: 14px;
+  color: #ff4444;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
 
-  /* .container {
-  max-width: 1200px;
+.aviso-tiempo.hidden {
+  display: none ;
+}
 
-  padding-left: 50px; 
-}   */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* === mensajes tipo alert === */
+.container-msj{
+  position: absolute;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  transform: translateX(-50% ) translateY(-90%);
+  background-color: var(--card);
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 2px solid #3b82f6;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  z-index: 10;
+
+}
+.container .container-msj.hidden{
+   display: none;
+}
+.msj{
+  text-align: center;
+  padding: 10px;
+}
+
 
 .iconos {
   display: flex;
@@ -213,12 +251,15 @@ body {
   color: #4DF3F7;
   text-decoration: underline;
 }
+#comments, .description, .bottom-section, .title{
+ padding-left: 12px; 
+ }
 
 
 .description {
   width: 95%;
   background: transparent;
-  padding: 12px 0;
+padding: 0px 12px 12px 12px;
 }
 
 .description p.fin-descripcion {
@@ -239,7 +280,7 @@ body {
 }
 .title {
   font-size: 18px;
-  margin: 8px 0;
+  margin: 12px 12px;
   color: #cfeefb;
 }
 .descripcion{
@@ -455,7 +496,7 @@ font-size: 25px;
 }
 #comments{
   width: 100%;
-   padding: 0;
+ padding: 12px;
   margin: 0;
 }
 

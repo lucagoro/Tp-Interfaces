@@ -159,10 +159,15 @@
                 <p class="cronometro">00:00</p>
                 <p class="record"></p>
               </div>
+            <div class="container-msj hidden">
+              <p class="msj"></p>
+            </div>
               <div class="level-end">
                 <button class="btn-back"> <a href="../index.html">Volver al menú principal</a></button>
                 <button class="btn-next-level" onclick="siguienteNivel()" >Siguiente nivel</button>
+                <button class="btn-repeat">Reintentar nivel</button>
               </div>
+              <p class="aviso-tiempo hidden">⏱️ Este nivel tiene tiempo límite. ¡Jugá rápido!</p>
                 <a href="../index.html"><i class="fa-solid fa-arrow-left" id="arrow"></i></a>
                 <div class="iconos">
                   <i class="fa-solid fa-share-nodes"></i>
@@ -170,8 +175,7 @@
                 <i class="fa-solid fa-expand"></i>
                 </div>
             </div>
-             
-              <h2 class="title">Blocka</h2>
+
               <div id="modalControles" class="modal-controles">
           <div class="modal-contenido">
                <span class="cerrar-modal">&times;</span>
@@ -191,7 +195,7 @@
   
 
   <!-- Descripción (fila completa) -->
-
+<h2 class="title">Blocka</h2>
   <section class="description">
     <div class="descripcion">
         <i class="fa-solid fa-circle-question pregunta"></i>
@@ -199,10 +203,10 @@
     </div>
     
     <div class="text">
-      <p>Un desafío solitario lleno de estrategia ninja. Poné a prueba tu mente mientras movés fichas inspiradas en tus personajes favoritos del mundo shinobi. Cada salto es un golpe certero, cada eliminación una técnica bien ejecutada: el objetivo, quedarte con la última ficha en pie.</p>
+      <p>Blocka es un rompecabezas visual que pone a prueba tu percepción, lógica y velocidad. Cada nivel te enfrenta a una imagen dividida en partes rotadas, y tu misión es devolverle su forma original girando cada fragmento con precisión.</p>
         <p class="fin-descripcion">
-        Pero no es tan fácil: deberás planear con precisión cada movimiento, anticipar al rival invisible —el tablero— y demostrar que tu lógica es tan afilada como un kunai.
-        ¡Superá el reto, desbloqueá logros ocultos y probá si realmente podés alcanzar la perfección shinobi con una sola ficha sobreviviente en el centro del tablero!</p>
+        Pero no todo es tan simple: los niveles aplican filtros visuales como escala de grises, brillo o negativo, y cada imagen se elige aleatoriamente. A medida que avanzás, los desafíos se intensifican: más piezas, más filtros, menos tiempo. ¿Podés resolver la Blocka antes de que se agote el reloj?
+      ¡Usá tu intuición, pedí una ayudita si lo necesitás (aunque te cueste segundos) y desbloqueá la imagen RGB final como recompensa visual!</p>
       <p> — Desarrolladores: Troncoso Abril, Gorosito Luca, Laffitte Agostina</p>
       <p>Plataforma: Browser (Desktop)</p>
       <p>Páginas Wiki: Wikipedia - Fandom</p>
@@ -212,15 +216,15 @@
   <div class="bottom-section">
       <div class="bottom-left gallery">
     <div class="hero-video">
-         <img src="../images/ft-prue.png" alt="">
+         <img src="../images/blocka/blokaVideo.png" alt="">
           <div class="play-overlay play-button-css"></div>
     </div>
   </div>
 
   <div class="bottom-right">
     <div class="screenshots">
-      <div class="thumb"><img src="../images/prueba-ft-tablero.png" alt=""></div>
-      <div class="thumb"><img src="../images/otra.png" alt=""></div>
+      <div class="thumb"><img src="../images/blocka/blokaFiltro.png" alt=""></div>
+      <div class="thumb"><img src="../images/blocka/blokaWinner.png" alt=""></div>
     </div>
   </div>
   </div>
