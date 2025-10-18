@@ -243,10 +243,10 @@ let record = document.querySelector('.record');
 
 // tiempo limite para jugar
 let tiempoLimite = 5;
-let nivelActual = 3;
 
 let segundos = 0;
 let minutos = 0;
+ 
 
 btnPlay.addEventListener('click', () => {
     if (btnPlay.textContent === "Comenzar") {
@@ -257,8 +257,7 @@ btnPlay.addEventListener('click', () => {
         iniciarCronometro();
     }
 });
-document.querySelector(".btn-reintentar").addEventListener("click", () => {
-    document.querySelector(".level-fail").classList.add("hidden");
+document.querySelector(".btn-repeat").addEventListener("click", () => {
     // Reiniciá el nivel 
     reiniciarNivel(); 
 })
@@ -267,6 +266,7 @@ document.querySelector(".btn-reintentar").addEventListener("click", () => {
 if (recordNivel !== null) {
     record.textContent = `Récord actual: ${formatearTiempo(parseInt(recordNivel))}`;
 }
+
 
 function iniciarCronometro() {
     btnPlay.textContent = "Reiniciar";
@@ -285,10 +285,16 @@ function iniciarCronometro() {
         if (nivelActual >= 3 && tiempoActual >= tiempoLimite) {
             detenerCronometro();
             juegoIniciado = false;
-            // Podés agregar lógica para reiniciar el nivel o volver al menú
-            document.querySelector(".level-end").classList.remove("visible");
-            document.querySelector(".level-fail").classList.remove("hidden");
-
+             document.querySelector(".container-msj").classList.remove("hidden");
+             document.querySelector(".msj").textContent = '⏰ ¡Tiempo agotado! Reinicia el nivel para intentarlo de nuevo.';
+             setTimeout(() => {
+                document.querySelector(".container-msj").classList.add("hidden");
+                }, 3000); 
+                            
+            // Mostrar contenedor de fin de nivel
+            document.querySelector(".level-end").classList.add("visible");
+            document.querySelector(".btn-next-level").classList.add("hidden");
+            document.querySelector(".btn-repeat").classList.remove("hidden");
         }
     
     }, 1000);
@@ -317,6 +323,15 @@ function reiniciarNivel() {
         btnsLevelEnd.classList.remove("visible");
     }
     
+    //Aviso de tiempo para niveles 3 y 4
+        const avisoTiempo = document.querySelector(".aviso-tiempo");
+        if (nivelActual >= 3) {
+        avisoTiempo.classList.remove("hidden");
+        } else {
+        avisoTiempo.classList.add("hidden");
+        }
+
+
     // Resetear cronómetro
     detenerCronometro();
     segundos = 0;
@@ -359,8 +374,16 @@ function verificarCompletado() {
         } else {
             record.textContent = `Completado en ${formatearTiempo(tiempoActual)}. Récord actual: ${formatearTiempo(parseInt(recordNivel))}`;
         }
+       
+        // Mostrar contenedor de fin de nivel
+      
         let btnsLevelEnd = document.querySelector(".level-end");
-        btnsLevelEnd.classList.toggle("visible");
+        btnsLevelEnd.classList.add("visible");
+        document.querySelector(".btn-repeat").classList.add("hidden");
+        
+        document.querySelector(".btn-next-level").classList.remove("hidden");
+
+        document.querySelector(".level-fail").classList.add("hidden");
     }
 }
 
