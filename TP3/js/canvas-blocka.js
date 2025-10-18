@@ -197,6 +197,10 @@ let btnPlay = document.querySelector('.btn-play-blocka');
 let cronometro = document.querySelector('.cronometro');
 let record = document.querySelector('.record');
 
+// tiempo limite para jugar
+let tiempoLimite = 5;
+let nivelActual = 3;
+
 let segundos = 0;
 let minutos = 0;
 
@@ -209,6 +213,11 @@ btnPlay.addEventListener('click', () => {
         iniciarCronometro();
     }
 });
+document.querySelector(".btn-reintentar").addEventListener("click", () => {
+    document.querySelector(".level-fail").classList.add("hidden");
+    // Reiniciá el nivel 
+    reiniciarNivel(); 
+})
 
 // Mostrar el récord al cargar la página (si existe)
 if (recordNivel !== null) {
@@ -226,7 +235,18 @@ function iniciarCronometro() {
             minutos++;
             segundos = 0;
         }
+      
         cronometro.textContent = `${String(minutos.toString().padStart(2, '0'))}:${String(segundos.toString().padStart(2, '0'))}`; // Esta línea hace que siempre se muestren 2 dígitos
+          let tiempoActual = convertirATiempoTotal(minutos, segundos); 
+        if (nivelActual >= 3 && tiempoActual >= tiempoLimite) {
+            detenerCronometro();
+            juegoIniciado = false;
+            // Podés agregar lógica para reiniciar el nivel o volver al menú
+            document.querySelector(".level-end").classList.remove("visible");
+            document.querySelector(".level-fail").classList.remove("hidden");
+
+        }
+    
     }, 1000);
 }
 
