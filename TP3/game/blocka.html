@@ -142,9 +142,19 @@
     <!-- Body -->
      <div class="breadcrumb">
         <a href="../index.html">Inicio</a> >
-        <a href="../index.html#game-section">juegos</a> >
+        <a href="../index.html#game-section">Juegos</a> >
         <span>Blocka</span>
      </div>
+
+     <div class="configuracion-bloques">
+  <label for="selectorBloques">Cantidad de bloques:</label>
+  <select id="selectorBloques">
+    <option value="4">4 bloques</option>
+    <option value="6">6 bloques</option>
+    <option value="8">8 bloques</option>
+  </select>
+  <button onclick="aplicarCantidadBloques()">Aplicar</button>
+</div>
 <div class="container">
 
   <!-- Imagen principal -->
@@ -159,7 +169,6 @@
               </div>
               <div class="blocka-content">
                 <button class="btn-play-blocka">Comenzar</button>
-                <!-- <button class="btn-reset-record" onclick="resetearRecord()">Borrar Récord</button> --> <!-- Sacar -->
                 <p class="cronometro">00:00</p>
                 <p class="record"></p>
               </div>

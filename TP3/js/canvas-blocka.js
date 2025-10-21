@@ -29,21 +29,61 @@ const filtrosNivel = {
     4: 'negativo' // Nivel 4: negativo
 };
 
-// ============= CONFIGURACIÓN INICIAL =============
+// ============= CONFIGURACIÓN CANTIDAD DE BLOQUES =============
 
-let canvas = document.getElementById('myCanvas');
-let ctx = canvas.getContext('2d', { willReadFrequently: true });
-let image1 = new Image();
+let cantidadBloques = 4; // Por defecto 4 bloques (2x2)
+let filas = 2;
+let columnas = 2;
 
-const canvasWidth = canvas.width;   
-const canvasHeight = canvas.height; 
+function obtenerDistribucion(bloques) {
+    switch(bloques) {
+        case 4: return { filas: 2, columnas: 2 };
+        case 6: return { filas: 2, columnas: 3 };
+        case 8: return { filas: 2, columnas: 4 };
+        default: return { filas: 2, columnas: 2 };
+    }
+}
 
-// Matriz que guarda las rotaciones ACTUALES de cada cuadrante
+// Función para aplicar la cantidad de bloques seleccionada
+function aplicarCantidadBloques() {
+    let select = document.querySelector('select'); // O el ID específico de tu select
+    cantidadBloques = parseInt(select.value);
+    
+    let dimensiones = calcularDimensiones(cantidadBloques);
+    filas = dimensiones.filas;
+    columnas = dimensiones.columnas;
+    
+    // Reiniciar la matriz de rotaciones con el nuevo tamaño
+    rotaciones = [];
+    for (let row = 0; row < filas; row++) {
+        rotaciones[row] = [];
+        for (let col = 0; col < columnas; col++) {
+            rotaciones[row][col] = 0;
+        }
+    }
+    
+    // Recargar el juego
+    cargarImagen();
+}
+
+
+// ============= MATRIZ DE ROTACIONES DINÁMICA =============
+
 let rotaciones = [
     [0, 0],
     [0, 0]
 ];
 
+
+
+// ============= CONFIGURACIÓN INICIAL =============
+
+let canvas = document.getElementById('myCanvas');
+let ctx = canvas.getContext('2d', { willReadFrequently: true }); // willReadFrequently: true es una optimización de rendimiento que le dice al navegador cómo vas a usar el canvas.
+let image1 = new Image();
+
+const canvasWidth = canvas.width;   
+const canvasHeight = canvas.height; 
 
 // Variable global para guardar el ImageData original
 let imageDataOriginal = null; 
@@ -100,7 +140,8 @@ function cargarImagen() {
             // 3. Aplicar el filtro según el nivel actual
             let filtroActual = filtrosNivel[nivelActual];
             imageDataOriginal = aplicarFiltro(imageDataSinFiltro, filtroActual);
-            
+            inicializarRotaciones();
+            dibujarTodo();
             // 4. Iniciar el juego
             inicializarJuego();
         };
@@ -113,8 +154,8 @@ function cargarImagen() {
 // ============= INICIALIZAR JUEGO =============
 
 function inicializarJuego() {
-    for (let row = 0; row < 2; row++) {
-        for (let col = 0; col < 2; col++) {
+    for (let row = 0; row < filas; row++) {
+        for (let col = 0; col < columnas; col++) {
             let rotacionAleatoria = [0, 90, 180, 270][Math.floor(Math.random() * 4)];
             rotaciones[row][col] = rotacionAleatoria;
         }
@@ -126,55 +167,59 @@ function inicializarJuego() {
 
 function dibujarTodo() {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-    
-    let halfWidth = canvasWidth / 2;
-    let halfHeight = canvasHeight / 2;
+    let { filas, columnas } = obtenerDistribucion(cantBloques);
+    let anchoBloque = canvasWidth / columnas;
+    let altoBloque = canvasHeight / filas;
     
     // Dibujamos cada uno de los 4 cuadrantes con su rotación correspondiente
-    for (let row = 0; row < 2; row++) {
-        for (let col = 0; col < 2; col++) {
+    for (let row = 0; row < filas; row++) {
+        for (let col = 0; col < columnas; col++) {
             dibujarCuadrante(row, col, rotaciones[row][col]);
         }
     }
     
     // Dibujamos las líneas divisorias AL FINAL (para que queden arriba)
-    ctx.strokeStyle = '#667eea';
-    ctx.lineWidth = 3;
-    
-    ctx.beginPath();
-    ctx.moveTo(halfWidth, 0);
-    ctx.lineTo(halfWidth, canvasHeight);
-    ctx.stroke();
-    
-    ctx.beginPath();
-    ctx.moveTo(0, halfHeight);
-    ctx.lineTo(canvasWidth, halfHeight);
-    ctx.stroke();
+    dibujarGuia(filas, columnas, anchoBloque, altoBloque);
+}
+
+function dibujarGuia(filas, columnas, bloqueAncho, bloqueAlto) {
+    ctx.strokeStyle = 'rgba(0,0,255,0.3)';
+    for (let i = 1; i < columnas; i++) {
+        ctx.beginPath();
+        ctx.moveTo(i * bloqueAncho, 0);
+        ctx.lineTo(i * bloqueAncho, canvasHeight);
+        ctx.stroke();
+    }
+    for (let j = 1; j < filas; j++) {
+        ctx.beginPath();
+        ctx.moveTo(0, j * bloqueAlto);
+        ctx.lineTo(canvasWidth, j * bloqueAlto);
+        ctx.stroke();
+    }
 }
 
 // ============= DIBUJAR UN CUADRANTE INDIVIDUAL =============
 
-function dibujarCuadrante(row, col, angulo) {
-    let halfWidth = canvasWidth / 2;
-    let halfHeight = canvasHeight / 2;
-    
+function dibujarCuadrante(row, col, angulo) {  
+    let anchoBloque = canvasWidth / columnas;
+    let altoBloque = canvasHeight / filas;
     // Posición del cuadrante en el canvas
-    let x = col * halfWidth;
-    let y = row * halfHeight;
-    
+    let x = col * anchoBloque;
+    let y = row * altoBloque;
+
     // Extraer el ImageData del cuadrante correspondiente
-    let cuadranteImageData = ctx.createImageData(halfWidth, halfHeight);
+    let cuadranteImageData = ctx.createImageData(anchoBloque, altoBloque);
     
     // Copiar los píxeles del cuadrante desde imageDataOriginal
-    for (let py = 0; py < halfHeight; py++) {
-        for (let px = 0; px < halfWidth; px++) {
-            // Posición en la imagen original
-            let sourceX = col * halfWidth + px;
-            let sourceY = row * halfHeight + py;
+    for (let py = 0; py < altoBloque; py++) {
+        for (let px = 0; px < anchoBloque; px++) {
+             // Posición en la imagen original
+            let sourceX = Math.floor(col * anchoBloque + px);
+            let sourceY = Math.floor(row * altoBloque + py);
             let sourceIndex = (sourceY * canvasWidth + sourceX) * 4;
             
             // Posición en el cuadrante nuevo
-            let destIndex = (py * halfWidth + px) * 4;
+            let destIndex = (py * anchoBloque + px) * 4;
             
             // Copiar los 4 valores RGBA
             cuadranteImageData.data[destIndex + 0] = imageDataOriginal.data[sourceIndex + 0]; // R
@@ -185,10 +230,10 @@ function dibujarCuadrante(row, col, angulo) {
     }
     
     
-    // Crear un canvas temporal para rotar el cuadrante
+     // Crear un canvas temporal para rotar el cuadrante
     let tempCanvas = document.createElement('canvas');
-    tempCanvas.width = halfWidth;
-    tempCanvas.height = halfHeight;
+    tempCanvas.width = anchoBloque;
+    tempCanvas.height = altoBloque;
     let tempCtx = tempCanvas.getContext('2d');
     
     // Dibujar el ImageData en el canvas temporal
@@ -196,14 +241,16 @@ function dibujarCuadrante(row, col, angulo) {
     
     // Ahora dibujamos el canvas temporal rotado en el canvas principal
     ctx.save();
-    ctx.translate(x + halfWidth / 2, y + halfHeight / 2);
+    ctx.translate(x + anchoBloque / 2, y + altoBloque / 2);
     ctx.rotate(angulo * Math.PI / 180);
-    // Este if/else es para que el img del cuadrante no sobrepase los límites al rotar 90 o 270 grados
+    
+    // Ajustar dimensiones si está rotado 90° o 270°
     if (angulo % 180 !== 0) {
-        ctx.drawImage(tempCanvas, -halfHeight/2, -halfWidth/2, halfHeight, halfWidth);
+        ctx.drawImage(tempCanvas, -altoBloque/2, -anchoBloque/2, altoBloque, anchoBloque);
     } else {
-        ctx.drawImage(tempCanvas, -halfWidth/2, -halfHeight/2, halfWidth, halfHeight);
+        ctx.drawImage(tempCanvas, -anchoBloque/2, -altoBloque/2, anchoBloque, altoBloque);
     }
+    
     ctx.restore();    
 }
 
@@ -222,12 +269,17 @@ canvas.addEventListener('mousedown', (e) => {
     // Calculamos las coordenadas X e Y del click DENTRO del canvas
     let x = e.clientX - rect.left;
     let y = e.clientY - rect.top;
-    
-    // Determinamos en qué columna se hizo click (0 = izquierda, 1 = derecha)
-    let col = x < canvas.width / 2 ? 0 : 1;
-    
-    // Determinamos en qué fila se hizo click (0 = arriba, 1 = abajo)
-    let row = y < canvas.height / 2 ? 0 : 1;
+
+    let anchoBloque = canvasWidth / columnas;
+    let altoBloque = canvasHeight / filas;
+
+    // Determinar en qué columna y fila se hizo click
+    let col = Math.floor(x / anchoBloque);
+    let row = Math.floor(y / altoBloque);
+
+    // Asegurarse de que no se salga de los límites
+    col = Math.min(col, columnas - 1);
+    row = Math.min(row, filas - 1);
     
     // e.button indica qué botón del mouse se presionó:
     // 0 = botón izquierdo -> rotamos -90° (izquierda)
@@ -240,8 +292,6 @@ canvas.addEventListener('mousedown', (e) => {
     
     // Normalizamos el ángulo para que esté entre 0 y 359
     rotaciones[row][col] = rotaciones[row][col] % 360;
-    
-    // Si quedó negativo (por restar 90), lo convertimos a positivo
     if (rotaciones[row][col] < 0) rotaciones[row][col] += 360;
     
     // Redibujamos todo el canvas con la nueva rotación
@@ -313,12 +363,12 @@ function iniciarCronometro() {
         }
       
         cronometro.textContent = `${String(minutos.toString().padStart(2, '0'))}:${String(segundos.toString().padStart(2, '0'))}`; // Esta línea hace que siempre se muestren 2 dígitos
-          let tiempoActual = convertirATiempoTotal(minutos, segundos); 
+        let tiempoActual = convertirATiempoTotal(minutos, segundos); 
         if (nivelActual >= 3 && tiempoActual >= tiempoLimite) {
             detenerCronometro();
             juegoIniciado = false;
              document.querySelector(".container-msj").classList.remove("hidden");
-             document.querySelector(".msj").textContent = '⏰ ¡Tiempo agotado! Reinicia el nivel para intentarlo de nuevo.';
+             document.querySelector(".msj").textContent = '¡Tiempo agotado! Reinicia el nivel para intentarlo de nuevo.';
              setTimeout(() => {
                 document.querySelector(".container-msj").classList.add("hidden");
                 }, 3000); 
@@ -382,13 +432,14 @@ function reiniciarNivel() {
 // ============= VERIFICAR COMPLETADO =============
 function verificarCompletado() {
     let completado = true;
-    for (let row = 0; row < 2; row++) {
-        for (let col = 0; col < 2; col++) {
+    for (let row = 0; row < filas; row++) {
+        for (let col = 0; col < columnas; col++) {
             if (rotaciones[row][col] % 360 !== 0) {
                 completado = false;
                 break;
             }
         }
+        if (!completado) break;
     }
     if (completado && juegoIniciado) {
         detenerCronometro();
@@ -435,16 +486,6 @@ function formatearTiempo(segundosTotales) {
 // Función auxiliar para convertir mm:ss a segundos totales
 function convertirATiempoTotal(mins, segs) {
     return mins * 60 + segs;
-}
-
-// sacar
-function resetearRecord() {
-    if (confirm('¿Estás seguro de que quieres borrar el récord?')) {
-        localStorage.removeItem('recordBlocka');
-        recordNivel = null;
-        record.textContent = 'Sin récord aún';
-        alert('Récord borrado correctamente');
-    }
 }
 
 // ============= APLICAR FILTROS =============
@@ -539,3 +580,4 @@ function invertirColores(r, g, b) {
         b: 255 - b
     };
 }
+
