@@ -109,15 +109,20 @@ body {
 .level-fail.hidden , .btn-next-level.hidden, .btn-repeat.hidden {
   display: none;
 }
- .aviso-tiempo {
+ .msj {
   font-size: 14px;
   color: #ff4444;
   font-weight: bold;
   text-align: center;
-  animation: fadeIn 0.5s ease-in-out;
+  position: absolute; 
+  /* Centrar horizontalmente */
+  transform: translatey(-2200%); /* Ajuste para el centrado perfecto */
+  bottom: 120px; /* Ajusta este valor para colocarlo donde no choque con el botón */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  z-index: 5;
 }
 
-.aviso-tiempo.hidden {
+.msj.hidden {
   display: none ;
 }
 
@@ -125,30 +130,7 @@ body {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
 }
-/* === mensajes tipo alert === */
-.container-msj{
-  position: absolute;
-  align-items: center;
-  top: 50%;
-  left: 50%;
-  width: auto;
-  height: auto;
-  transform: translateX(-50% ) translateY(-90%);
-  background-color: var(--card);
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: 2px solid #3b82f6;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-  z-index: 10;
 
-}
-.container .container-msj.hidden{
-   display: none;
-}
-.msj{
-  text-align: center;
-  padding: 10px;
-}
 
 /* === preview de imágenes === */
 
@@ -199,6 +181,12 @@ body {
     transform: translateY(0);
   }
 }
+.blocka-content.hidden{
+  display: none;
+}
+ /* === iconos de controles === */
+ 
+
 .iconos {
   display: flex;
   align-items: center;
