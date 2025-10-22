@@ -352,7 +352,7 @@ let cronometro = document.querySelector(".cronometro");
 let record = document.querySelector(".record");
 
 // tiempo limite para jugar
-let tiempoLimite = 5;
+let tiempoLimite = 15;
 
 let segundos = 0;
 let minutos = 0;
@@ -379,6 +379,7 @@ if (recordNivel !== null) {
 }
 
 function iniciarCronometro() {
+  detenerCronometro();
   btnPlay.textContent = "Reiniciar";
   juegoIniciado = true;
   segundos = 0;
@@ -397,11 +398,11 @@ function iniciarCronometro() {
     if (nivelActual >= 3 && tiempoActual >= tiempoLimite) {
       detenerCronometro();
       juegoIniciado = false;
-      document.querySelector(".container-msj").classList.remove("hidden");
+      document.querySelector(".msj").classList.remove("hidden");
       document.querySelector(".msj").textContent =
         "¡Tiempo agotado! Reinicia el nivel para intentarlo de nuevo.";
       setTimeout(() => {
-        document.querySelector(".container-msj").classList.add("hidden");
+        document.querySelector(".msj").classList.add("hidden");
       }, 3000);
 
       // Mostrar contenedor de fin de nivel
@@ -415,20 +416,19 @@ function iniciarCronometro() {
 // ============= FUNCIÓN PARA SIGUIENTE NIVEL =============
 
 function siguienteNivel() {
-  ayudaUsada = false;
-  bloquesBloqueados = [];
-
   if (nivelActual < NIVEL_MAXIMO) {
     nivelActual++;
     console.log("Nivel actual después:", nivelActual);
     reiniciarNivel();
   } else {
-    alert("🎊 ¡Felicidades! Completaste todos los niveles");
-    nivelActual = 1;
-    reiniciarNivel();
+    document.querySelector(".msj").classList.remove("hidden");
+    document.querySelector(".msj").textContent =
+      "🎊 ¡Felicidades! Completaste todos los niveles";
+    document.querySelector(".level-end").classList.add("visible");
+    document.querySelector(".btn-next-level").classList.add("hidden");
+    document.querySelector(".btn-repeat").classList.add("hidden");
   }
 }
-
 // ============= FUNCIÓN PARA REINICIAR NIVEL =============
 function reiniciarNivel() {
   ayudaUsada = false;
@@ -669,17 +669,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function usarAyuda() {
+  const btnAyuda = document.querySelector(".btn-ayuda"); // ✅ Definir PRIMERO
+
   if (!btnAyuda) {
     console.error("El botón de ayuda no existe en el HTML");
     return;
   }
+
   if (ayudaUsada) {
-    alert("Ya usaste la ayuda en este nivel");
+    mostrarMensaje("Ya usaste la ayuda en este nivel");
     return;
   }
 
   if (!juegoIniciado) {
-    alert("Debes iniciar el juego primero");
+    mostrarMensaje("Inicia el juego para usar la ayuda");
     return;
   }
 
@@ -725,10 +728,9 @@ function usarAyuda() {
   // Marcar que ya se usó la ayuda
   ayudaUsada = true;
 
-  // Deshabilitar el botón
-  const btnAyuda = document.querySelector(".btn-ayuda");
+  // Deshabilitar el botón (ahora btnAyuda ya está definido)
   btnAyuda.disabled = true;
-  btnAyuda.textContent = "Ayuda usada";
+  btnAyuda.textContent = "✅ Ayuda usada";
 
   // Redibujar el canvas con el bloque corregido
   dibujarTodo();
@@ -739,4 +741,22 @@ function usarAyuda() {
 // Función para verificar si un bloque está bloqueado
 function estaBloqueado(row, col) {
   return bloquesBloqueados.some((b) => b.row === row && b.col === col);
+}
+// ============= FUNCIÓN AUXILIAR PARA MOSTRAR MENSAJES =============
+function mostrarMensaje(texto, duracion = 2500) {
+  const msj = document.querySelector(".msj");
+
+  if (!msj) {
+    console.error("El elemento .msj no existe");
+    return;
+  }
+
+  // Mostrar mensaje
+  msj.textContent = texto;
+  msj.classList.remove("hidden");
+
+  // Ocultar después del tiempo especificado
+  setTimeout(() => {
+    msj.classList.add("hidden");
+  }, duracion);
 }
