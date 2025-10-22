@@ -104,10 +104,12 @@ function cargarImagen() {
   //Selecciona el contenedor de thumbnails y el grid donde se mostrarán las imágenes
   const preview = document.querySelector(".preview-imagenes");
   const grid = document.querySelector(".grid-thumbnails");
+  const blockaContent = document.querySelector(".blocka-content");
 
   //Muestra el contenedor de thumbnails y limpia cualquier contenido anterior
   preview.classList.remove("hidden");
   grid.innerHTML = "";
+  blockaContent.classList.add("hidden");
 
   let nuevaImagen = elegirImagenAleatoria();
 
@@ -118,6 +120,9 @@ function cargarImagen() {
     grid.appendChild(img);
   });
 
+  setTimeout(() => {
+      blockaContent.classList.remove("hidden");
+    }, 4000);
   // Espera 2 segundos para que el jugador vea todas las imágenes
   setTimeout(() => {
     const imgs = grid.querySelectorAll("img");
@@ -132,6 +137,9 @@ function cargarImagen() {
     });
   }, 2000);
   setTimeout(() => {
+    preview.classList.add("hidden");
+  }, 4000);
+   setTimeout(() => {
     preview.classList.add("hidden");
   }, 4000);
   setTimeout(() => {
@@ -349,9 +357,7 @@ btnPlay.addEventListener("click", () => {
   if (btnPlay.textContent === "Comenzar") {
     iniciarCronometro();
   } else {
-    detenerCronometro();
-    cronometro.textContent = "00:00";
-    iniciarCronometro();
+   reiniciarNivel();
   }
 });
 document.querySelector(".btn-repeat").addEventListener("click", () => {
@@ -367,6 +373,7 @@ if (recordNivel !== null) {
 }
 
 function iniciarCronometro() {
+  detenerCronometro();
   btnPlay.textContent = "Reiniciar";
   juegoIniciado = true;
   segundos = 0;
@@ -385,11 +392,11 @@ function iniciarCronometro() {
     if (nivelActual >= 3 && tiempoActual >= tiempoLimite) {
       detenerCronometro();
       juegoIniciado = false;
-      document.querySelector(".container-msj").classList.remove("hidden");
+      document.querySelector(".msj").classList.remove("hidden");
       document.querySelector(".msj").textContent =
         "¡Tiempo agotado! Reinicia el nivel para intentarlo de nuevo.";
       setTimeout(() => {
-        document.querySelector(".container-msj").classList.add("hidden");
+        document.querySelector(".msj").classList.add("hidden");
       }, 3000);
 
       // Mostrar contenedor de fin de nivel
@@ -408,9 +415,13 @@ function siguienteNivel() {
     console.log("Nivel actual después:", nivelActual);
     reiniciarNivel();
   } else {
-    alert("🎊 ¡Felicidades! Completaste todos los niveles");
-    nivelActual = 1;
-    reiniciarNivel();
+     document.querySelector(".msj").classList.remove("hidden");
+      document.querySelector(".msj").textContent =
+        "🎊 ¡Felicidades! Completaste todos los niveles";
+       document.querySelector(".level-end").classList.add("visible");
+      document.querySelector(".btn-next-level").classList.add("hidden");
+      document.querySelector(".btn-repeat").classList.add("hidden");
+
   }
 }
 
@@ -423,7 +434,7 @@ function reiniciarNivel() {
   }
 
   //Aviso de tiempo para niveles 3 y 4
-  const avisoTiempo = document.querySelector(".aviso-tiempo");
+  const avisoTiempo = document.querySelector(".msj");
   if (nivelActual >= 3) {
     avisoTiempo.classList.remove("hidden");
   } else {
@@ -483,8 +494,10 @@ function verificarCompletado() {
     let btnsLevelEnd = document.querySelector(".level-end");
     btnsLevelEnd.classList.add("visible");
     document.querySelector(".btn-repeat").classList.add("hidden");
-
-    document.querySelector(".btn-next-level").classList.remove("hidden");
+    if (nivelActual >= NIVEL_MAXIMO) {
+      document.querySelector(".btn-next-level").classList.add("hidden");
+    } else   document.querySelector(".btn-next-level").classList.remove("hidden");
+  
 
     document.querySelector(".level-fail").classList.add("hidden");
   }
