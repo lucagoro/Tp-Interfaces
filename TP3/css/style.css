@@ -264,8 +264,8 @@ body {
     overflow: hidden;
     background-size: 200% 100%; /* Hace que el fondo sea el doble de ancho para poder animar el gradiente */
 }
-
-button:hover {
+ /*button era antes*/
+.buy-button:hover {
   background-image: linear-gradient(
     90deg,
     rgb(38, 140, 181) 0%,
