@@ -9,6 +9,18 @@ const bancoImagenes = [
   "../images/blocka/naruto-blocka-6 (1).jpg",
 ];
 
+// ============= JUGAR =============
+let btnJugar = document.getElementById("btn-jugar");
+let firstScreen = document.querySelector(".first-screen");
+let juegoBlocka = document.querySelector(".juego-blocka");
+
+btnJugar.addEventListener("click", () => {
+  firstScreen.classList.add("hidden-screen");     // Oculta la pantalla de inicio
+  juegoBlocka.classList.remove("hidden-screen");
+  cargarImagen();  // Muestra el juego
+});
+
+
 // Función para elegir una imagen aleatoria
 function elegirImagenAleatoria() {
   let indiceAleatorio = Math.floor(Math.random() * bancoImagenes.length);
@@ -58,28 +70,37 @@ function inicializarRotaciones() {
   }
 }
 
-// Función para aplicar la cantidad de bloques seleccionada
-function aplicarCantidadBloques() {
-  let select = document.querySelector("select"); // O el ID específico de tu select
-  let nuevaCantidad = parseInt(select.value);
+function inicializarSelectorBloques() {
+  const botones = document.querySelectorAll(".bloque-btn");
 
-  // Solo reiniciar si cambió realmente
-  if (nuevaCantidad !== cantidadBloques) {
-    cantidadBloques = nuevaCantidad;
-    let dimensiones = obtenerDistribucion(cantidadBloques);
-    filas = dimensiones.filas;
-    columnas = dimensiones.columnas;
-    inicializarRotaciones();
-    reiniciarNivel();
-  }
+  botones.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const nuevaCantidad = parseInt(btn.dataset.bloques);
+
+      if (nuevaCantidad !== cantidadBloques) {
+        cantidadBloques = nuevaCantidad;
+
+        // Actualizar visualmente el botón activo
+        botones.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        // Aplicar configuración
+        const dimensiones = obtenerDistribucion(cantidadBloques);
+        filas = dimensiones.filas;
+        columnas = dimensiones.columnas;
+        inicializarRotaciones();
+      }
+    });
+  });
+  // Marcar el botón activo al inicio
+  const inicial = document.querySelector(`.bloque-btn[data-bloques="${cantidadBloques}"]`);
+  if (inicial) inicial.classList.add("active");
 }
+
 // Event listener para el select
 document.addEventListener("DOMContentLoaded", () => {
-  let selectBloques = document.getElementById("selectorBlockes");
-  if (selectBloques) {
-    selectBloques.addEventListener("change", aplicarCantidadBloques);
-  }
-});
+   inicializarSelectorBloques();
+  });
 
 // ============= CONFIGURACIÓN INICIAL =============
 
@@ -96,11 +117,13 @@ let imageDataSinFiltro = null;
 
 // ============= CARGA INICIAL =============
 
-cargarImagen(); // Llamar al inicio
+//cargarImagen(); // Llamar al inicio
 
 // ============= FUNCIÓN PARA CARGAR IMAGEN =============
 
 function cargarImagen() {
+  let blockaContent = document.querySelector(".blocka-content");
+  blockaContent.classList.add("hidden");
   //Selecciona el contenedor de thumbnails y el grid donde se mostrarán las imágenes
   const preview = document.querySelector(".preview-imagenes");
   const grid = document.querySelector(".grid-thumbnails");
@@ -122,9 +145,7 @@ function cargarImagen() {
   setTimeout(() => {
     const imgs = grid.querySelectorAll("img");
     imgs.forEach((img) => {
-      const nombreElegido = decodeURIComponent(
-        nuevaImagen.split("/").pop().trim()
-      );
+      const nombreElegido = decodeURIComponent(nuevaImagen.split("/").pop().trim());
       const nombreImg = decodeURIComponent(img.src.split("/").pop().trim());
       if (nombreImg === nombreElegido) {
         img.classList.add("destacada");
@@ -158,6 +179,8 @@ function cargarImagen() {
 // ============= INICIALIZAR JUEGO =============
 
 function inicializarJuego() {
+  let blockaContent = document.querySelector(".blocka-content");
+  blockaContent.classList.remove("hidden");
   for (let row = 0; row < filas; row++) {
     for (let col = 0; col < columnas; col++) {
       let rotacionAleatoria = [0, 90, 180, 270][Math.floor(Math.random() * 4)];
@@ -172,8 +195,8 @@ function inicializarJuego() {
 function dibujarTodo() {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
   let { filas: f, columnas: c } = obtenerDistribucion(cantidadBloques);
-  let anchoBloque = canvasWidth / c;
-  let altoBloque = canvasHeight / f;
+  let anchoBloque = Math.floor(canvasWidth / c);
+  let altoBloque = Math.floor(canvasHeight / f);
   // Dibujamos cada uno de los cuadrantes con su rotación correspondiente
   for (let row = 0; row < filas; row++) {
     for (let col = 0; col < columnas; col++) {
@@ -186,7 +209,9 @@ function dibujarTodo() {
 }
 
 function dibujarGuia(filas, columnas, bloqueAncho, bloqueAlto) {
-  ctx.strokeStyle = "rgba(0,0,255,0.3)";
+  ctx.strokeStyle = "#4d005aff";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(0, 0, canvasWidth, canvasHeight);
   for (let i = 1; i < columnas; i++) {
     ctx.beginPath();
     ctx.moveTo(i * bloqueAncho, 0);
@@ -204,8 +229,9 @@ function dibujarGuia(filas, columnas, bloqueAncho, bloqueAlto) {
 // ============= DIBUJAR UN CUADRANTE INDIVIDUAL =============
 
 function dibujarCuadrante(row, col, angulo) {
-  let anchoBloque = canvasWidth / columnas;
-  let altoBloque = canvasHeight / filas;
+  // Usar Math.floor para asegurar valores enteros
+  let anchoBloque = Math.floor(canvasWidth / columnas);
+  let altoBloque = Math.floor(canvasHeight / filas);
   // Posición del cuadrante en el canvas
   let x = col * anchoBloque;
   let y = row * altoBloque;
@@ -225,14 +251,10 @@ function dibujarCuadrante(row, col, angulo) {
       let destIndex = (py * anchoBloque + px) * 4;
 
       // Copiar los 4 valores RGBA
-      cuadranteImageData.data[destIndex + 0] =
-        imageDataOriginal.data[sourceIndex + 0]; // R
-      cuadranteImageData.data[destIndex + 1] =
-        imageDataOriginal.data[sourceIndex + 1]; // G
-      cuadranteImageData.data[destIndex + 2] =
-        imageDataOriginal.data[sourceIndex + 2]; // B
-      cuadranteImageData.data[destIndex + 3] =
-        imageDataOriginal.data[sourceIndex + 3]; // A
+      cuadranteImageData.data[destIndex + 0] = imageDataOriginal.data[sourceIndex + 0]; // R
+      cuadranteImageData.data[destIndex + 1] = imageDataOriginal.data[sourceIndex + 1]; // G
+      cuadranteImageData.data[destIndex + 2] = imageDataOriginal.data[sourceIndex + 2]; // B
+      cuadranteImageData.data[destIndex + 3] = imageDataOriginal.data[sourceIndex + 3]; // A
     }
   }
 
@@ -252,21 +274,9 @@ function dibujarCuadrante(row, col, angulo) {
 
   // Ajustar dimensiones si está rotado 90° o 270°
   if (angulo % 180 !== 0) {
-    ctx.drawImage(
-      tempCanvas,
-      -altoBloque / 2,
-      -anchoBloque / 2,
-      altoBloque,
-      anchoBloque
-    );
+    ctx.drawImage(tempCanvas,-altoBloque / 2,-anchoBloque / 2,altoBloque,anchoBloque);
   } else {
-    ctx.drawImage(
-      tempCanvas,
-      -anchoBloque / 2,
-      -altoBloque / 2,
-      anchoBloque,
-      altoBloque
-    );
+    ctx.drawImage(tempCanvas,-anchoBloque / 2,-altoBloque / 2,anchoBloque,altoBloque);
   }
 
   ctx.restore();
@@ -288,8 +298,9 @@ canvas.addEventListener("mousedown", (e) => {
   let x = e.clientX - rect.left;
   let y = e.clientY - rect.top;
 
-  let anchoBloque = canvasWidth / columnas;
-  let altoBloque = canvasHeight / filas;
+  let anchoBloque = Math.floor(canvasWidth / columnas);
+  let altoBloque = Math.floor(canvasHeight / filas);
+
 
   // Determinar en qué columna y fila se hizo click
   let col = Math.floor(x / anchoBloque);
@@ -304,7 +315,7 @@ canvas.addEventListener("mousedown", (e) => {
     const containerMsj = document.querySelector(".container-msj");
     const msj = document.querySelector(".msj");
     containerMsj.classList.remove("hidden");
-    msj.textContent = "🔒 Este bloque está en posición correcta (ayuda)";
+    msj.textContent = "Este bloque está en posición correcta (ayuda)";
     setTimeout(() => {
       containerMsj.classList.add("hidden");
     }, 1500);
@@ -352,7 +363,7 @@ let cronometro = document.querySelector(".cronometro");
 let record = document.querySelector(".record");
 
 // tiempo limite para jugar
-let tiempoLimite = 15;
+let tiempoLimite = 10;
 
 let segundos = 0;
 let minutos = 0;
@@ -361,9 +372,27 @@ btnPlay.addEventListener("click", () => {
   if (btnPlay.textContent === "Comenzar") {
     iniciarCronometro();
   } else {
+    // Ocultar botones de fin de nivel
+    let btnsLevelEnd = document.querySelector(".level-end");
+    if (btnsLevelEnd && btnsLevelEnd.classList.contains("visible")) {
+      btnsLevelEnd.classList.remove("visible");
+    }
+    
+    // Resetear ayuda
+    ayudaUsada = false;
+    bloquesBloqueados = [];
+    actualizarBotonAyuda();
+    
+    // Resetear cronómetro
     detenerCronometro();
+    segundos = 0;
+    minutos = 0;
+    juegoIniciado = false;
     cronometro.textContent = "00:00";
-    iniciarCronometro();
+    btnPlay.textContent = "Comenzar";
+    
+    // Generar nuevas rotaciones aleatorias (sin cambiar imagen)
+    inicializarJuego();
   }
 });
 document.querySelector(".btn-repeat").addEventListener("click", () => {
@@ -373,9 +402,7 @@ document.querySelector(".btn-repeat").addEventListener("click", () => {
 
 // Mostrar el récord al cargar la página (si existe)
 if (recordNivel !== null) {
-  record.textContent = `Récord actual: ${formatearTiempo(
-    parseInt(recordNivel)
-  )}`;
+  record.textContent = `Récord actual: ${formatearTiempo(parseInt(recordNivel))}`;
 }
 
 function iniciarCronometro() {
@@ -391,19 +418,16 @@ function iniciarCronometro() {
       segundos = 0;
     }
 
-    cronometro.textContent = `${String(
-      minutos.toString().padStart(2, "0")
-    )}:${String(segundos.toString().padStart(2, "0"))}`; // Esta línea hace que siempre se muestren 2 dígitos
+    cronometro.textContent = `${String(minutos.toString().padStart(2, "0"))}:${String(segundos.toString().padStart(2, "0"))}`; // Esta línea hace que siempre se muestren 2 dígitos
     let tiempoActual = convertirATiempoTotal(minutos, segundos);
     if (nivelActual >= 3 && tiempoActual >= tiempoLimite) {
       detenerCronometro();
       juegoIniciado = false;
-      document.querySelector(".msj").classList.remove("hidden");
-      document.querySelector(".msj").textContent =
-        "¡Tiempo agotado! Reinicia el nivel para intentarlo de nuevo.";
+      document.querySelector(".msj-tiempo-agotado").classList.remove("hidden");
+      document.querySelector(".msj-tiempo-agotado").textContent = "¡Tiempo agotado! Reinicia el nivel para intentarlo de nuevo.";
       setTimeout(() => {
-        document.querySelector(".msj").classList.add("hidden");
-      }, 3000);
+        document.querySelector(".msj-tiempo-agotado").classList.add("hidden");
+      }, 5000);
 
       // Mostrar contenedor de fin de nivel
       document.querySelector(".level-end").classList.add("visible");
@@ -421,11 +445,11 @@ function siguienteNivel() {
     console.log("Nivel actual después:", nivelActual);
     reiniciarNivel();
   } else {
-    document.querySelector(".msj").classList.remove("hidden");
-    document.querySelector(".msj").textContent =
-      "🎊 ¡Felicidades! Completaste todos los niveles";
+    document.querySelector(".msj-tiempo-agotado").classList.remove("hidden");
+    document.querySelector(".msj-tiempo-agotado").textContent = "¡Felicidades! Completaste todos los niveles";
     document.querySelector(".level-end").classList.add("visible");
     document.querySelector(".btn-next-level").classList.add("hidden");
+    document.querySelector(".btn-back").classList.add("hidden");
     document.querySelector(".btn-repeat").classList.add("hidden");
   }
 }
@@ -438,18 +462,23 @@ function reiniciarNivel() {
   let btnsLevelEnd = document.querySelector(".level-end");
   if (btnsLevelEnd.classList.contains("visible")) {
     btnsLevelEnd.classList.remove("visible");
-  }
 
-  //Aviso de tiempo para niveles 3 y 4
+  // Aviso de tiempo para niveles 3 y 4
+
   const avisoTiempo = document.querySelector(".aviso-tiempo");
   if (avisoTiempo) {
-    // ✅ VALIDACIÓN AGREGADA
+    // VALIDACIÓN AGREGADA
     if (nivelActual >= 3) {
       avisoTiempo.classList.remove("hidden");
+      setTimeout(() => {
+      avisoTiempo.classList.add("hidden");
+      }, 4000);
     } else {
       avisoTiempo.classList.add("hidden");
     }
   }
+  }
+
 
   // Resetear cronómetro
   detenerCronometro();
@@ -490,38 +519,34 @@ function verificarCompletado() {
     if (recordNivel === null || tiempoActual < parseInt(recordNivel)) {
       recordNivel = tiempoActual;
       localStorage.setItem("recordBlocka", recordNivel);
-      record.textContent = `¡Nuevo récord! Completaste el puzzle en ${formatearTiempo(
-        tiempoActual
-      )}`;
+      record.textContent = `¡Nuevo récord! Completaste el puzzle en ${formatearTiempo(tiempoActual)}`;
     } else {
-      record.textContent = `Completado en ${formatearTiempo(
-        tiempoActual
-      )}. Récord actual: ${formatearTiempo(parseInt(recordNivel))}`;
+      record.textContent = `Completado en ${formatearTiempo(tiempoActual)}. Récord actual: ${formatearTiempo(parseInt(recordNivel))}`;
     }
 
     // Mostrar contenedor de fin de nivel
 
     let btnsLevelEnd = document.querySelector(".level-end");
     if (btnsLevelEnd) {
-      // ✅ VALIDACIÓN AGREGADA
+      // VALIDACIÓN AGREGADA
       btnsLevelEnd.classList.add("visible");
     }
 
     const btnRepeat = document.querySelector(".btn-repeat");
     if (btnRepeat) {
-      // ✅ VALIDACIÓN AGREGADA
+      // VALIDACIÓN AGREGADA
       btnRepeat.classList.add("hidden");
     }
 
     const btnNextLevel = document.querySelector(".btn-next-level");
     if (btnNextLevel) {
-      // ✅ VALIDACIÓN AGREGADA
+      // VALIDACIÓN AGREGADA
       btnNextLevel.classList.remove("hidden");
     }
 
     const levelFail = document.querySelector(".level-fail");
     if (levelFail) {
-      // ✅ VALIDACIÓN AGREGADA
+      // VALIDACIÓN AGREGADA
       levelFail.classList.add("hidden");
     }
   }
@@ -536,9 +561,7 @@ function detenerCronometro() {
 function formatearTiempo(segundosTotales) {
   let mins = Math.floor(segundosTotales / 60);
   let segs = segundosTotales % 60;
-  return `${mins.toString().padStart(2, "0")}:${segs
-    .toString()
-    .padStart(2, "0")}`;
+  return `${mins.toString().padStart(2, "0")}:${segs.toString().padStart(2, "0")}`;
 }
 
 // Función auxiliar para convertir mm:ss a segundos totales
@@ -653,7 +676,7 @@ function actualizarBotonAyuda() {
     // Resetear el estado de ayuda en cada nivel
     ayudaUsada = false;
     btnAyuda.disabled = false;
-    btnAyuda.textContent = "💡 Ayuda"; // ✅ AGREGAR ESTA LÍNEA
+    btnAyuda.textContent = "Ayudita"; 
   } else {
     btnAyuda.classList.add("hidden");
   }
@@ -669,7 +692,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function usarAyuda() {
-  const btnAyuda = document.querySelector(".btn-ayuda"); // ✅ Definir PRIMERO
+  const btnAyuda = document.querySelector(".btn-ayuda"); 
 
   if (!btnAyuda) {
     console.error("El botón de ayuda no existe en el HTML");
@@ -721,16 +744,14 @@ function usarAyuda() {
   }
 
   // Actualizar display del cronómetro
-  cronometro.textContent = `${minutos.toString().padStart(2, "0")}:${segundos
-    .toString()
-    .padStart(2, "0")}`;
+  cronometro.textContent = `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
 
   // Marcar que ya se usó la ayuda
   ayudaUsada = true;
 
   // Deshabilitar el botón (ahora btnAyuda ya está definido)
   btnAyuda.disabled = true;
-  btnAyuda.textContent = "✅ Ayuda usada";
+  btnAyuda.textContent = "Ayuda usada";
 
   // Redibujar el canvas con el bloque corregido
   dibujarTodo();

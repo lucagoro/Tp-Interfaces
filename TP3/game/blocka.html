@@ -84,7 +84,7 @@
                         </ul>
                     </div>
                     <!-- Logo -->
-                    <a href="#" class="logo">
+                    <a href="../index.html" class="logo">
                         <img src="../images/logo.png" alt="BMO Games"> 
                     </a>
                 </div>
@@ -146,20 +146,22 @@
         <span>Blocka</span>
      </div>
 
-     <div class="configuracion-bloques">
-  <label for="selectorBloques">Cantidad de bloques:</label>
-  <select id="selectorBloques">
-    <option value="4">4 bloques</option>
-    <option value="6">6 bloques</option>
-    <option value="8">8 bloques</option>
-  </select>
-  <button onclick="aplicarCantidadBloques()">Aplicar</button>
-</div>
 <div class="container">
 
   <!-- Imagen principal -->
         <div class="main">
-            <div class="juego-blocka">
+          <div class="first-screen">
+            <button class="btn-jugar" id="btn-jugar">Jugar</button>
+            <div class="configuracion-bloques">
+              <label>Cantidad de bloques:</label>
+              <div class="bloques-opciones">
+                <button class="bloque-btn" data-bloques="4">4</button>
+                <button class="bloque-btn" data-bloques="6">6</button>
+                <button class="bloque-btn" data-bloques="8">8</button>
+              </div>
+            </div>
+          </div>
+            <div class="juego-blocka hidden-screen">
               <div class="preview-imagenes hidden">
                 <h3>Imágenes disponibles para este nivel</h3>
                 <div class="grid-thumbnails"></div>
@@ -167,22 +169,24 @@
               <div class="canvas">
                 <canvas id="myCanvas" width="1100" height="400"></canvas>
               </div>
-              <div class="blocka-content">
+              <p class="aviso-tiempo msj hidden">Este nivel tiene tiempo límite. ¡Jugá rápido!</p>
+              <div class="blocka-content hidden">
                 <button class="btn-play-blocka">Comenzar</button>
                 <p class="cronometro">00:00</p>
                 <p class="record"></p>
-                 <p class="msj hidden">⏱️ Este nivel tiene tiempo límite. ¡Jugá rápido!</p>
+                <p class="msj-tiempo-agotado hidden"></p>
               </div>
            
               <div class="level-end">
                 <button class="btn-back"> <a href="../index.html">Volver al menú principal</a></button>
-                <button class="btn-next-level" onclick="siguienteNivel()" >Siguiente nivel</button>
+                <button class="btn-next-level" onclick="siguienteNivel()">Siguiente nivel</button>
                 <button class="btn-repeat">Reintentar nivel</button>
               </div>
             
-                <a href="../index.html"><i class="fa-solid fa-arrow-left" id="arrow"></i></a>
+                
                 <div class="iconos">
-                  <button class="btn-ayuda hidden"> Ayuda +5 seg</button>
+                  <a href="../index.html"><i class="fa-solid fa-arrow-left" id="arrow"></i></a>
+                  <button class="btn-ayuda hidden">Ayuda +5 seg</button>
                   <i class="fa-solid fa-share-nodes"></i>
                 <i class="fa-solid fa-gamepad" id="jostick"></i>
                 <i class="fa-solid fa-expand"></i>
