@@ -64,4 +64,23 @@ modal.addEventListener("click", (e) => {
   }
 });
 
+const share = document.getElementById("share");
+const modalAplicaciones = document.getElementById("modalAplicaciones");
+const cerrarAplicaciones = document.querySelector(".cerrar-modal-app");
 
+// Abrir modal al hacer clic en el joystick
+share.addEventListener("click", () => {
+  modalAplicaciones.style.display = "flex";
+});
+
+// Cerrar modal al hacer clic en la X
+cerrarAplicaciones.addEventListener("click", () => {
+  modalAplicaciones.style.display = "none";
+});
+
+// Cerrar modal al hacer clic fuera del contenido
+modalAplicaciones.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modalAplicaciones.style.display = "none";
+  }
+});
