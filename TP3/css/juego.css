@@ -374,6 +374,9 @@ body {
 #jostick{
  cursor: pointer;
 }
+#share{
+  cursor: pointer;
+}
 #arrow{
   position: absolute;
   color: #3C9597;
@@ -404,6 +407,38 @@ body {
     border: 2px solid #3b82f6;
     box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
 }
+.modal-aplicaciones {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.apps {
+  display: flex;             /* coloca los elementos en fila */
+  justify-content: center;   /* centra horizontalmente */
+  align-items: center;       /* alinea verticalmente */
+  gap: 20px;                 /* espacio entre iconos */
+}
+
+.app-item i {
+  font-size: 40px;           /* tamaño del ícono (ajustá a gusto) */
+  color: #333;               /* color del ícono */
+  cursor: pointer;           /* cambia el cursor al pasar por encima */
+  transition: transform 0.2s ease;
+}
+
+.app-item i:hover {
+  transform: scale(1.2);     /* efecto al pasar el mouse */
+  color: #007bff;            /* cambia de color al hover */
+}
+
 
 .modal-contenido h2 {
     text-align: center;
@@ -442,6 +477,19 @@ body {
 }
 
 .cerrar-modal:hover {
+    color: #fff;
+}
+.cerrar-modal-app {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #94a3b8;
+    transition: color 0.3s;
+}
+
+.cerrar-modal-app:hover {
     color: #fff;
 }
 
