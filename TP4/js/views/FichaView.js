@@ -86,6 +86,33 @@ class FichaView {
         this.radius = radius;
     }
 
+    setResaltado(resaltado) {
+        this.resaltado = resaltado;
+    }
+
+    setResaltadoEstilo(resaltadoEstilo) {
+        this.resaltadoEstilo = resaltadoEstilo;
+    }
+
+    getPosX() {
+        return this.posX;
+    }
+
+    getPosY() {
+        return this.posY;
+    }
+
+    getPosition() {
+        return {
+            x: this.getPosX(),
+            y: this.getPosY()
+        };
+    }
+
+    setPosition(x, y) {
+        this.posX = x;
+        this.posY = y;
+    }
     
 
     isPointInside(x, y) {

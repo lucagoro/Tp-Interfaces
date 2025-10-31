@@ -36,4 +36,5 @@ class Ficha {
   setRow(row) {
     this.row = row;
   }
+  
 }

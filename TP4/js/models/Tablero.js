@@ -16,7 +16,7 @@ class Tablero {
     [-1, -1, 1, 1, 1, -1, -1],
   ];
 
-  // Método para inicializar las fichas en el tablero el 1 representa lugar donde hay ficha
+  // Método para inicializar las fichas en el tablero, el 1 representa lugar donde hay ficha
   inicializarFichas() {
     const fichas = [];
     for (let row = 0; row < this.filas; row++) {
@@ -37,9 +37,9 @@ class Tablero {
   isValidPosition(row, col) {
     return (
       row >= 0 &&
-      row < this.rows &&
+      row < this.filas &&
       col >= 0 &&
-      col < this.cols &&
+      col < this.columnas &&
       this.celdas[row][col] !== -1
     );
   }
@@ -59,7 +59,7 @@ class Tablero {
   }
 
   getValidMoves(ficha) {
-    if (!ficha || !ficha.existe) return [];
+    if (!ficha || ficha.eliminada) return [];
 
     const moves = [];
     const row = ficha.row;
@@ -85,7 +85,7 @@ class Tablero {
         this.isEmptyAt(targetRow, targetCol) &&
         this.hasFichaAt(jumpRow, jumpCol)
       ) {
-        //agrega a movimientos validos la fila-colmuna del destino y la fila-columna de la ficha saltada
+        //agrega a movimientos validos la fila-columna del destino y la fila-columna de la ficha saltada
         moves.push({
           toRow: targetRow,
           toCol: targetCol,
