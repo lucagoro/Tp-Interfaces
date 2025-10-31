@@ -1,4 +1,4 @@
-class PegSolitaireModel {
+class PegSolitaire {
   constructor() {
     this.tablero = new Tablero();
   }

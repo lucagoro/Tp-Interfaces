@@ -32,7 +32,7 @@ function elegirImagenAleatoria() {
 let nivelActual = 1;
 const NIVEL_MAXIMO = 4;
 
-// Configuración de filtros por nivel
+// Configuración de filtros por nivel - Es un objeto literal de js
 const filtrosNivel = {
   1: null, // Nivel 1: sin filtro
   2: "escalaGrises", // Nivel 2: escala de grises
@@ -63,9 +63,9 @@ function obtenerDistribucion(bloques) {
 function inicializarRotaciones() {
   rotaciones = [];
   for (let row = 0; row < filas; row++) {
-    rotaciones[row] = [];
+    rotaciones[row] = []; // Crea un array vacío
     for (let col = 0; col < columnas; col++) {
-      rotaciones[row][col] = 0;
+      rotaciones[row][col] = 0; // Llena cada posición de esa fila
     }
   }
 }
@@ -115,15 +115,14 @@ const canvasHeight = canvas.height;
 let imageDataOriginal = null;
 let imageDataSinFiltro = null;
 
-// ============= CARGA INICIAL =============
-
-//cargarImagen(); // Llamar al inicio
 
 // ============= FUNCIÓN PARA CARGAR IMAGEN =============
 
 function cargarImagen() {
+  
   let blockaContent = document.querySelector(".blocka-content");
   blockaContent.classList.add("hidden");
+
   //Selecciona el contenedor de thumbnails y el grid donde se mostrarán las imágenes
   const preview = document.querySelector(".preview-imagenes");
   const grid = document.querySelector(".grid-thumbnails");
@@ -136,8 +135,11 @@ function cargarImagen() {
 
   // Recorre todas las imágenes del banco y las muestra como thumbnails
   bancoImagenes.forEach((src) => {
+    // Crea un elemento <img> en HTML
     const img = document.createElement("img");
+    // Le asigna la ruta de la img
     img.src = src;
+    // Agrega la img al contenedor grid
     grid.appendChild(img);
   });
 
@@ -232,11 +234,11 @@ function dibujarCuadrante(row, col, angulo) {
   // Usar Math.floor para asegurar valores enteros
   let anchoBloque = Math.floor(canvasWidth / columnas);
   let altoBloque = Math.floor(canvasHeight / filas);
-  // Posición del cuadrante en el canvas
+  // Determina donde empieza este bloque en el canvas
   let x = col * anchoBloque;
   let y = row * altoBloque;
 
-  // Extraer el ImageData del cuadrante correspondiente
+  // Crea un contenedor vacío para guardar los datos del bloque
   let cuadranteImageData = ctx.createImageData(anchoBloque, altoBloque);
 
   // Copiar los píxeles del cuadrante desde imageDataOriginal
@@ -274,8 +276,10 @@ function dibujarCuadrante(row, col, angulo) {
 
   // Ajustar dimensiones si está rotado 90° o 270°
   if (angulo % 180 !== 0) {
+    // Si está rotado 90° o 270°, intercambiar ancho y alto
     ctx.drawImage(tempCanvas,-altoBloque / 2,-anchoBloque / 2,altoBloque,anchoBloque);
   } else {
+     // Si está en 0° o 180°, usar dimensiones normales
     ctx.drawImage(tempCanvas,-anchoBloque / 2,-altoBloque / 2,anchoBloque,altoBloque);
   }
 
@@ -442,7 +446,6 @@ function iniciarCronometro() {
 function siguienteNivel() {
   if (nivelActual < NIVEL_MAXIMO) {
     nivelActual++;
-    console.log("Nivel actual después:", nivelActual);
     reiniciarNivel();
   } else {
     document.querySelector(".msj-tiempo-agotado").classList.remove("hidden");
@@ -478,7 +481,6 @@ function reiniciarNivel() {
     }
   }
   }
-
 
   // Resetear cronómetro
   detenerCronometro();

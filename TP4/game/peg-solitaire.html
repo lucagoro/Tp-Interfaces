@@ -367,7 +367,15 @@
       </div>
     </footer>
     <script src="../js/index.js"></script>
-     <script src="../js/peg-solitaire.js"></script>
-
+     <script src="../js/models/Tablero.js"></script>           <!-- 1. Modelo básico -->
+    <script src="../js/models/Ficha.js"></script>             <!-- 2. Modelo básico -->
+    <script src="../js/models/PegSolitaire.js"></script>      <!-- 3. Modelo principal -->
+    
+    <script src="../js/views/TableroView.js"></script>       <!-- 4. Vista del tablero (ANTES de PegSolitaireView) -->
+    <script src="../js/views/FichaView.js"></script>         <!-- 5. Vista de fichas -->
+    <script src="../js/views/PegSolitaireView.js"></script>  <!-- 6. Vista principal (USA TableroView) -->
+    
+    <script src="../js/controllers/PegSolitaireController.js"></script>  <!-- 7. Controlador -->
+    <script src="../js/main.js"></script>
   </body>
 </html>
