@@ -4,13 +4,18 @@ class PegSolitaireView {
         this.ctx = ctx;
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
+
         this.cellSize = 71.4285714;
+    this.offsetX = 1;   // Compensar el desplazamiento horizontal
+    this.offsetY =1 ;   // Compensar el desplazamiento vertical
+    
         this.tableroView = new TableroView('../images/tablero-naruto.jpg', this.ctx, canvasWidth, canvasHeight);
         this.readyCallback = null;
+        this.fichasViews = [];
+        this.fichasCreated = false; // Nueva bandera
     }
 
     onReady(callback) {
-        // Esperar a que la imagen del tablero cargue
         if (this.tableroView.imageLoaded) {
             callback();
         } else {
@@ -19,57 +24,69 @@ class PegSolitaireView {
     }
 
     rowColToPixels(row, col) {
-        return {
-            x: col * this.cellSize + this.cellSize / 2,
-            y: row * this.cellSize + this.cellSize / 2,
-        };
-    }
+    return {
+        x: col * this.cellSize + this.cellSize / 2 + this.offsetX,
+        y: row * this.cellSize + this.cellSize / 2 + this.offsetY,
+    };
+}
 
-    pixelsToRowCol(x, y) {
-        return {
-            row: Math.floor(y / this.cellSize),
-            col: Math.floor(x / this.cellSize),
-        };
-    }
+pixelsToRowCol(x, y) {
+    return {
+        row: Math.floor((y - this.offsetY) / this.cellSize),
+        col: Math.floor((x - this.offsetX) / this.cellSize),
+    };
+}
 
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
     
     drawBoard(model) {
-    console.log("Dibujando tablero");
-    this.tableroView.draw();
-    
-    const tablero = model.getTablero();
-    const fichas = tablero.getAllFichas();
-    console.log("Fichas a dibujar:", fichas.length);
-    
-    let fichasViews = [];
-    let fichasCargadas = 0;
-    const totalFichas = fichas.length;
-    
-    for (const ficha of fichas) {
-        const x = this.rowColToPixels(ficha.getRow(), ficha.getCol()).x;
-        const y = this.rowColToPixels(ficha.getRow(), ficha.getCol()).y;
-        const f = new FichaView(x, y, this.ctx, 30, '../images/blocka/naruto-blocka-2 (1).jpg');
+        console.log("Dibujando tablero");
         
-        // Guardar referencia
-        fichasViews.push(f);
-        
-        // Cuando cargue la imagen, redibujar
-        f.onLoadCallback = () => {
-            fichasCargadas++;
-            console.log(`Ficha ${fichasCargadas}/${totalFichas} cargada`);
+        // Solo crear las fichas la primera vez
+        if (!this.fichasCreated) {
+            const tablero = model.getTablero();
+            const fichas = tablero.getAllFichas();
             
-            // Cuando todas carguen, redibujar todo
-            if (fichasCargadas === totalFichas) {
-                this.tableroView.draw();
-                fichasViews.forEach(fv => fv.draw());
+            this.fichasViews = [];
+            let fichasCargadas = 0;
+            const totalFichas = fichas.length;
+            
+           for (const ficha of fichas) {
+            const x = this.rowColToPixels(ficha.getRow(), ficha.getCol()).x;
+            const y = this.rowColToPixels(ficha.getRow(), ficha.getCol()).y;
+            console.log(`Creando ficha en row=${ficha.getRow()}, col=${ficha.getCol()}, x=${x}, y=${y}`);
+            const f = new FichaView(x, y, this.ctx, 30, '../images/blocka/naruto-blocka-2 (1).jpg');
+            
+            this.fichasViews.push(f);
+                
+                f.onLoadCallback = () => {
+                    fichasCargadas++;
+                    
+                    if (fichasCargadas === totalFichas) {
+                        this.redraw();
+                    }
+                };
+                
+                f.draw();
             }
-        };
-        
-        // Dibujar inmediatamente (mostrará placeholder si no está cargada)
-        f.draw();
+            
+            this.fichasCreated = true;
+        } else {
+            // Si ya fueron creadas, solo redibujar
+            this.redraw();
+        }
     }
-}
+
+    // Nuevo método para redibujar sin recrear las fichas
+    redraw() {
+        this.clear();
+        this.tableroView.draw();
+        this.fichasViews.forEach(fv => fv.draw());
+    }
+
+    getFichasViews() {
+        return this.fichasViews;
+    }
 }
