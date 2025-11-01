@@ -4,10 +4,8 @@ class PegSolitaireController {
     this.ctx = this.canvas.getContext("2d");
     this.canvasWidth = this.canvas.width;
     this.canvasHeight = this.canvas.height;
-
     this.lastClickedFigure = null;
     this.isMouseDown = false;
-
     this.model = new PegSolitaire();
     this.view = new PegSolitaireView(
       this.canvas,
@@ -15,12 +13,14 @@ class PegSolitaireController {
       this.canvasWidth,
       this.canvasHeight
     );
-    this.timeLimit = 600;
-    this.timeRemaining = this.timeLimit;
-    this.timerInterval = null;
+    this.timerModel = new Timer();
+    this.timerView = new TimerView();
+    this.timerController = new TimerController(this.timerModel, this.timerView);
+
     this.gameOver = false;
     this.setupEventListeners();
-    this.startTimer();
+    this.timerController.iniciar(); // Iniciar el cronómetro
+
     this.mouseX = null;
     this.mouseY = null;
     this.fichaPositionx;
@@ -75,8 +75,6 @@ class PegSolitaireController {
 
     this.originalFichaX = this.lastClickedFigure.getPosX();
     this.originalFichaY = this.lastClickedFigure.getPosY();
-
-    this.model.getTablero().getValidMoves(row, col);
   }
 
   onMouseUp(e) {
@@ -98,11 +96,8 @@ class PegSolitaireController {
         this.originalFichaY
       ).col;
 
-      console.log(`Posición original: row=${originalRow}, col=${originalCol}`);
-
-      // ✅ Validar que la posición sea válida antes de continuar
+      // Validar que la posición sea válida antes de continuar
       if (!this.model.getTablero().isValidPosition(originalRow, originalCol)) {
-        console.error("⚠️ Posición original inválida");
         this.lastClickedFigure.setPosition(
           this.originalFichaX,
           this.originalFichaY
@@ -136,7 +131,7 @@ class PegSolitaireController {
         const actualY = (e.clientY - rect.top) * scaleY;
         const dropPos = this.view.pixelsToRowCol(actualX, actualY);
 
-        // ✅ Validar que la posición de destino sea válida
+        // Validar que la posición de destino sea válida
         if (
           !this.model.getTablero().isValidPosition(dropPos.row, dropPos.col)
         ) {
@@ -163,11 +158,8 @@ class PegSolitaireController {
               validMove.toRow,
               validMove.toCol
             );
-          let coordenadasFichaEliminada = this.view.rowColToPixels(
-            validMove.jumpRow,
-            validMove.jumpCol
-          );
 
+          // Eliminar la ficha visual del medio
           this.view.eliminarFichaViewEnPosicion(
             validMove.jumpRow,
             validMove.jumpCol
@@ -179,15 +171,29 @@ class PegSolitaireController {
             validMove.toCol
           );
           this.lastClickedFigure.setPosition(newPos.x, newPos.y);
-          // destino no valido
+
+          // Actualizar posición del modelo
+          ficha.mover(validMove.toCol, validMove.toRow);
+
+          // Verificar victoria o derrota
+          if (this.model.getTablero().isVictory()) {
+            alert("¡Has ganado!");
+            this.timerController.detener();
+          } else if (!this.model.getTablero().hasAnyValidMoves()) {
+            alert("No hay más movimientos válidos. Has perdido.");
+            this.timerController.detener();
+          }
         } else {
+          // Movimiento no válido - devolver ficha a posición original
+          console.log("Movimiento no válido");
           this.lastClickedFigure.setPosition(
             this.originalFichaX,
             this.originalFichaY
           );
         }
       } else {
-        // sin movimientos
+        // No hay movimientos válidos para esta ficha - devolver a posición original
+        console.log("No hay movimientos válidos para esta ficha");
         this.lastClickedFigure.setPosition(
           this.originalFichaX,
           this.originalFichaY
@@ -228,9 +234,6 @@ class PegSolitaireController {
         });
       }
     }
-
-    console.log("Fichas que detectaron el click:", fichasEncontradas);
-
     // Devolver la primera
     if (fichasEncontradas.length > 0) {
       const idx = fichasEncontradas[0].index;
@@ -238,6 +241,4 @@ class PegSolitaireController {
     }
     return null;
   }
-
-  startTimer() {}
 }
