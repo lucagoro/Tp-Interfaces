@@ -51,7 +51,8 @@ class Tablero {
   }
 
   hasFichaAt(row, col) {
-    return this.getFichaAt(row, col).eliminada === false;
+    const ficha = this.getFichaAt(row, col);
+    return ficha !== undefined && ficha.eliminada === false;
   }
 
   isEmptyAt(row, col) {

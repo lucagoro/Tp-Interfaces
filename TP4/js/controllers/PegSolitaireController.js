@@ -21,6 +21,10 @@ class PegSolitaireController {
     this.gameOver = false;
     this.setupEventListeners();
     this.startTimer();
+    this.mouseX = null;
+    this.mouseY = null;
+    this.fichaPositionx;
+    this.fichaPositiony;
 
     setTimeout(() => this.render(), 100);
   }
@@ -51,31 +55,145 @@ class PegSolitaireController {
     const scaleX = this.canvas.width / rect.width;
     const scaleY = this.canvas.height / rect.height;
 
-    const mouseX = (e.clientX - rect.left) * scaleX;
-    const mouseY = (e.clientY - rect.top) * scaleY;
-
-    console.log("=== CLICK ===");
-    console.log("Click en pixel:", mouseX, mouseY);
+    this.mouseX = (e.clientX - rect.left) * scaleX;
+    this.mouseY = (e.clientY - rect.top) * scaleY;
 
     if (this.lastClickedFigure != null) {
       this.lastClickedFigure.setResaltado(false);
       this.lastClickedFigure = null;
     }
 
-    let clickFig = this.findClickedFigure(mouseX, mouseY);
+    let clickFig = this.findClickedFigure(this.mouseX, this.mouseY);
     if (clickFig != null) {
-      console.log(">>> SELECCIONADA:", clickFig.getPosX(), clickFig.getPosY());
       clickFig.setResaltado(true);
       this.lastClickedFigure = clickFig;
     }
     this.view.redraw();
+
+    const row = this.view.pixelsToRowCol(this.mouseX, this.mouseY).row;
+    const col = this.view.pixelsToRowCol(this.mouseX, this.mouseY).col;
+
+    this.originalFichaX = this.lastClickedFigure.getPosX();
+    this.originalFichaY = this.lastClickedFigure.getPosY();
+
+    this.model.getTablero().getValidMoves(row, col);
   }
 
   onMouseUp(e) {
     this.isMouseDown = false;
+    const rect = this.canvas.getBoundingClientRect();
+    const scaleX = this.canvas.width / rect.width;
+    const scaleY = this.canvas.height / rect.height;
 
     if (this.lastClickedFigure != null) {
       this.lastClickedFigure.setResaltado(false);
+
+      // Obtener posición original
+      const originalRow = this.view.pixelsToRowCol(
+        this.originalFichaX,
+        this.originalFichaY
+      ).row;
+      const originalCol = this.view.pixelsToRowCol(
+        this.originalFichaX,
+        this.originalFichaY
+      ).col;
+
+      console.log(`Posición original: row=${originalRow}, col=${originalCol}`);
+
+      // ✅ Validar que la posición sea válida antes de continuar
+      if (!this.model.getTablero().isValidPosition(originalRow, originalCol)) {
+        console.error("⚠️ Posición original inválida");
+        this.lastClickedFigure.setPosition(
+          this.originalFichaX,
+          this.originalFichaY
+        );
+        this.lastClickedFigure = null;
+        this.view.redraw();
+        return;
+      }
+
+      // Obtener la ficha del modelo
+      const ficha = this.model
+        .getTablero()
+        .getFichaAt(originalRow, originalCol);
+
+      if (!ficha) {
+        this.lastClickedFigure.setPosition(
+          this.originalFichaX,
+          this.originalFichaY
+        );
+        this.lastClickedFigure = null;
+        this.view.redraw();
+        return;
+      }
+
+      // Obtener movimientos válidos
+      const moves = this.model.getTablero().getValidMoves(ficha);
+
+      if (moves.length > 0) {
+        // Obtener dónde se soltó el mouse
+        const actualX = (e.clientX - rect.left) * scaleX;
+        const actualY = (e.clientY - rect.top) * scaleY;
+        const dropPos = this.view.pixelsToRowCol(actualX, actualY);
+
+        // ✅ Validar que la posición de destino sea válida
+        if (
+          !this.model.getTablero().isValidPosition(dropPos.row, dropPos.col)
+        ) {
+          this.lastClickedFigure.setPosition(
+            this.originalFichaX,
+            this.originalFichaY
+          );
+          this.lastClickedFigure = null;
+          this.view.redraw();
+          return;
+        }
+
+        // Buscar si es un movimiento válido
+        const validMove = moves.find(
+          (m) => m.toRow === dropPos.row && m.toCol === dropPos.col
+        );
+
+        if (validMove) {
+          this.model
+            .getTablero()
+            .makeMove(
+              originalRow,
+              originalCol,
+              validMove.toRow,
+              validMove.toCol
+            );
+          let coordenadasFichaEliminada = this.view.rowColToPixels(
+            validMove.jumpRow,
+            validMove.jumpCol
+          );
+
+          this.view.eliminarFichaViewEnPosicion(
+            validMove.jumpRow,
+            validMove.jumpCol
+          );
+
+          // Actualizar posición visual de la ficha
+          const newPos = this.view.rowColToPixels(
+            validMove.toRow,
+            validMove.toCol
+          );
+          this.lastClickedFigure.setPosition(newPos.x, newPos.y);
+          // destino no valido
+        } else {
+          this.lastClickedFigure.setPosition(
+            this.originalFichaX,
+            this.originalFichaY
+          );
+        }
+      } else {
+        // sin movimientos
+        this.lastClickedFigure.setPosition(
+          this.originalFichaX,
+          this.originalFichaY
+        );
+      }
+
       this.lastClickedFigure = null;
     }
 

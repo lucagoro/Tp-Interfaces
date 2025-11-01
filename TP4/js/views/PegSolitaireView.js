@@ -99,6 +99,23 @@ class PegSolitaireView {
     this.fichasViews.forEach((fv) => fv.draw());
   }
 
+  eliminarFichaViewEnPosicion(row, col) {
+    const pos = this.rowColToPixels(row, col);
+    const index = this.fichasViews.findIndex((fv) => {
+      // Comparar con tolerancia de 1 píxel
+      return (
+        Math.abs(fv.getPosX() - pos.x) < 1 && Math.abs(fv.getPosY() - pos.y) < 1
+      );
+    });
+
+    if (index > -1) {
+      this.fichasViews.splice(index, 1);
+      return true;
+    } else {
+      console.log("no se elimia");
+      return false;
+    }
+  }
   getFichasViews() {
     return this.fichasViews;
   }
