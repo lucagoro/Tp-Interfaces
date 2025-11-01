@@ -18,6 +18,12 @@ class PegSolitaireView {
     this.readyCallback = null;
     this.fichasViews = [];
     this.fichasCreated = false; // Nueva bandera
+    this.bancoImagenes = [
+      "../images/fichas/ojo1.png",
+      "../images/fichas/ojo2.png",
+      "../images/fichas/ojo3.png",
+      "../images/fichas/ojo4.png",
+    ];
   }
 
   onReady(callback) {
@@ -69,7 +75,7 @@ class PegSolitaireView {
           y,
           this.ctx,
           30,
-          "../images/blocka/naruto-blocka-2 (1).jpg"
+          this.elegirImagenAleatoria()
         );
 
         this.fichasViews.push(f);
@@ -118,5 +124,10 @@ class PegSolitaireView {
   }
   getFichasViews() {
     return this.fichasViews;
+  }
+
+  elegirImagenAleatoria() {
+    let indiceAleatorio = Math.floor(Math.random() * this.bancoImagenes.length);
+    return this.bancoImagenes[indiceAleatorio];
   }
 }

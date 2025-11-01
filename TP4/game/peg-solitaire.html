@@ -149,10 +149,31 @@
    
 
 <div class="container">
-    <canvas height="500" width="500" id="myCanvas"></canvas>
+  
 
   <!-- Imagen principal -->
-      
+    <div class="main">
+          <div class="first-screen">
+            <button class="btn-jugar" id="btn-jugar">Jugar</button>
+          </div>
+              <div class="canvas">
+                 
+               <canvas height="500" width="500" id="myCanvas" ></canvas>
+              </div>
+              <div class="peg-content hidden">
+                <button class="btn-play-peg">Comenzar</button>
+                <p class="cronometro">00:00</p>
+                <p class="msj-tiempo-agotado hidden"></p>
+              </div>
+           
+            
+                
+                <div class="iconos">
+                  <a href="../index.html"><i class="fa-solid fa-arrow-left" id="arrow"></i></a>
+                  <i class="fa-solid fa-share-nodes" id="share"></i>
+                <i class="fa-solid fa-gamepad" id="jostick"></i>
+                <i class="fa-solid fa-expand"></i>
+                </div>
             </div>
 
               <div id="modalControles" class="modal-controles">
@@ -167,7 +188,7 @@
               <span>Click</span>
               </div>
         
-        
+          </div>
     </div>
     <div id="modalAplicaciones" class="modal-aplicaciones">
               <div class="modal-contenido">
@@ -188,6 +209,11 @@
           </div>
     </div>
 </div>
+
+      
+</div>
+
+             
 
   
 
@@ -366,16 +392,27 @@
         <p>© 2025 BMO Games. Todos los derechos reservados.</p>
       </div>
     </footer>
-    <script src="../js/index.js"></script>
-     <script src="../js/models/Tablero.js"></script>           <!-- 1. Modelo básico -->
-    <script src="../js/models/Ficha.js"></script>             <!-- 2. Modelo básico -->
-    <script src="../js/models/PegSolitaire.js"></script>      <!-- 3. Modelo principal -->
-    
-    <script src="../js/views/TableroView.js"></script>       <!-- 4. Vista del tablero (ANTES de PegSolitaireView) -->
-    <script src="../js/views/FichaView.js"></script>         <!-- 5. Vista de fichas -->
-    <script src="../js/views/PegSolitaireView.js"></script>  <!-- 6. Vista principal (USA TableroView) -->
-    
-    <script src="../js/controllers/PegSolitaireController.js"></script>  <!-- 7. Controlador -->
-    <script src="../js/main.js"></script>
+   <script src="../js/index.js"></script>
+
+<!-- 1. MODELOS BÁSICOS -->
+<script src="../js/models/Tablero.js"></script>
+<script src="../js/models/Ficha.js"></script>
+<script src="../js/models/PegSolitaire.js"></script>
+
+<!-- 2. TIMER (Modelo, Vista, Controller) -->
+<script src="../js/models/Timer.js"></script>              <!-- Timer Model -->
+<script src="../js/views/TimerView.js"></script>           <!-- Timer View -->
+<script src="../js/controllers/TimerController.js"></script> <!-- Timer Controller -->
+
+<!-- 3. VISTAS DEL JUEGO -->
+<script src="../js/views/TableroView.js"></script>
+<script src="../js/views/FichaView.js"></script>
+<script src="../js/views/PegSolitaireView.js"></script>
+
+<!-- 4. CONTROLADOR PRINCIPAL (USA Timer) -->
+<script src="../js/controllers/PegSolitaireController.js"></script>
+
+<!-- 5. INICIALIZACIÓN -->
+<script src="../js/main.js"></script>
   </body>
 </html>

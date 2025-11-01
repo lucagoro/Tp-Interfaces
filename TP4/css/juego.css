@@ -16,6 +16,196 @@ body {
 }
 
 
+
+.first-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;        
+  height: 100%;
+  display: flex;       
+  flex-direction: column;  
+  justify-content: center; 
+  align-items: center;   
+  gap: 3rem;
+  z-index: 9999;        
+  transition: opacity 0.5s ease; /* Transición suave al desaparecer */
+}
+
+.first-screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/blocka/fondo-naruto.png');
+  background-size: cover;
+  opacity: 0.1; 
+  z-index: 0;
+  border-radius: 15px;
+  pointer-events: none;
+}
+
+.hidden-screen {
+  display: none;
+}
+
+
+.btn-jugar {
+  background: linear-gradient(
+    0deg,
+    rgba(10, 0, 30, 0.95) 0%,
+    rgba(70, 10, 120, 0.85) 100%
+  );
+  color: #fff;
+  border: 1px solid #7700ff;
+  padding: 0.6rem 3.5rem;  
+  border-radius: 8px;       
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-jugar:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(60, 7, 100, 0.95) 0%,
+    rgba(107, 23, 190, 0.85) 100%
+  );
+  color: #da00ff;
+  border: 1px solid #da00ff;
+  transform: translateY(-2px);
+}
+
+.canvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+#myCanvas {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.main {
+  padding: 12px;
+  height: 500px;
+  position: relative;
+}
+
+
+.btn-play-peg {
+  background: linear-gradient(
+    0deg,
+    rgba(10, 0, 30, 0.95) 0%,
+    rgba(70, 10, 120, 0.85) 100%
+  );
+  color: #da00ff;
+  border: 1px solid #7700ff;
+  padding: 0.5rem 2rem;  
+  border-radius: 8px;       
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-play-peg:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(60, 7, 100, 0.95) 0%,
+    rgba(107, 23, 190, 0.85) 100%
+  );
+  color: #da00ff;
+  border: 1px solid #da00ff;
+  transform: translateY(-2px);
+}
+
+.btn-ayuda {
+  padding: 5px 10px;
+  background-color: #3C9597;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.3s ease;
+}
+
+.btn-ayuda:hover:not(:disabled) {
+  background-color: #3C9597;
+  transform: scale(1.05);
+}
+
+.btn-ayuda:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.hidden {
+  display: none;
+}
+.cronometro, .record {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+
+
+ .msj {
+  font-size: 14px;
+  background-color: black;
+  border-radius: 5px;
+  border: 1px solid #da00ff;
+  color: #da00ff;
+  font-weight: bold;
+  text-align: center;
+  z-index: 5;
+  position: absolute;
+  bottom: 530%;
+  padding: 20px;
+}
+
+.msj-tiempo-agotado {
+  font-size: 14px;
+  background-color: black;
+  border-radius: 8px;
+  border: 1px solid #da00ff;
+  color: #da00ff;
+  font-weight: bold;
+  text-align: center;
+  z-index: 5;
+  position: absolute;
+  bottom: 530%;
+  padding: 20px;
+}
+
+.msj.hidden, .msj-tiempo-agotado.hidden {
+  display: none;
+}
+
+.aviso-tiempo {
+  font-size: 14px;
+  position: absolute;
+  top: 430px; /* ajustá según dónde estaba antes */
+  left: 39%;
+  background-color: black;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #da00ff;
+  color: #da00ff;
+  font-weight: bold;
+  z-index: 5;
+  text-align: center;
+}
+
+
+.peg-content.hidden{
+  display: none;
+}
  /* === iconos de controles === */
  
 .iconos {
