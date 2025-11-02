@@ -12,4 +12,10 @@ class TimerView {
   resetear() {
     this.cronometro.textContent = "00:00";
   }
+
+  mostrarTiempoAgotado(mensaje) {
+    const mensajeElemento = document.querySelector(".msj");
+    mensajeElemento.textContent = mensaje;
+    mensajeElemento.classList.remove("hidden");
+  }
 }

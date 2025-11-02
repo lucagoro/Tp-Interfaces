@@ -19,7 +19,6 @@ class PegSolitaireController {
 
     this.gameOver = false;
     this.setupEventListeners();
-    this.timerController.iniciar(); // Iniciar el cronómetro
 
     this.mouseX = null;
     this.mouseY = null;
@@ -177,10 +176,10 @@ class PegSolitaireController {
 
           // Verificar victoria o derrota
           if (this.model.getTablero().isVictory()) {
-            alert("¡Has ganado!");
+            this.view.mostrarMensaje("¡Has ganado!");
             this.timerController.detener();
           } else if (!this.model.getTablero().hasAnyValidMoves()) {
-            alert("No hay más movimientos válidos. Has perdido.");
+            this.view.mostrarMensaje("No hay más movimientos válidos. Has perdido.");
             this.timerController.detener();
           }
         } else {
@@ -241,4 +240,15 @@ class PegSolitaireController {
     }
     return null;
   }
+
+  iniciarJuego() {
+    this.timerController.resetear();
+    this.timerController.iniciar();
+  }
+  reiniciarJuego() {
+    this.model.getTablero().reset();
+    this.view.reiniciar(this.model);
+    this.timerController.resetear();
+    this.timerController.iniciar();
+}
 }

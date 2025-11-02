@@ -4,16 +4,16 @@ class TimerController {
     this.view = timerView;
   }
 
-  iniciar() {
-    this.model.iniciarCronometro((minutos, segundos) => {
-      this.view.actualizarTiempo(minutos, segundos);
-
-      // Verificar si se acabó el tiempo
-      if (this.model.seAcaboElTiempo()) {
-        alert("¡Se acabó el tiempo!");
-        // Aquí puedes llamar a alguna función del juego principal
+iniciar() {
+    this.model.iniciarCronometro(
+      (minutos, segundos) => {
+        this.view.actualizarTiempo(minutos, segundos);
+      },
+      () => {
+        // Este callback se ejecuta cuando se acaba el tiempo
+        this.view.mostrarTiempoAgotado("¡Se ha agotado el tiempo!");
       }
-    });
+    );
   }
 
   detener() {

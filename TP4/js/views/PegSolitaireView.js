@@ -105,6 +105,14 @@ class PegSolitaireView {
     this.fichasViews.forEach((fv) => fv.draw());
   }
 
+  reiniciar(model) {
+    // Marcar que las fichas deben recrearse
+    this.fichasCreated = false;
+    
+    // Redibujar el tablero (esto recreará las fichas)
+    this.drawBoard(model);
+}
+
   eliminarFichaViewEnPosicion(row, col) {
     const pos = this.rowColToPixels(row, col);
     const index = this.fichasViews.findIndex((fv) => {
@@ -129,5 +137,11 @@ class PegSolitaireView {
   elegirImagenAleatoria() {
     let indiceAleatorio = Math.floor(Math.random() * this.bancoImagenes.length);
     return this.bancoImagenes[indiceAleatorio];
+  }
+
+  mostrarMensaje(mensaje) {
+    const mensajeElemento = document.querySelector(".msj");
+    mensajeElemento.textContent = mensaje;
+    mensajeElemento.classList.remove("hidden");
   }
 }

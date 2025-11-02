@@ -1,31 +1,35 @@
 class Timer {
   constructor() {
-    this.tiempoLimite = 600; // 10 minutos en segundos
+    this.tiempoLimite = 100; // 10 minutos en segundos
     this.tiempoTranscurrido = 0; // Tiempo que ha pasado
     this.intervalo = null;
     this.sinTiempo = false;
   }
 
-  iniciarCronometro(callback) {
+iniciarCronometro(callback, onTimeOut) {
     this.tiempoTranscurrido = 0;
     this.sinTiempo = false;
 
     this.intervalo = setInterval(() => {
       this.tiempoTranscurrido++;
 
-      // Calcular minutos y segundos
       const minutos = Math.floor(this.tiempoTranscurrido / 60);
       const segundos = this.tiempoTranscurrido % 60;
 
-      // Llamar al callback para actualizar la vista
+      // Actualizar la vista
       if (callback) {
         callback(minutos, segundos);
       }
 
-      // Verificar si se acabó el tiempo
+      // Si se acabó el tiempo
       if (this.tiempoTranscurrido >= this.tiempoLimite) {
         this.sinTiempo = true;
         this.detenerCronometro();
+        
+        // Llamar al callback de timeout
+        if (onTimeOut) {
+          onTimeOut();
+        }
       }
     }, 1000);
   }
