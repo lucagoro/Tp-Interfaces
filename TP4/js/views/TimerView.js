@@ -10,7 +10,7 @@ class TimerView {
   }
 
   resetear() {
-    this.cronometro.textContent = "00:00";
+    this.cronometro.textContent = "10:00";
   }
 
   mostrarTiempoAgotado(mensaje) {
