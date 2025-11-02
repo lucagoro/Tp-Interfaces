@@ -161,9 +161,9 @@
                <canvas height="500" width="500" id="myCanvas" ></canvas>
               </div>
               <div class="peg-content hidden">
-                <button class="btn-play-peg">Comenzar</button>
-                <p class="cronometro">00:00</p>
-                <p class="msj-tiempo-agotado hidden"></p>
+                <button class="btn-reboot-peg">Reiniciar</button>
+                <p id="cronometro">00:00</p>
+                <p class="msj hidden"></p>
               </div>
            
             
@@ -218,7 +218,7 @@
   
 
   <!-- Descripción (fila completa) -->
-<h2 class="title">Blocka</h2>
+<h2 class="title">Peg Solitaire: Naruto Shippuden</h2>
   <section class="description">
     <div class="descripcion">
         <i class="fa-solid fa-circle-question pregunta"></i>
@@ -393,6 +393,7 @@
       </div>
     </footer>
    <script src="../js/index.js"></script>
+   <script src="../js/pegSolitaire/peg.js"></script>
 
 <!-- 1. MODELOS BÁSICOS -->
 <script src="../js/models/Tablero.js"></script>
@@ -412,7 +413,5 @@
 <!-- 4. CONTROLADOR PRINCIPAL (USA Timer) -->
 <script src="../js/controllers/PegSolitaireController.js"></script>
 
-<!-- 5. INICIALIZACIÓN -->
-<script src="../js/main.js"></script>
   </body>
 </html>

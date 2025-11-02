@@ -144,6 +144,6 @@ class Tablero {
   }
 
   reset() {
-    this.inicializarFichas();
-  }
+    this.fichas = this.inicializarFichas(); 
+}
 }
