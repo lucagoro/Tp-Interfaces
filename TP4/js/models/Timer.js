@@ -1,31 +1,32 @@
 class Timer {
   constructor() {
-    this.tiempoLimite = 100; // 10 minutos en segundos
-    this.tiempoTranscurrido = 0; // Tiempo que ha pasado
+    this.tiempoLimite = 600; // 10 minutos en segundos
+    this.tiempoRestante = 600; // Tiempo que QUEDA (empieza en 600)
     this.intervalo = null;
     this.sinTiempo = false;
   }
 
-iniciarCronometro(callback, onTimeOut) {
-    this.tiempoTranscurrido = 0;
+  iniciarCronometro(callback, onTimeOut) {
+    this.tiempoRestante = this.tiempoLimite; // Resetear al límite
     this.sinTiempo = false;
 
     this.intervalo = setInterval(() => {
-      this.tiempoTranscurrido++;
+      this.tiempoRestante--; // Restar 1 segundo
 
-      const minutos = Math.floor(this.tiempoTranscurrido / 60);
-      const segundos = this.tiempoTranscurrido % 60;
+      // Calcular minutos y segundos del tiempo RESTANTE
+      const minutos = Math.floor(this.tiempoRestante / 60);
+      const segundos = this.tiempoRestante % 60;
 
       // Actualizar la vista
       if (callback) {
         callback(minutos, segundos);
       }
 
-      // Si se acabó el tiempo
-      if (this.tiempoTranscurrido >= this.tiempoLimite) {
+      // Si se acabó el tiempo (llegó a 0)
+      if (this.tiempoRestante <= 0) {
         this.sinTiempo = true;
         this.detenerCronometro();
-        
+
         // Llamar al callback de timeout
         if (onTimeOut) {
           onTimeOut();
@@ -43,12 +44,12 @@ iniciarCronometro(callback, onTimeOut) {
 
   resetear() {
     this.detenerCronometro();
-    this.tiempoTranscurrido = 0;
+    this.tiempoRestante = this.tiempoLimite;
     this.sinTiempo = false;
   }
 
-  getTiempoTranscurrido() {
-    return this.tiempoTranscurrido;
+  getTiempoRestante() {
+    return this.tiempoRestante;
   }
 
   seAcaboElTiempo() {
