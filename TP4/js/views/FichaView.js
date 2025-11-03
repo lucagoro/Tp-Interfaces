@@ -8,25 +8,24 @@ class FichaView {
     this.imageLoaded = false;
     this.resaltado = false;
     this.resaltadoEstilo = "#ffff00";
-    this.onLoadCallback = null; // Agregar callback
+    this.onLoadCallback = null; 
 
+    // Si se proporciona una URL de imagen, cargarla
     if (imageUrl) {
       this.image = new Image();
-      this.image.onload = () => {
+      this.image.onload = () => { // Callback del navegador (se ejecuta cuando termina la descarga)
         this.imageLoaded = true;
-        console.log("Imagen cargada:", imageUrl);
         // Llamar al callback si existe
         if (this.onLoadCallback) {
-          this.onLoadCallback();
+          this.onLoadCallback(); // Callback personalizado que otras partes del código pueden definir para reaccionar cuando se cargue
         }
       };
-      this.image.onerror = () => {
-        console.error("Error cargando imagen:", imageUrl);
-      };
-      this.image.src = imageUrl;
+      this.image.src = imageUrl; // Esto dispara el evento onload
     }
   }
 
+
+  // Dibuja la ficha en el contexto
   draw() {
     this.ctx.save();
 
@@ -36,18 +35,10 @@ class FichaView {
     this.ctx.clip();
 
     if (this.image && this.imageLoaded) {
-      console.log("Dibujando imagen en ficha");
       let imgSize = this.radius * 2;
-      this.ctx.drawImage(
-        this.image,
-        this.posX - this.radius,
-        this.posY - this.radius,
-        imgSize,
-        imgSize
-      );
+      this.ctx.drawImage(this.image, this.posX - this.radius, this.posY - this.radius, imgSize, imgSize);
     } else {
       // Dibujar algo mientras carga (círculo de color)
-      console.log("Imagen no cargada, dibujando placeholder");
       this.ctx.fillStyle = "#ff6b6b";
       this.ctx.fillRect(
         this.posX - this.radius,
@@ -63,9 +54,10 @@ class FichaView {
     this.ctx.beginPath();
     this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
     this.ctx.strokeStyle = "#000";
-    this.ctx.lineWidth = 2;
+    this.ctx.lineWidth = 1;
     this.ctx.stroke();
 
+    // Si está resaltado, dibujar un borde adicional
     if (this.resaltado === true) {
       this.ctx.beginPath();
       this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
@@ -101,6 +93,7 @@ class FichaView {
     return this.posY;
   }
 
+  // Obtiene la posición (x,y) de la ficha
   getPosition() {
     return {
       x: this.getPosX(),
@@ -113,6 +106,7 @@ class FichaView {
     this.posY = y;
   }
 
+  // Verifica si un punto (x,y) está dentro de la ficha, usando la fórmula de distancia
   isPointInside(x, y) {
     let _x = this.posX - x;
     let _y = this.posY - y;

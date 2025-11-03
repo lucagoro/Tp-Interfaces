@@ -6,10 +6,12 @@ class Ficha {
     this.eliminada = eliminada;
   }
 
+  // Setea los valores de columna y fila en la matriz
   mover(col, row) {
     this.col = col;
     this.row = row;
   }
+
   getCol() {
     return this.col;
   }
@@ -17,9 +19,11 @@ class Ficha {
   getRow() {
     return this.row;
   }
+
   getTipo() {
     return this.tipo;
   }
+
   isEliminada() {
     return this.eliminada;
   }
@@ -27,12 +31,15 @@ class Ficha {
   setEliminada(eliminada) {
     this.eliminada = eliminada;
   }
+
   setTipo(tipo) {
     this.tipo = tipo;
   }
+
   setCol(col) {
     this.col = col;
   }
+
   setRow(row) {
     this.row = row;
   }
