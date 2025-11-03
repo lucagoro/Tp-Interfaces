@@ -29,36 +29,37 @@ class Tablero {
     return fichas;
   }
 
-  //recorre el array de fichas y las filtra por las que cumplen la condicion f.eliminada === false
+  // Recorre el array de fichas y las filtra por las que cumplen la condicion f.eliminada === false
   getAllFichas() {
     return this.fichas.filter((f) => f.eliminada === false);
   }
 
+  // Verifica que la posicion este dentro del tablero y no sea un lugar no valido (-1)
   isValidPosition(row, col) {
-    return (
-      row >= 0 &&
-      row < this.filas &&
-      col >= 0 &&
-      col < this.columnas &&
-      this.celdas[row][col] !== -1
-    );
+    return (row >= 0 && row < this.filas &&
+       col >= 0 && col < this.columnas &&
+        this.celdas[row][col] !== -1);
   }
 
+  // Obtiene la ficha en la posicion row-col si es que no esta eliminada
   getFichaAt(row, col) {
     return this.fichas.find(
       (f) => f.row === row && f.col === col && f.eliminada === false
     );
   }
 
+  // Verifica si hay una ficha en la posicion row-col que no este eliminada
   hasFichaAt(row, col) {
     const ficha = this.getFichaAt(row, col);
     return ficha !== undefined && ficha.eliminada === false;
   }
 
+  // Verifica si la posicion row-col es valida y no hay ficha en esa posicion
   isEmptyAt(row, col) {
     return this.isValidPosition(row, col) && !this.hasFichaAt(row, col);
   }
 
+  // Obtiene los movimientos validos para una ficha dada
   getValidMoves(ficha) {
     if (!ficha || ficha.eliminada) return [];
 
@@ -82,10 +83,7 @@ class Tablero {
       const jumpCol = col + dir.jumpC;
 
       // pregunta si esta vacio el destino y si hay ficha para saltar
-      if (
-        this.isEmptyAt(targetRow, targetCol) &&
-        this.hasFichaAt(jumpRow, jumpCol)
-      ) {
+      if (this.isEmptyAt(targetRow, targetCol) && this.hasFichaAt(jumpRow, jumpCol)) {
         //agrega a movimientos validos la fila-columna del destino y la fila-columna de la ficha saltada
         moves.push({
           toRow: targetRow,
@@ -111,7 +109,7 @@ class Tablero {
     //pregunta si entre los movimiento validos se encuentra el destino
     const validMove = moves.find((m) => m.toRow === toRow && m.toCol === toCol);
 
-    // si existe la mueve y elimina la ficha del medio
+    // si existe la mueve y elimina la ficha que salta
     if (validMove) {
       ficha.mover(toRow, toCol);
       const fichaJump = this.getFichaAt(validMove.jumpRow, validMove.jumpCol);
@@ -143,7 +141,8 @@ class Tablero {
     );
   }
 
+  // Vuelve a inicializar las fichas del tablero
   reset() {
     this.fichas = this.inicializarFichas(); 
-}
+  }
 }
