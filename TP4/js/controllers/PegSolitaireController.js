@@ -38,7 +38,10 @@ class PegSolitaireController {
       (e) => this.onMouseDown(e),
       false
     );
-    this.canvas.addEventListener("mouseup", (e) => this.onMouseUp(e), false);
+
+    // mouseup debe estar en document para capturarlo incluso fuera del canvas y que la ficha vuelva a su posición
+    document.addEventListener("mouseup", (e) => this.onMouseUp(e));
+
     this.canvas.addEventListener(
       "mousemove",
       (e) => this.onMouseMove(e),
@@ -103,6 +106,28 @@ class PegSolitaireController {
     const rect = this.canvas.getBoundingClientRect();
     const scaleX = this.canvas.width / rect.width;
     const scaleY = this.canvas.height / rect.height;
+    // Obtener dónde se soltó el mouse
+    const actualX = (e.clientX - rect.left) * scaleX;
+    const actualY = (e.clientY - rect.top) * scaleY;
+
+    //  Verificar si el mouse está fuera del canvas
+    if (
+      actualX < 0 ||
+      actualY < 0 ||
+      actualX > this.canvas.width ||
+      actualY > this.canvas.height
+    ) {
+      // Si se soltó fuera del canvas, devolver la ficha a su posición original
+      if (this.lastClickedFigure) {
+        this.lastClickedFigure.setPosition(
+          this.originalFichaX,
+          this.originalFichaY
+        );
+        this.lastClickedFigure = null;
+      }
+      this.view.redraw();
+      return;
+    }
 
     const originalRow = this.view.pixelsToRowCol(
       this.originalFichaX,
