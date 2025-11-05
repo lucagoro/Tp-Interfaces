@@ -9,7 +9,7 @@ class PegSolitaireView {
     this.offsetX = 0;
     this.offsetY = 0;
 
-    this.tableroView = new TableroView("../images/tablero-naruto.jpg", this.ctx, canvasWidth, canvasHeight);
+    this.tableroView = new TableroView("../images/tablero-naruto-sin-borde.png", this.ctx, canvasWidth, canvasHeight);
     this.readyCallback = null;
     this.fichasViews = [];
     this.fichasCreated = false;
