@@ -194,6 +194,7 @@ body {
   bottom: 5px;
   right: 10px; 
   z-index: 10;
+  color: #3C9597;
 }
 #jostick{
  cursor: pointer;

@@ -1,3 +1,9 @@
+let controller;
+
+document.addEventListener("DOMContentLoaded", () => {
+    controller = new PegSolitaireController();
+});
+
 const form = document.querySelector("#comments form");
 const comment = form.querySelector("input[name='comentario']");
 const commentList = document.getElementById("comment-list");
