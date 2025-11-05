@@ -1,11 +1,12 @@
 class Timer {
   constructor() {
     this.tiempoLimite = 600; // 10 minutos en segundos
-    this.tiempoRestante = 600; // Tiempo que QUEDA (empieza en 600)
+    this.tiempoRestante = 600; // Tiempo que queda (empieza en 600)
     this.intervalo = null;
     this.sinTiempo = false;
   }
 
+  // Inicia el cronómetro
   iniciarCronometro(callback, onTimeOut) {
     this.tiempoRestante = this.tiempoLimite; // Resetear al límite
     this.sinTiempo = false;
@@ -35,6 +36,7 @@ class Timer {
     }, 1000);
   }
 
+  // Detiene el cronómetro
   detenerCronometro() {
     if (this.intervalo) {
       clearInterval(this.intervalo);
@@ -42,6 +44,7 @@ class Timer {
     }
   }
 
+  // Resetea el cronómetro
   resetear() {
     this.detenerCronometro();
     this.tiempoRestante = this.tiempoLimite;

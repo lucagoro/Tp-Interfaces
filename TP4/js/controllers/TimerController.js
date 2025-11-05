@@ -4,6 +4,7 @@ class TimerController {
     this.view = timerView;
   }
 
+  // Inicia el cronómetro y actualiza la vista cada segundo
 iniciar() {
     this.model.iniciarCronometro(
       (minutos, segundos) => {
@@ -16,10 +17,12 @@ iniciar() {
     );
   }
 
+  // Detiene el cronómetro
   detener() {
     this.model.detenerCronometro();
   }
 
+  // Resetea el cronómetro y la vista
   resetear() {
     this.model.resetear();
     this.view.resetear();

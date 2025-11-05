@@ -6,12 +6,13 @@ class TableroView {
         this.width = width;
         this.height = height;
 
+        // Si se proporciona una URL de imagen, cargarla
         if (imageUrl) {
             this.image = new Image();
             this.image.onload = () => {
                 this.imageLoaded = true;
             };
-            this.image.src = imageUrl;
+            this.image.src = imageUrl; // Esto dispara el evento onload
         }
     }
 
