@@ -515,7 +515,6 @@ padding: 0px 12px 12px 12px;
 /* === SECCIÓN DE COMENTARIOS === */
 #comments {
   width: 100%;
-  padding:10x 40px;
   margin: 40px 0;
   color: #cfeefb;
   overflow-x: hidden;
@@ -527,7 +526,7 @@ padding: 0px 12px 12px 12px;
   align-items: center;
   gap: 10px;
   border-bottom: 1px solid rgba(77, 243, 247, 0.4);
-  padding: 10px;
+  padding: 20px;
   margin-bottom: 20px;
 }
 
@@ -541,12 +540,13 @@ padding: 0px 12px 12px 12px;
   align-items: center;
   gap: 10px;
   margin-bottom: 25px;
+  margin-left: 20px
 }
 .comment-form form {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 990px;
+  width: 970px;
 }
 
 .comment-form input[type="text"] {
