@@ -1,0 +1,100 @@
+.layer {
+    width: 100%;
+    height: 573px; /* Fijo, no 100% */
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-position: left bottom;
+}
+
+@keyframes scroll {
+    0% {background-position-x: 0px;}
+    100% {background-position-x: -1019px;}
+}
+
+.layer-4 {
+    background-image: url("../images/background-parallax/1.png");
+    animation: scroll 15s infinite linear;
+}
+.layer-3 {
+    background-image: url("../images/background-parallax/2.png");
+    animation: scroll 10s infinite linear;
+}
+.layer-2 {
+    background-image: url("../images/background-parallax/3.png");
+    animation: scroll 8s infinite linear;
+}
+.layer-1 {
+    background-image: url("../images/background-parallax/4.png");
+    animation: scroll 5s infinite linear;
+}
+
+
+#bat {
+    /* Tamaño de UN frame */
+  width: 73px;  /* Redondeado */
+  height: 67px;
+  
+  /* Cargamos tu spritesheet */
+  background: url('../images/Murcielago-volando-removebg-preview.png') no-repeat;
+  
+  position: absolute;
+  top: 200px;
+  left: 100px;
+  
+}
+
+@keyframes fly {
+  0% { background-position: 0 0; }
+  100% { background-position: -366px 0; } /* Ancho total */
+}
+
+.batFlying {
+  animation: fly 0.5s steps(5) infinite; /* 5 frames */
+}
+
+/* Tuberias */
+
+.pipe {
+    width: 60px;
+    position: absolute;
+    background: linear-gradient(90deg, #2a2a3e 0%, #1a1a2e 50%, #2a2a3e 100%);
+    border: 3px solid #16161f;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.pipe-top {
+    top: 0;
+}
+
+.pipe-top::after {
+    content: '';
+    position: absolute;
+    bottom: -25px;
+    left: -5px;
+    width: 70px;
+    height: 30px;
+    background: linear-gradient(90deg, #3a3a4e 0%, #2a2a3e 50%, #3a3a4e 100%);
+    border: 3px solid #16161f;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.pipe-bottom {
+    height: 100%;
+}
+
+.pipe-bottom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -5px;
+    width: 70px;
+    height: 30px;
+    background: linear-gradient(90deg, #3a3a4e 0%, #2a2a3e 50%, #3a3a4e 100%);
+    border: 3px solid #16161f;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+}
+
+

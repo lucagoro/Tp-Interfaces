@@ -145,4 +145,8 @@ class Tablero {
   reset() {
     this.fichas = this.inicializarFichas(); 
   }
+
+  isCenter(row, col) {
+    return row === 3 && col === 3;
+  }
 }
