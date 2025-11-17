@@ -20,6 +20,9 @@ class PegSolitaireController {
     this.fichaPositionx;
     this.fichaPositiony;
 
+    this.mouseUpCenter=0;
+    this.mouseUpOutside=0;
+
     setTimeout(() => this.render(), 100);
   }
 
@@ -30,20 +33,12 @@ class PegSolitaireController {
 
   // Configura los event listeners para el canvas
   setupEventListeners() {
-    this.canvas.addEventListener(
-      "mousedown",
-      (e) => this.onMouseDown(e),
-      false
-    );
+    this.canvas.addEventListener("mousedown", (e) => this.onMouseDown(e), false);
 
     // mouseup debe estar en document para capturarlo incluso fuera del canvas y que la ficha vuelva a su posición
     document.addEventListener("mouseup", (e) => this.onMouseUp(e));
 
-    this.canvas.addEventListener(
-      "mousemove",
-      (e) => this.onMouseMove(e),
-      false
-    );
+    this.canvas.addEventListener("mousemove", (e) => this.onMouseMove(e), false);
   }
 
   // Maneja el evento mousedown (cuando se presiona el mouse)
@@ -120,6 +115,10 @@ class PegSolitaireController {
       actualX > this.canvas.width ||
       actualY > this.canvas.height
     ) {
+      this.mouseUpOutside++;
+      if(this.mouseUpOutside === 4){
+        this.view.mostrarMensaje("¡Has perdido!");
+      }
       // Si se soltó fuera del canvas, devolver la ficha a su posición original
       if (this.lastClickedFigure) {
         this.lastClickedFigure.setPosition(
@@ -161,6 +160,13 @@ class PegSolitaireController {
 
         if (validMove) {
           this.model.getTablero().makeMove(originalRow, originalCol, validMove.toRow, validMove.toCol);
+          if(this.model.getTablero().isCenter(validMove.toRow, validMove.toCol)){
+            this.mouseUpCenter++;
+            console.log(this.mouseUpCenter);
+            if(this.mouseUpCenter === 2) {
+              this.view.mostrarMensaje("¡Has perdido!");
+            }
+          }
           this.view.limpiarResaltados();
           // Elimina la ficha visual que fue saltada
           this.view.eliminarFichaViewEnPosicion(validMove.jumpRow, validMove.jumpCol);
@@ -252,6 +258,8 @@ class PegSolitaireController {
     this.view.reiniciar(this.model);
     this.timerController.resetear();
     this.timerController.iniciar();
+    this.mouseUpCenter=0;
+    this.mouseUpOutside=0;
   }
 
   // Obtiene la ficha del modelo en la posición originalRow, originalCol
