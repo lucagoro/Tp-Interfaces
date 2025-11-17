@@ -38,7 +38,7 @@
   height: 67px;
   
   /* Cargamos tu spritesheet */
-  background: url('../images/Murcielago-volando-removebg-preview.png') no-repeat;
+  background: url('../images/parallax/Murcielago-volando-removebg-preview.png') no-repeat;
   
   position: absolute;
   top: 200px;
