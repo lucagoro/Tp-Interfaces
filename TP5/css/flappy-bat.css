@@ -1,3 +1,4 @@
+/* ========== Background Parallax ========== */
 .layer {
     width: 100%;
     height: 573px; /* Fijo, no 100% */
@@ -31,6 +32,7 @@
     animation: scroll 5s infinite linear;
 }
 
+/* ========== Spritesheet bat ========== */
 
 #bat {
     /* Tamaño de UN frame */
@@ -55,7 +57,7 @@
   animation: fly 0.5s steps(5) infinite; /* 5 frames */
 }
 
-/* Tuberias */
+/* ========== Tuberias ========== */
 
 .pipe {
     width: 60px;
