@@ -117,6 +117,32 @@
     animation: crowFly 0.6s steps(6) infinite; /* 6 frames */
 }
 
+#crow.dead {
+    background-image: url('../images/muerte-murcielago-removebg-preview.png');
+    animation: death 1s steps(5) forwards; /* 5 frames */
+    z-index: 10; 
+}
+
+/* ========== Moneda Power-up ========== */
+.coin {
+    width: 174px;
+    height: 192px;
+    background: url('../images/power.png') no-repeat;
+    background-size: 697px 192px;
+    position: absolute;
+    z-index: 5;
+    transform: scale(0.5);
+}
+
+@keyframes coinSpin {
+    0% { background-position: 0 0; }
+    100% { background-position: -697px 0; }
+}
+
+.coinSpinning {
+    animation: coinSpin 0.8s steps(4) infinite;
+}
+
 
 /* ========== Tuberias ========== */
 

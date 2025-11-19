@@ -4,7 +4,7 @@ const bat = document.getElementById("bat");
 // Variables de física
 let batY = 200;
 let velocity = 0;
-const gravity = 0.4;
+let gravity = 0.4;
 const jumpForce = -10;
 
 let gameStarted = false;
@@ -18,6 +18,9 @@ let pipeTimer = 0;
 let gameTime = 0;
 let crowSpawned = false;
 let currentCrow = null; 
+
+let coins = [];
+let powerUpActive = false;
 
 const layer1 = document.querySelector('.layer-1');
 const layer2 = document.querySelector('.layer-2');
@@ -52,6 +55,9 @@ function createPipe(offsetX = 0) {
 
     pipes[pipes.length - 1].elementTop = pipeTop;
     pipes[pipes.length - 1].elementBottom = pipeBottom;
+
+    // Crear moneda sobre esta tubería (al azar)
+    createCoin(main.offsetWidth + offsetX, topHeight, pipeGap);
 }
 
 // Actualizar tuberías
@@ -62,7 +68,9 @@ function updatePipes() {
         pipeTimer = 0;
     }
 
-    pipes.forEach((pipe, index) => {
+    // Usar for hacia atrás para evitar problemas con splice
+    for (let i = pipes.length - 1; i >= 0; i--) {
+        const pipe = pipes[i];
         pipe.x -= 3;
         pipe.elementTop.style.left = pipe.x + 'px';
         pipe.elementBottom.style.left = pipe.x + 'px';
@@ -70,12 +78,101 @@ function updatePipes() {
         if (pipe.x < -pipeWidth) {
             pipe.elementTop.remove();
             pipe.elementBottom.remove();
-            pipes.splice(index, 1);
+            pipes.splice(i, 1);
         }
+    }
+}
+
+// Crear moneda sobre una tubería (llamar desde createPipe)
+function createCoin(pipeX, pipeTopHeight, pipeGap) {
+    // Aumentar probabilidad para testear
+    if (Math.random() > 0.7) return; // 70% de probabilidad
+    
+    const coin = document.createElement('div');
+    coin.classList.add('coin'); // Cambiar a clase "coin"
+    coin.classList.add('coinSpinning');
+    
+    const coinX = pipeX + 15;
+    const coinY = pipeTopHeight + pipeGap / 2 - 66;
+    
+    coin.style.left = coinX + 'px';
+    coin.style.top = coinY + 'px';
+    
+    console.log("Moneda creada en:", coinX, coinY);
+    
+    main.appendChild(coin);
+    
+    coins.push({
+        element: coin,
+        x: coinX,
+        y: coinY,
+        collected: false
     });
 }
 
-// Crear el cuervo
+// Actualizar monedas (moverlas con las tuberías)
+function updateCoins() {
+    for (let i = coins.length - 1; i >= 0; i--) {
+        const coin = coins[i];
+        coin.x -= 3;
+        coin.element.style.left = coin.x + 'px';
+        
+        if (coin.x < -90) {
+            coin.element.remove();
+            coins.splice(i, 1);
+        }
+    }
+}
+
+// Detectar colisión con monedas
+function checkCoinCollision() {
+    const batRect = bat.getBoundingClientRect();
+    const batCenterX = batRect.left + batRect.width / 2;
+    const batCenterY = batRect.top + batRect.height / 2;
+    
+    // Usar for hacia atrás como con las tuberías
+    for (let i = coins.length - 1; i >= 0; i--) {
+        const coin = coins[i];
+        if (coin.collected) continue;
+        
+        const coinCenterX = coin.x + 51; // 102 / 2
+const coinCenterY = coin.y + 86;
+        
+        const distance = Math.sqrt(
+            Math.pow(batCenterX - coinCenterX, 2) +
+            Math.pow(batCenterY - coinCenterY, 2)
+        );
+        
+        if (distance < 60) {
+            coin.collected = true;
+            coin.element.remove();
+            coins.splice(i, 1); // ← Eliminar del array también
+            applyPowerUp();
+        }
+    }
+}
+
+
+// Aplicar el power-up (solo una vez)
+function applyPowerUp() {
+    if (powerUpActive) return; // ← Evitar activación múltiple
+    
+    powerUpActive = true;
+    console.log("¡Power-up activado!");
+    
+    const originalGravity = gravity;
+    gravity = 0.2;
+    
+    bat.style.filter = 'brightness(1.5)';
+    
+    setTimeout(() => {
+        gravity = originalGravity;
+        bat.style.filter = 'none';
+        powerUpActive = false; // ← Permitir otro power-up después
+        console.log("Power-up terminado");
+    }, 3000);
+}
+
 function createCrow() {
     const crow = document.createElement('div');
     crow.id = 'crow';
@@ -84,7 +181,10 @@ function createCrow() {
     crow.style.top = Math.random() * 300 + 50 + 'px';
     main.appendChild(crow);
 
-    console.log("Cuervo creado en X:", main.offsetWidth);
+    console.log("Cuervo creado:");
+    console.log("  - Left:", crow.style.left);
+    console.log("  - Top:", crow.style.top);
+    console.log("  - Elemento:", crow);
     
     return crow;
 }
@@ -116,8 +216,10 @@ function gameLoop() {
     bat.style.top = batY + "px";
     
     updatePipes();
-    updateCrow(); // Mover cuervo cada frame
+    updateCoins();
+    updateCrow();
     checkCollision();
+    checkCoinCollision();
     
     gameTime++;
     
@@ -170,30 +272,30 @@ function checkCollision() {
         }
     });
 
-    // Colisión con el cuervo
-    const crow = document.getElementById('crow');
-    if (crow) {
-        const batRect = bat.getBoundingClientRect();
-        const crowRect = crow.getBoundingClientRect();
-        
-        const batCenterX = batRect.left + batRect.width / 2;
-        const batCenterY = batRect.top + batRect.height / 2;
-        const batRadius = 18;
-        
-        const crowCenterX = crowRect.left + crowRect.width / 2;
-        const crowCenterY = crowRect.top + crowRect.height / 2;
-        const crowRadius = 20;
-        
-        const distance = Math.sqrt(
-            Math.pow(batCenterX - crowCenterX, 2) +
-            Math.pow(batCenterY - crowCenterY, 2)
-        );
-        
-        if (distance < batRadius + crowRadius) {
-            console.log("¡COLISIÓN CON CUERVO!");
-            gameOver();
-        }
+// Colisión con el cuervo
+const crow = document.getElementById('crow');
+if (crow) {
+    const batRect = bat.getBoundingClientRect();
+    const batCenterX = batRect.left + batRect.width / 2;
+    const batCenterY = batRect.top + batRect.height / 2;
+    const batRadius = 18;
+    
+    const crowX = parseInt(crow.style.left) || 0;
+    const crowY = parseInt(crow.style.top) || 0;
+    const crowCenterX = crowX + 25;
+    const crowCenterY = crowY + 27;
+    const crowRadius = 20;
+    
+    const distance = Math.sqrt(
+        Math.pow(batCenterX - crowCenterX, 2) +
+        Math.pow(batCenterY - crowCenterY, 2)
+    );
+    
+    if (distance < batRadius + crowRadius) {
+        crow.classList.add("dead");
+        gameOver();
     }
+}
 
     // Colisión con suelo/techo
     if (batY <= 0 || batY >= main.offsetHeight - bat.offsetHeight) {
