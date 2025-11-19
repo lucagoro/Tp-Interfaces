@@ -137,15 +137,15 @@ body {
 
 .msj {
   font-size: 14px;
-  background-color: #13252e;
+  background: linear-gradient(135deg, #1a1d3a 0%, #252852 100%);
   border-radius: 8px;
-  color: #ff6b35;
-  border: 2px solid #ff6b35;
+  color: #e8e8f0;
+  border: 2px solid #3d4175;
   font-weight: bold;
   text-align: center;
   z-index: 9999999999;
   position: absolute;
-  top: -290px; /* Arriba del canvas */
+  top: 280px; 
   left: 50%;
   transform: translateX(-50%); /* Centrar horizontalmente */
   padding: 20px;
