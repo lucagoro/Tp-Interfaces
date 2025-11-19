@@ -17,19 +17,35 @@
 
 .layer-4 {
     background-image: url("../images/background-parallax/1.png");
-    animation: scroll 15s infinite linear;
+    /*animation: scroll 15s infinite linear;*/
 }
 .layer-3 {
     background-image: url("../images/background-parallax/2.png");
-    animation: scroll 10s infinite linear;
+    /*animation: scroll 10s infinite linear;*/
 }
 .layer-2 {
     background-image: url("../images/background-parallax/3.png");
-    animation: scroll 8s infinite linear;
+    /*animation: scroll 8s infinite linear;*/
 }
 .layer-1 {
     background-image: url("../images/background-parallax/4.png");
+    /*animation: scroll 5s infinite linear;*/
+}
+
+.animate-layer-1 {
     animation: scroll 5s infinite linear;
+}
+
+.animate-layer-2 {
+    animation: scroll 8s infinite linear;
+}
+
+.animate-layer-3 {
+    animation: scroll 10s infinite linear;
+}
+
+.animate-layer-4 {
+    animation: scroll 15s infinite linear;
 }
 
 /* ========== Spritesheet bat ========== */
@@ -45,7 +61,19 @@
   position: absolute;
   top: 200px;
   left: 100px;
+  transform: scale(1.5);
   
+}
+
+#bat::after {
+    content: '';
+    position: absolute;
+    top: 18px;  /* Ajustar según tu sprite */
+    left: 21px; /* Ajustar según tu sprite */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    pointer-events: none;
 }
 
 @keyframes fly {
@@ -56,6 +84,39 @@
 .batFlying {
   animation: fly 0.5s steps(5) infinite; /* 5 frames */
 }
+
+/* ========== Animación muerte murcielago ========== */
+#bat.dead {
+    background-image: url('../images/muerte-murcielago-removebg-preview.png');
+    animation: death 1s steps(5) forwards; /* 5 frames */
+    z-index: 10; 
+}
+
+@keyframes death {
+    0% { background-position: 0 0; }
+    100% { background-position: -366px 0; } /* Ancho total del sprite */
+}
+
+/* ========== Crow ========== */
+
+#crow {
+    width: 49.67px; 
+    height: 55px; 
+    background: url('../images/cuervo-sprite.png') no-repeat;
+    position: absolute;
+    z-index: 10;
+    transform: translateY(-5px);
+}
+
+@keyframes crowFly {
+    0% { background-position: 0 5px; }
+    100% { background-position: -298px 5px; } /* Ancho total */
+}
+
+.crowFlying {
+    animation: crowFly 0.6s steps(6) infinite; /* 6 frames */
+}
+
 
 /* ========== Tuberias ========== */
 
@@ -98,5 +159,6 @@
     border: 3px solid #16161f;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
 }
+
 
 
