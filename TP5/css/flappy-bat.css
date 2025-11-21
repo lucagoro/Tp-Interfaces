@@ -124,23 +124,23 @@
 }
 
 /* ========== Moneda Power-up ========== */
-.coin {
-    width: 174px;
-    height: 192px;
-    background: url('../images/power.png') no-repeat;
-    background-size: 697px 192px;
+.power {
+    width: 290px;
+    height: 350px;
+    background: url('../images/spritesheet-power-up.png') no-repeat;
+    background-size: 1850px 350px;
     position: absolute;
     z-index: 5;
-    transform: scale(0.5);
+    transform: scale(0.2);
 }
 
-@keyframes coinSpin {
+@keyframes powerSpin {
     0% { background-position: 0 0; }
-    100% { background-position: -697px 0; }
+    100% { background-position: -1850px 0; }
 }
 
-.coinSpinning {
-    animation: coinSpin 0.8s steps(4) infinite;
+.powerSpinning {
+    animation: powerSpin 0.8s steps(6) infinite;
 }
 
 
@@ -185,6 +185,7 @@
     border: 3px solid #16161f;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
 }
+
 
 
 

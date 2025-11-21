@@ -16,14 +16,27 @@ body {
 }
 
 .main {
-  opacity: 0.5;
   height: 560px;
   position: relative;
   padding-top: 12px;
 }
 
-.main.opacity {
-  opacity: 1;
+.background-dark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100.3%;
+  background-color: rgba(0, 0, 0, 0.7); /* Le da la opacidad */
+  z-index: 11; 
+}
+
+.background-dark.hidden {
+  display: none;
+}
+
+.dontclick {
+  pointer-events: none; 
 }
 
 .first-screen {
@@ -37,7 +50,7 @@ body {
   justify-content: center; 
   align-items: center;   
   gap: 3rem;
-  transition: opacity 0.5s ease; /* Transición suave al desaparecer */
+  transition: opacity 0.5s ease; 
 }
 
 .hidden-screen {
@@ -47,63 +60,60 @@ body {
  .btn-jugar {
   background: linear-gradient(
     0deg,
-    rgba(40, 15, 0, 0.95) 0%,
-    rgba(150, 60, 0, 0.85) 100%
+    rgba(26, 29, 58, 0.95) 0%,
+    rgba(45, 52, 97, 0.85) 100%
   );
-  color: #ff8800;
-  border: 1px solid #ff6600;
+  color: #f4d58d;
+  border: 2px solid #3d4175;
   padding: 0.6rem 3.5rem;  
   border-radius: 8px;       
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
   z-index: 999999;
+  pointer-events: all;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
 }
 
 .btn-jugar:hover {
   background: linear-gradient(
     180deg,
-    rgba(120, 50, 0, 0.95) 0%,
-    rgba(200, 90, 20, 0.85) 100%
+    rgba(26, 29, 58, 0.95) 0%,
+    rgba(45, 52, 97, 0.85) 100%
   );
-  color: #ffaa00;
-  border: 1px solid #ffaa00;
+  color: #ffeaa0;
+  border: 2px solid #f4d58d;
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(244, 213, 141, 0.3);
 }
 
 #cronometro {
   background: linear-gradient(
     0deg,
-    rgba(40, 15, 0, 0.95) 0%,
-    rgba(150, 60, 0, 0.85) 100%
+    rgba(26, 29, 58, 0.95) 0%,
+    rgba(45, 52, 97, 0.85) 100%
   );
-  color: #ff8800;
-  border: 1px solid #ff6600;
-  padding: 5px 15px;
+  color: #f4d58d;
+  border: 2px solid #3d4175;
+  padding: 5px 25px;
   border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  top: 12px;
+  right: 60px;
+  z-index: 2;
 }
 
-.canvas {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-#myCanvas {
-  border-radius: 10px;
-  overflow: hidden;
-  z-index: 99999;
-}
-
-.btn-reboot-peg {
+.btn-reboot-flappy {
   background: linear-gradient(
     0deg,
-    rgba(40, 15, 0, 0.95) 0%,
-    rgba(150, 60, 0, 0.85) 100%
+    rgba(26, 29, 58, 0.95) 0%,
+    rgba(45, 52, 97, 0.85) 100%
   );
-  color: #ff8800;
-  border: 1px solid #ff6600;
+  color: #f4d58d;
+  border: 2px solid #3d4175;
   padding: 0.5rem 2rem;  
   border-radius: 8px;       
   font-size: 12px;
@@ -111,14 +121,14 @@ body {
   cursor: pointer;
 }
 
-.btn-reboot-peg:hover {
+.btn-reboot-flappy:hover {
   background: linear-gradient(
     180deg,
-    rgba(120, 50, 0, 0.95) 0%,
-    rgba(200, 90, 20, 0.85) 100%
+    rgba(26, 29, 58, 0.95) 0%,
+    rgba(45, 52, 97, 0.85) 100%
   );
-  color: #ffaa00;
-  border: 1px solid #ffaa00;
+  color: #ffeaa0;
+  border: 2px solid #f4d58d;
   transform: translateY(-2px);
 }
 
@@ -398,7 +408,7 @@ padding: 0px 12px 12px 12px;
   overflow: hidden; /* evita que se salga la imagen */
   position: relative;
   border-radius: 15px;
-  border: 1px solid #ff6600;
+  border: 1px solid rgba(16,200,220,0.95);
 }
 
 .hero-video img {
@@ -422,7 +432,7 @@ padding: 0px 12px 12px 12px;
   height: 150px;
   width: 300px;
   border-radius: 15px;
-  border: 1px solid #ff6600;
+  border: 1px solid rgba(16,200,220,0.95);
 }
 
 .play-overlay {
