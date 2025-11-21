@@ -19,8 +19,12 @@ let gameTime = 0;
 let crowSpawned = false;
 let currentCrow = null; 
 
-let coins = [];
+let powers = [];
 let powerUpActive = false;
+
+let isInvincible = false;
+
+let intervaloCronometro = null; // Variable para guardar el ID del intervalo
 
 const layer1 = document.querySelector('.layer-1');
 const layer2 = document.querySelector('.layer-2');
@@ -56,8 +60,8 @@ function createPipe(offsetX = 0) {
     pipes[pipes.length - 1].elementTop = pipeTop;
     pipes[pipes.length - 1].elementBottom = pipeBottom;
 
-    // Crear moneda sobre esta tubería (al azar)
-    createCoin(main.offsetWidth + offsetX, topHeight, pipeGap);
+    // Crear power-up sobre esta tubería (al azar)
+    createPower(main.offsetWidth + offsetX, topHeight, pipeGap);
 }
 
 // Actualizar tuberías
@@ -84,93 +88,97 @@ function updatePipes() {
 }
 
 // Crear moneda sobre una tubería (llamar desde createPipe)
-function createCoin(pipeX, pipeTopHeight, pipeGap) {
+function createPower(pipeX, pipeTopHeight, pipeGap) {
     // Aumentar probabilidad para testear
-    if (Math.random() > 0.7) return; // 70% de probabilidad
+    if (Math.random() > 0.3) return; // 30% de probabilidad
     
-    const coin = document.createElement('div');
-    coin.classList.add('coin'); // Cambiar a clase "coin"
-    coin.classList.add('coinSpinning');
+    const power = document.createElement('div');
+    power.classList.add('power'); // Cambiar a clase "power"
+    power.classList.add('powerSpinning');
     
-    const coinX = pipeX + 15;
-    const coinY = pipeTopHeight + pipeGap / 2 - 66;
+    // Sacar posición centrada sobre la tubería
+    const powerX = pipeX - 110;
+    const powerY = pipeTopHeight + pipeGap / 2 - 150;
     
-    coin.style.left = coinX + 'px';
-    coin.style.top = coinY + 'px';
+    // Asignar posición
+    power.style.left = powerX + 'px';
+    power.style.top = powerY + 'px';
     
-    console.log("Moneda creada en:", coinX, coinY);
+    // Añadir el power-up al DOM
+    main.appendChild(power);
     
-    main.appendChild(coin);
-    
-    coins.push({
-        element: coin,
-        x: coinX,
-        y: coinY,
+    // Añadir al array de power-ups
+    powers.push({
+        element: power,
+        x: powerX,
+        y: powerY,
         collected: false
     });
 }
 
-// Actualizar monedas (moverlas con las tuberías)
-function updateCoins() {
-    for (let i = coins.length - 1; i >= 0; i--) {
-        const coin = coins[i];
-        coin.x -= 3;
-        coin.element.style.left = coin.x + 'px';
+// Actualizar power-ups (moverlos con las tuberías)
+function updatePowers() {
+    for (let i = powers.length - 1; i >= 0; i--) {
+        const power = powers[i];
+        power.x -= 3;
+        power.element.style.left = power.x + 'px';
         
-        if (coin.x < -90) {
-            coin.element.remove();
-            coins.splice(i, 1);
+        // Si sale de la pantalla, se elimina
+        if (power.x < -90) {
+            power.element.remove();
+            powers.splice(i, 1);
         }
     }
 }
 
-// Detectar colisión con monedas
-function checkCoinCollision() {
+// Detectar colisión con power-ups
+function checkPowerCollision() {
+    // Calcula el centro del murciélago
     const batRect = bat.getBoundingClientRect();
     const batCenterX = batRect.left + batRect.width / 2;
     const batCenterY = batRect.top + batRect.height / 2;
     
     // Usar for hacia atrás como con las tuberías
-    for (let i = coins.length - 1; i >= 0; i--) {
-        const coin = coins[i];
-        if (coin.collected) continue;
+    for (let i = powers.length - 1; i >= 0; i--) {
+        const power = powers[i];
+        if (power.collected) continue;
         
-        const coinCenterX = coin.x + 51; // 102 / 2
-const coinCenterY = coin.y + 86;
+        // Centro del power-up
+        const powerCenterX = power.x + 125; // 250 / 2
+        const powerCenterY = power.y + 175; // 350 / 2
         
+        // Calcular distancia entre centros
         const distance = Math.sqrt(
-            Math.pow(batCenterX - coinCenterX, 2) +
-            Math.pow(batCenterY - coinCenterY, 2)
+            Math.pow(batCenterX - powerCenterX, 2) +
+            Math.pow(batCenterY - powerCenterY, 2)
         );
         
+        // Si la distancia es menor a 60, recoge el power-up
         if (distance < 60) {
-            coin.collected = true;
-            coin.element.remove();
-            coins.splice(i, 1); // ← Eliminar del array también
+            power.collected = true;
+            power.element.remove();
+            powers.splice(i, 1); // Eliminar del array también
             applyPowerUp();
         }
     }
 }
 
-
 // Aplicar el power-up (solo una vez)
 function applyPowerUp() {
-    if (powerUpActive) return; // ← Evitar activación múltiple
+    if (powerUpActive) return; // Evitar activación múltiple
     
     powerUpActive = true;
-    console.log("¡Power-up activado!");
-    
-    const originalGravity = gravity;
-    gravity = 0.2;
-    
-    bat.style.filter = 'brightness(1.5)';
-    
+    isInvincible = true;
+
+    // Aplicar efecto visual de invencibilidad
+    bat.style.filter = "brightness(2) drop-shadow(0 0 10px skyblue)";
+
     setTimeout(() => {
-        gravity = originalGravity;
+        isInvincible = false;
+        powerUpActive = false; // Permitir otro power-up después
         bat.style.filter = 'none';
-        powerUpActive = false; // ← Permitir otro power-up después
-        console.log("Power-up terminado");
-    }, 3000);
+    }, 5000);
+    
 }
 
 function createCrow() {
@@ -180,11 +188,6 @@ function createCrow() {
     crow.style.left = main.offsetWidth + 'px';
     crow.style.top = Math.random() * 300 + 50 + 'px';
     main.appendChild(crow);
-
-    console.log("Cuervo creado:");
-    console.log("  - Left:", crow.style.left);
-    console.log("  - Top:", crow.style.top);
-    console.log("  - Elemento:", crow);
     
     return crow;
 }
@@ -216,14 +219,14 @@ function gameLoop() {
     bat.style.top = batY + "px";
     
     updatePipes();
-    updateCoins();
+    updatePowers();
     updateCrow();
     checkCollision();
-    checkCoinCollision();
+    checkPowerCollision();
     
     gameTime++;
     
-    // Crear cuervo a los ~1.7 segundos
+    // Crear cuervo a los tantos segundos
     if (gameTime === 100 && !crowSpawned) {
         currentCrow = createCrow();
         crowSpawned = true;
@@ -240,6 +243,7 @@ createPipe(-900);
 
 // Detectar colisiones
 function checkCollision() {
+    if (isInvincible) return; // Ignorar colisiones si es invencible
     const batCenterX = bat.offsetLeft + 36;
     const batCenterY = batY + 33;
     const batRadius = 18;
@@ -306,11 +310,40 @@ if (crow) {
 // Game Over
 function gameOver() {
     gameStarted = false;
+    detenerCronometro();
     
     bat.classList.remove("batFlying");
     bat.classList.add("dead");
+
+    // Pausar animaciones en vez de removerlas
+    layer1.style.animationPlayState = 'paused';
+    layer2.style.animationPlayState = 'paused';
+    layer3.style.animationPlayState = 'paused';
+    layer4.style.animationPlayState = 'paused';
+
+    setTimeout(() => {
+            showMessage("¡Perdiste! Haz clic para reiniciar.");
+        }, 100);
+    
         
     fallToDeath();
+}
+
+function youWin() {
+    gameStarted = false;
+    detenerCronometro();
+
+    // Pausar animaciones en vez de removerlas
+    layer1.style.animationPlayState = 'paused';
+    layer2.style.animationPlayState = 'paused';
+    layer3.style.animationPlayState = 'paused';
+    layer4.style.animationPlayState = 'paused';
+    main.style.pointerEvents = 'none'; // Desactivar clics
+    
+    setTimeout(() => {
+        showMessage("¡Felicidades! Has ganado.");
+    }, 100);
+    
 }
 
 // Caer después de morir
@@ -324,9 +357,6 @@ function fallToDeath() {
         batY = groundLevel;
         bat.style.top = batY + "px";
         
-        setTimeout(() => {
-            showMessage("¡Perdiste! Haz clic para reiniciar.");
-        }, 100);
         return;
     }
     
@@ -356,3 +386,49 @@ function showMessage(text) {
     msj.textContent = text;
     msj.classList.remove('hidden');
 }
+
+function iniciarCronometro() {
+    let segundos = 0;
+    let minutos = 0;
+    const cronometro = document.getElementById('cronometro');
+    
+    intervaloCronometro = setInterval(() => { // Guardar el ID
+        segundos++;
+        if (segundos === 60) {
+            minutos++;
+            segundos = 0;
+        }
+        const minutosStr = minutos.toString().padStart(2, '0');
+        const segundosStr = segundos.toString().padStart(2, '0');
+        cronometro.textContent = `${minutosStr}:${segundosStr}`;
+
+        // Verificar si llegó a 20 segundos
+        if (minutos === 0 && segundos === 20) {
+            youWin(); 
+        }
+
+    }, 1000);
+
+}
+
+function detenerCronometro() {
+    if (intervaloCronometro) {
+        clearInterval(intervaloCronometro); // Detener el intervalo
+        intervaloCronometro = null;
+    }
+}
+
+// ============= JUGAR =============
+let btnJugar = document.querySelector(".btn-jugar");
+let firstScreen = document.querySelector(".first-screen");
+let background = document.querySelector(".background-dark");
+let btnReboot = document.querySelector(".btn-reboot-flappy");
+let containerMain = document.querySelector(".main");
+
+btnJugar.addEventListener("click", () => {
+    background.classList.add("hidden");
+    btnJugar.classList.add("hidden");
+    containerMain.classList.remove("dontclick");
+    iniciarCronometro();
+});
+
