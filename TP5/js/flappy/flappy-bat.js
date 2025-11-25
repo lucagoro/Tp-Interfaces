@@ -421,6 +421,7 @@ function reiniciarJuego() {
         pipe.elementBottom.remove();
     });
     pipes.length = 0;
+
     // Eliminar cuervo si existe
     const crow = document.getElementById("crow");
     if (crow) crow.remove();
@@ -439,11 +440,26 @@ function reiniciarJuego() {
     msj.classList.add("hidden");
 
     // Reiniciar capas (fondos)
-    layer1.classList.remove('animate-layer-1');
-    layer2.classList.remove('animate-layer-2');
-    layer3.classList.remove('animate-layer-3');
-    layer4.classList.remove('animate-layer-4');
+    layer1.style.animationPlayState = 'running';
+    layer2.style.animationPlayState = 'running';
+    layer3.style.animationPlayState = 'running';
+    layer4.style.animationPlayState = 'running';
+        // Eliminar monedas/power-ups existentes
+    powers.forEach(power => {
+        if (power.element) {
+            power.element.remove();
+        }
+    });
+    powers.length = 0; // vaciar el array
+    powerUpActive = false; // resetear estado
+
+    // Reiniciar cronómetro
+    detenerCronometro(); // detener cualquier intervalo viejo
+    const cronometro = document.getElementById('cronometro');
+    cronometro.textContent = "00:00"; // reset visual
+    iniciarCronometro(); // arrancar de nuevo
 }
+// ============= CRONOMETRO =============
 
 function iniciarCronometro() {
     let segundos = 0;
