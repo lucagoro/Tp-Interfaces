@@ -87,7 +87,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  position: relative;;
 }
 
 #myCanvas {
@@ -96,30 +96,34 @@ body {
   z-index: 99999;
 }
 
-.btn-reboot-peg {
+.btn-reboot {
   background: linear-gradient(
     0deg,
-    rgba(40, 15, 0, 0.95) 0%,
-    rgba(150, 60, 0, 0.85) 100%
+    rgba(72, 0, 120, 0.95) 0%,
+    rgba(15, 25, 82, 0.9) 100%
   );
-  color: #ff8800;
-  border: 1px solid #ff6600;
+  color: #eaeaf5;
+  border: 1px solid #6a5acd;
   padding: 0.5rem 2rem;  
   border-radius: 8px;       
   font-size: 12px;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 0 8px rgba(72, 0, 120, 0.6); 
+  transition: all 0.3s ease;
 }
 
-.btn-reboot-peg:hover {
+.btn-reboot:hover {
   background: linear-gradient(
     180deg,
-    rgba(120, 50, 0, 0.95) 0%,
-    rgba(200, 90, 20, 0.85) 100%
+    rgba(153, 51, 255, 0.9) 0%,
+    rgba(0, 153, 255, 0.9) 100%
   );
-  color: #ffaa00;
-  border: 1px solid #ffaa00;
+  color: #ffffff;
+  border: 1px solid #00bfff; 
   transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(0, 153, 255, 0.8); 
 }
 
 .hidden {
@@ -398,7 +402,7 @@ padding: 0px 12px 12px 12px;
   overflow: hidden; /* evita que se salga la imagen */
   position: relative;
   border-radius: 15px;
-  border: 1px solid #ff6600;
+  border: 1px solid rgba(28, 13, 66, 0.9);
 }
 
 .hero-video img {
@@ -422,7 +426,7 @@ padding: 0px 12px 12px 12px;
   height: 150px;
   width: 300px;
   border-radius: 15px;
-  border: 1px solid #ff6600;
+  border: 1px solid rgba(28, 13, 66, 0.9);
 }
 
 .play-overlay {

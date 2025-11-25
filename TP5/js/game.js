@@ -76,24 +76,3 @@ modalAplicaciones.addEventListener("click", (e) => {
 });
 
 
-/*let btnJugar = document.getElementById("btn-jugar");
-let firstScreen = document.querySelector(".first-screen");
-let pegContent = document.querySelector(".peg-content");
-let main = document.querySelector(".main");
-let cnvs = document.querySelector(".canvas");
-let btnReboot = document.querySelector(".btn-reboot-peg");
-let msj = document.querySelector(".msj");
-
-btnReboot.addEventListener("click", () => {
-  controller.render();
-  controller.reiniciarJuego();
-  msj.classList.add("hidden");
-});
-
-btnJugar.addEventListener("click", () => {
-main.classList.add("opacity");
-cnvs.classList.add("opacity");
-  btnJugar.classList.add("hidden-btn");
-  pegContent.classList.remove("hidden");
-  controller.iniciarJuego();
-});*/
