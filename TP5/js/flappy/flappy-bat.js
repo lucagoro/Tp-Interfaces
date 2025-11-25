@@ -383,7 +383,6 @@ main.addEventListener("click", () => {
         gameStarted = true;
         bat.classList.add("batFlying");
         gameLoop();
-        
         layer1.classList.add('animate-layer-1');
         layer2.classList.add('animate-layer-2');
         layer3.classList.add('animate-layer-3');
@@ -399,66 +398,67 @@ function showMessage(text) {
     msj.classList.remove("hidden");
 }
 // Reiniciar juego
-
 function reiniciarJuego() {
-    // Resetear variables
-    batY = 200;
-    velocity = 0;
-    gameStarted = false;
-    gameTime = 0;
-    crowSpawned = false;
-    currentCrow = null;
-    pipeTimer = 0;
+  // Resetear variables
+  batY = 200;
+  velocity = 0;
+  gameStarted = false;
+  gameTime = 0;
+  crowSpawned = false;
+  currentCrow = null;
+  pipeTimer = 0;
+  isInvincible = false;   
+  powerUpActive = false;      
 
-    // Resetear estilos del murciélago
-    bat.classList.remove("dead");
-    bat.classList.remove("batFlying");
-    bat.style.top = batY + "px";
+  // Resetear estilos del murciélago
+  bat.classList.remove("dead");
+  bat.classList.remove("batFlying");
+  bat.style.top = batY + "px";
+  bat.style.filter = "none";  // quitar efecto visual de power-up
 
-    // Eliminar tuberías existentes
-    pipes.forEach(pipe => {
-        pipe.elementTop.remove();
-        pipe.elementBottom.remove();
-    });
-    pipes.length = 0;
+  // Eliminar tuberías existentes
+  pipes.forEach(pipe => {
+    pipe.elementTop.remove();
+    pipe.elementBottom.remove();
+  });
+  pipes.length = 0;
 
-    // Eliminar cuervo si existe
-    const crow = document.getElementById("crow");
-    if (crow) crow.remove();
+  // Eliminar cuervo si existe
+  const crow = document.getElementById("crow");
+  if (crow) crow.remove();
 
-    // Resetear variables del cuervo
-    currentCrow = null;
-    crowSpawned = false;
+  // Crear tuberías iniciales otra vez
+  createPipe(0);
+  createPipe(-300);
+  createPipe(-600);
+  createPipe(-900);
 
-    // Crear tuberías iniciales otra vez
-    createPipe(0);
-    createPipe(-300);
-    createPipe(-600);
-    createPipe(-900);
+  // Ocultar mensaje
+  msj.classList.add("hidden");
 
-    // Ocultar mensaje
-    msj.classList.add("hidden");
+  // Reactivar clics del juego (clave tras youWin)
+  main.style.pointerEvents = "auto";
 
-    // Reiniciar capas (fondos)
-    layer1.style.animationPlayState = 'running';
-    layer2.style.animationPlayState = 'running';
-    layer3.style.animationPlayState = 'running';
-    layer4.style.animationPlayState = 'running';
-        // Eliminar monedas/power-ups existentes
-    powers.forEach(power => {
-        if (power.element) {
-            power.element.remove();
-        }
-    });
-    powers.length = 0; // vaciar el array
-    powerUpActive = false; // resetear estado
+  // Reiniciar capas (fondos)
+  layer1.style.animationPlayState = 'running';
+  layer2.style.animationPlayState = 'running';
+  layer3.style.animationPlayState = 'running';
+  layer4.style.animationPlayState = 'running';
 
-    // Reiniciar cronómetro
-    detenerCronometro(); // detener cualquier intervalo viejo
-    const cronometro = document.getElementById('cronometro');
-    cronometro.textContent = "00:00"; // reset visual
-    iniciarCronometro(); // arrancar de nuevo
+  // Eliminar monedas/power-ups
+  powers.forEach(power => {
+    if (power.element) power.element.remove();
+  });
+  powers.length = 0;
+
+  // Reiniciar cronómetro
+  detenerCronometro();
+  const cronometro = document.getElementById('cronometro');
+  cronometro.textContent = "00:00";
+  iniciarCronometro();
+  
 }
+
 // ============= CRONOMETRO =============
 
 function iniciarCronometro() {

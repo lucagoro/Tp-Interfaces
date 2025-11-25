@@ -118,7 +118,11 @@ body {
   overflow: hidden;
   z-index: 99999;
 }
-
+.btn-reboot {
+  pointer-events: auto; /* vuelve a habilitar clics en este botón */
+  position: relative;
+  z-index: 9999;
+}
 .btn-reboot {
 
   background: linear-gradient(
