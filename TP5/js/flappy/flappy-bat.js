@@ -445,7 +445,6 @@ function reiniciarJuego() {
     layer4.classList.remove('animate-layer-4');
 }
 
-
 function iniciarCronometro() {
     let segundos = 0;
     let minutos = 0;
