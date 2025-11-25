@@ -1,6 +1,7 @@
 const main = document.querySelector(".main");
 const bat = document.getElementById("bat");
 
+
 // Variables de física
 let batY = 200;
 let velocity = 0;
@@ -30,6 +31,17 @@ const layer1 = document.querySelector('.layer-1');
 const layer2 = document.querySelector('.layer-2');
 const layer3 = document.querySelector('.layer-3');
 const layer4 = document.querySelector('.layer-4');
+
+//variable mensaje
+let btnReboot = document.querySelector(".btn-reboot");
+let msjText = document.querySelector(".msj-text");
+let msj = document.querySelector(".msj");
+
+btnReboot.addEventListener("click", () => {
+    reiniciarJuego();             
+    msj.classList.add("hidden");
+});
+
 
 
 // Crear tubería desde la derecha
@@ -203,6 +215,7 @@ function updateCrow() {
     if (crowX < -60) {
         currentCrow.remove();
         currentCrow = null;
+        crowSpawned = false;
     }
 }
 
@@ -382,9 +395,54 @@ main.addEventListener("click", () => {
 
 // Mostrar mensaje
 function showMessage(text) {
-    const msj = document.querySelector('.msj');
-    msj.textContent = text;
-    msj.classList.remove('hidden');
+    msjText.textContent = text;   
+    msj.classList.remove("hidden");
+}
+// Reiniciar juego
+
+function reiniciarJuego() {
+    // Resetear variables
+    batY = 200;
+    velocity = 0;
+    gameStarted = false;
+    gameTime = 0;
+    crowSpawned = false;
+    currentCrow = null;
+    pipeTimer = 0;
+
+    // Resetear estilos del murciélago
+    bat.classList.remove("dead");
+    bat.classList.remove("batFlying");
+    bat.style.top = batY + "px";
+
+    // Eliminar tuberías existentes
+    pipes.forEach(pipe => {
+        pipe.elementTop.remove();
+        pipe.elementBottom.remove();
+    });
+    pipes.length = 0;
+    // Eliminar cuervo si existe
+    const crow = document.getElementById("crow");
+    if (crow) crow.remove();
+
+    // Resetear variables del cuervo
+    currentCrow = null;
+    crowSpawned = false;
+
+    // Crear tuberías iniciales otra vez
+    createPipe(0);
+    createPipe(-300);
+    createPipe(-600);
+    createPipe(-900);
+
+    // Ocultar mensaje
+    msj.classList.add("hidden");
+
+    // Reiniciar capas (fondos)
+    layer1.classList.remove('animate-layer-1');
+    layer2.classList.remove('animate-layer-2');
+    layer3.classList.remove('animate-layer-3');
+    layer4.classList.remove('animate-layer-4');
 }
 
 function iniciarCronometro() {
@@ -422,7 +480,6 @@ function detenerCronometro() {
 let btnJugar = document.querySelector(".btn-jugar");
 let firstScreen = document.querySelector(".first-screen");
 let background = document.querySelector(".background-dark");
-let btnReboot = document.querySelector(".btn-reboot-flappy");
 let containerMain = document.querySelector(".main");
 
 btnJugar.addEventListener("click", () => {
@@ -431,4 +488,5 @@ btnJugar.addEventListener("click", () => {
     containerMain.classList.remove("dontclick");
     iniciarCronometro();
 });
+
 
