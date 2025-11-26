@@ -378,7 +378,12 @@ function fallToDeath() {
 }
 
 // Click para jugar
-main.addEventListener("click", () => {
+main.addEventListener("click", (e) => {
+    // Si clickeaste un botón/ícono, no hacer nada
+    if (e.target.closest('.iconos')) return; 
+    if (e.target.closest('.cerrar-modal')) return;
+    if (e.target.closest('.cerrar-modal-app')) return;
+
     if (!gameStarted) {
         gameStarted = true;
         bat.classList.add("batFlying");
@@ -477,7 +482,7 @@ function iniciarCronometro() {
         cronometro.textContent = `${minutosStr}:${segundosStr}`;
 
         // Verificar si llegó a 20 segundos
-        if (minutos === 0 && segundos === 20) {
+        if (minutos === 0 && segundos === 5) {
             youWin(); 
         }
 
