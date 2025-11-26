@@ -213,15 +213,18 @@ body {
 }
 #jostick{
  cursor: pointer;
+ pointer-events: all;
 }
 #share{
   cursor: pointer;
+  pointer-events: all;
 }
 #arrow{
   position: absolute;
   color: #3C9597;
   bottom: 540px;
   right: 1900%;
+  pointer-events: all;
 }
 .modal-controles {
     display: none;
@@ -307,6 +310,7 @@ body {
 }
 
 .cerrar-modal {
+  pointer-events: all;
     position: absolute;
     top: 15px;
     right: 20px;
@@ -320,6 +324,7 @@ body {
     color: #fff;
 }
 .cerrar-modal-app {
+  pointer-events: all;
     position: absolute;
     top: 15px;
     right: 20px;
