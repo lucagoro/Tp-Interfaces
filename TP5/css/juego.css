@@ -106,18 +106,6 @@ body {
   z-index: 2;
 }
 
-.canvas {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;;
-}
-
-#myCanvas {
-  border-radius: 10px;
-  overflow: hidden;
-  z-index: 99999;
-}
 .btn-reboot {
   pointer-events: auto; /* vuelve a habilitar clics en este botón */
   position: relative;
@@ -141,7 +129,6 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
   transition: all 0.3s ease;
 }
-
 
 .btn-reboot:hover {
   background: linear-gradient(
@@ -183,24 +170,26 @@ body {
   transform: translateX(-50%); /* Centrar horizontalmente */
   padding: 20px;
   min-width: 200px;
+  animation: fadeInScale 0.5s ease-out;
 }
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
 
 .msj.hidden {
   display: none;
 }
 
-.peg-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-  gap: 30px;
-  position: relative;
-}
 
-.peg-content.hidden{
-  display: none;
-}
  /* === iconos de controles === */
  
 .iconos {

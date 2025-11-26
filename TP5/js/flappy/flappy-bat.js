@@ -16,23 +16,26 @@ const pipeWidth = 60;
 const pipeGap = 180;
 let pipeTimer = 0;
 
+// Cuervo
 let gameTime = 0;
 let crowSpawned = false;
 let currentCrow = null; 
 
+// Power-up
 let powers = [];
 let powerUpActive = false;
-
 let isInvincible = false;
 
-let intervaloCronometro = null; // Variable para guardar el ID del intervalo
+// Guarda el ID del intervalo
+let intervaloCronometro = null; 
 
+// Capas parallax
 const layer1 = document.querySelector('.layer-1');
 const layer2 = document.querySelector('.layer-2');
 const layer3 = document.querySelector('.layer-3');
 const layer4 = document.querySelector('.layer-4');
 
-//variable mensaje
+// Variable mensaje
 let btnReboot = document.querySelector(".btn-reboot");
 let msjText = document.querySelector(".msj-text");
 let msj = document.querySelector(".msj");
@@ -41,8 +44,6 @@ btnReboot.addEventListener("click", () => {
     reiniciarJuego();             
     msj.classList.add("hidden");
 });
-
-
 
 // Crear tubería desde la derecha
 function createPipe(offsetX = 0) {
@@ -56,12 +57,14 @@ function createPipe(offsetX = 0) {
         bottomY: topHeight + pipeGap
     });
 
+    // Tuberia de arriba
     const pipeTop = document.createElement('div');
     pipeTop.className = 'pipe pipe-top';
     pipeTop.style.height = topHeight + 'px';
     pipeTop.style.left = (main.offsetWidth + offsetX) + 'px';
     main.appendChild(pipeTop);
 
+    // Tuberia de abajo
     const pipeBottom = document.createElement('div');
     pipeBottom.className = 'pipe pipe-bottom';
     pipeBottom.style.top = topHeight + pipeGap + 'px';
@@ -108,7 +111,7 @@ function createPower(pipeX, pipeTopHeight, pipeGap) {
     power.classList.add('power'); // Cambiar a clase "power"
     power.classList.add('powerSpinning');
     
-    // Sacar posición centrada sobre la tubería
+    // Calcular posición centrada sobre la tubería
     const powerX = pipeX - 110;
     const powerY = pipeTopHeight + pipeGap / 2 - 150;
     
@@ -193,6 +196,7 @@ function applyPowerUp() {
     
 }
 
+// Crear el cuervo
 function createCrow() {
     const crow = document.createElement('div');
     crow.id = 'crow';
@@ -320,7 +324,7 @@ if (crow) {
     }
 }
 
-// Game Over
+// Perdiste
 function gameOver() {
     gameStarted = false;
     detenerCronometro();
@@ -336,12 +340,13 @@ function gameOver() {
 
     setTimeout(() => {
             showMessage("¡Perdiste! Haz clic para reiniciar.");
-        }, 100);
+        }, 500);
     
         
     fallToDeath();
 }
 
+// Ganaste
 function youWin() {
     gameStarted = false;
     detenerCronometro();
@@ -355,7 +360,7 @@ function youWin() {
     
     setTimeout(() => {
         showMessage("¡Felicidades! Has ganado.");
-    }, 100);
+    }, 500);
     
 }
 
@@ -402,6 +407,7 @@ function showMessage(text) {
     msjText.textContent = text;   
     msj.classList.remove("hidden");
 }
+
 // Reiniciar juego
 function reiniciarJuego() {
   // Resetear variables
@@ -413,7 +419,7 @@ function reiniciarJuego() {
   currentCrow = null;
   pipeTimer = 0;
   isInvincible = false;   
-  powerUpActive = false;      
+  powerUpActive = false;     
 
   // Resetear estilos del murciélago
   bat.classList.remove("dead");
@@ -465,7 +471,6 @@ function reiniciarJuego() {
 }
 
 // ============= CRONOMETRO =============
-
 function iniciarCronometro() {
     let segundos = 0;
     let minutos = 0;
