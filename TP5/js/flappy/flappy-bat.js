@@ -487,7 +487,7 @@ function iniciarCronometro() {
         cronometro.textContent = `${minutosStr}:${segundosStr}`;
 
         // Verificar si llegó a 20 segundos
-        if (minutos === 0 && segundos === 5) {
+        if (minutos === 0 && segundos === 20) {
             youWin(); 
         }
 
