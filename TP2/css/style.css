@@ -1,0 +1,858 @@
+@media (max-width: 768px) {
+body {
+    background-color: #131729;
+}
+
+/* ===== LOADING SCREEN (Mobile) ===== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #131729;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-content {
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid #2C3C4F;
+    border-top: 5px solid #4DF3F7;
+    border-radius: 100%;
+    margin: 0 auto 15px auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-bar {
+    width: 250px;
+    max-width: 90%;
+    height: 6px;
+    background-color: #2C3C4F;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 auto 10px auto;
+}
+
+.loading-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #4DF3F7, #0d9e94);
+    width: 0%;
+    transition: width 0.1s ease;
+    border-radius: 4px;
+}
+
+.loading-percent {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* ===== CARRUSEL PRINCIPAL (Mobile) ===== */
+.main-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.main-carousel-track {
+    position: relative;
+    width: 100%;
+    height: 150px; 
+}
+
+.main-carousel-slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    transition: opacity 0.4s;
+}
+
+.main-carousel-slide.active {
+    display: block;
+    position: relative;
+}
+
+.carousel-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, 
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.9)
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.carousel-content {
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    z-index: 2;
+}
+
+.carousel-content img {
+    max-width: 100px;
+    height: auto;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.carousel-content p {
+    color: #8f8f8f;
+    font-size: 10px;
+    margin-left: 1rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+.carousel-content p span {
+    background: #585858;
+    color: white;
+    padding: 0.1rem 0.1rem;
+    margin-right: 0.3rem;
+    font-size: 10px;
+}
+
+.carousel-content-below {
+    position: absolute;
+    bottom: 1rem;
+    left: 2rem;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.price {
+    color: grey;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.buy-button {
+    background: #091A29;
+    color: #4DF3F7;
+    border: 2px solid #4DF3F7;
+    padding: 0.3rem;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    box-shadow: 0 4px 5px rgba(0, 169, 195, 0.516);
+}
+
+/* Flechas del carrusel principal */
+.main-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.main-carousel-arrow.left {
+    left: 10px;
+}
+
+.main-carousel-arrow.right {
+    right: 10px;
+}
+
+/* ===== SECCIONES DE JUEGOS (Mobile) ===== */
+.games-section {
+    margin-bottom: 0.5rem;
+}
+
+.games-section h4 {
+    color: white;
+    font-size: 1.2rem;
+    padding-left: 0.5rem;
+    margin-bottom: -0.5rem;
+}
+
+.carousel-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    width: 100%;
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    scrollbar-width: none; /* Firefox */
+}
+
+.carousel-viewport::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+.carousel-track {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.carousel-slide {
+    flex: 0 0 auto;
+}
+
+.game-card {
+    width: 250px;
+    height: 180px;
+    background: #131729;
+    border-radius: 5px;
+    border: 1px solid black;
+    overflow: hidden;
+    box-shadow: 
+        10px 10px 0px rgba(0, 0, 0, 0.99),
+        10px 10px 20px rgba(0, 0, 0, 0.99);
+    transition: transform 0.3s ease;
+}
+
+.game-card-img {
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    background: #131729;
+}
+
+.game-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.game-info {
+    padding: 0.5rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.3rem;
+}
+
+.game-title {
+    font-size: 13px;
+    margin: 0;
+}
+
+.game-hours,
+.game-price {
+    color: #9ca3af;
+    font-size: 11px;
+}
+
+.play-button,
+.buy-button-card {
+    background: #091A29;
+    color: #4DF3F7;
+    border: 1px solid #4DF3F7;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 9px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.free-button-card {
+    background: #091A29;
+    color: #4DF7A5;
+    border: 1px solid #4DF7A5;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 9px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Ocultar flechas en mobile (scroll táctil) */
+.carousel__btn--prev,
+.carousel__btn--next {
+    display: none;
+}
+
+}
+
+@media (min-width: 769px) {
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ===== LOADING SCREEN ===== */
+
+/* Contenedor principal del loading */
+.loading-screen {
+    position: fixed;        /* Fijo en la pantalla, no se mueve con scroll */
+    top: 0; left: 0;       
+    width: 100%;          
+    height: 100%;          
+    background: #131729;  
+    display: flex;         /* Flexbox para centrar contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;   /* Centra verticalmente */
+    z-index: 9999;         /* Por encima de todo el contenido */
+    transition: opacity 0.5s ease; /* Transición suave al desaparecer */
+}
+
+/* Clase que se agrega con JavaScript para ocultar el loading */
+.loading-screen.hidden {
+    opacity: 0;            /* Se vuelve transparente - Podria ser visibility: hidden; */
+    pointer-events: none;  /* No interfiere con clicks después de oculto */
+}
+
+/* Contenedor del spinner, barra y porcentaje */
+.loading-content {
+    text-align: center;    /* Centra el texto del porcentaje */
+}
+
+/* ===== SPINNER CIRCULAR ===== */
+.loading-spinner {
+    width: 80px;
+    height: 80px;
+    border: 6px solid #2C3C4F;
+    border-top: 6px solid #4DF3F7;
+    border-radius: 100%;    /* Lo hace circular */
+    margin: 0 auto 20px auto; /* Centra y da espacio debajo */
+    animation: spin 1s linear infinite;
+    /* 1s = duración de una vuelta completa
+       linear = velocidad constante
+       infinite = gira para siempre */
+}
+
+@keyframes spin {
+    0% {                   
+        transform: rotate(0deg);   
+    }
+    100% {              
+        transform: rotate(360deg); 
+    }
+}
+
+/* ===== BARRA DE PROGRESO ===== */
+
+/* Contenedor de la barra  */
+.loading-bar {
+    width: 300px;          
+    height: 8px;           
+    background-color: #2C3C4F;
+    border-radius: 4px;    
+    overflow: hidden;      /* Oculta lo que se salga */
+    margin-bottom: 10px;   
+}
+
+/* Barra interna que crece */
+.loading-progress {
+    height: 100%;      
+    background: linear-gradient(90deg, #4DF3F7, #0d9e94);
+    width: 0%;             /* Inicia vacía (JavaScript la crece) */
+    transition: width 0.1s ease; /* Transición suave al crecer */
+    border-radius: 4px;    
+}
+
+/* ===== PORCENTAJE ===== */
+.loading-percent {
+    color: white;          
+    font-size: 20px;    
+    font-weight: bold;    
+}
+
+/*---- Body ----*/
+
+body {
+    background-color: #131729;
+}
+
+/* Carrousel grande */
+
+.carousel-img {
+    position: relative;        /* Se superponen unos sobre otros */
+    width: 100%; height: 400px; /* Ocupan todo el contenedor */
+}
+
+.carousel-img img {
+    width: 100%;
+    max-height: 400px;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Degradado overlay */
+.carousel-img::before {
+    content: '';                    /* Elemento invisible */
+    position: absolute;             /* Se superpone a la imagen */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0.99),       
+        rgba(0, 0, 0, 0.7),        
+        rgba(0, 0, 0, 0.4)               
+    );
+    z-index: 1;                    /* ← Por encima de la imagen */
+    pointer-events: none;          /* ← No interfiere con clicks */
+}
+
+.carousel-content {
+    position: absolute;
+    top: 50%;                      
+    left: 3rem;                  
+    transform: translateY(-80%);
+    z-index: 2;
+}
+
+/* Imagen del título */
+.carousel-content img {
+    max-width: 300px;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;         
+    transition: transform 0.6s ease;
+}
+
+/* Animación solo para la imagen del título de la slide activa */
+.main-carousel-slide.active .carousel-content img {
+    transform: none;
+    animation: acomodar-img-titulo 0.7s ease;
+}
+
+@keyframes acomodar-img-titulo {
+    0% {
+        opacity: 0;
+        transform: translateX(-120px) scale(1.08); /* Empieza más grande y a la izquierda por "fuera"*/
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);  /*termina en su posición normal y en su tamaño */
+    }
+}
+
+/* Texto debajo del título */
+.carousel-content p {
+    color: #8f8f8f;
+    font-size: 10px;
+    margin: 0 0 1.5rem 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    padding-left: 40px;
+}
+
+/* El span para el "16+" */
+.carousel-content p span {
+    background: #585858;         
+    color: white;
+    padding: 0.2rem 0.2rem;      
+    margin-right: 0.5rem;        
+    font-size: 10px;
+}
+
+.carousel-content-below {
+    position: absolute;
+    top: 75%;                      
+    left: 5rem;                    
+    z-index: 2; 
+}
+.main-carousel-slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    transition: opacity 0.4s;
+    z-index: 10;
+}
+.main-carousel-slide.active {
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+
+
+.main-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    color: #fff;
+    background: rgba(0,0,0,0.35);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.main-carousel-arrow.left {
+    left: 18px;
+}
+.main-carousel-arrow.right {
+    right: 18px;
+}
+.main-carousel-arrow:hover {
+    background: rgba(77,243,247,0.7);
+    color: #091A29;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price {
+    color: grey;                 
+    font-size: 15px;           
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Botón de comprar */
+.buy-button {
+    background: #091A29;      
+    color: #4DF3F7;              
+    border: 2px solid #4DF3F7;   
+    padding: 0.8rem 1.5rem;      
+    border-radius: 8px;         
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.5s ease;   
+    text-transform: none;        /* Sin mayúsculas forzadas */
+    box-shadow: 0 4px 5px rgba(0, 169, 195, 0.516); 
+    overflow: hidden;
+    background-size: 200% 100%; /* Hace que el fondo sea el doble de ancho para poder animar el gradiente */
+}
+
+button:hover {
+  background-image: linear-gradient(
+    90deg,
+    rgb(38, 140, 181) 0%,
+    #4DF3F7 30%,
+    #11a9ab 60%,
+    rgb(38, 140, 181) 100%
+  );
+  color: #091A29;
+  background-position: 200% 0;
+  animation: shine 2s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/*carrusel viewport*/
+.carousel-viewport {
+  overflow: hidden; /* Oculta lo que se salga del contenedor */
+  position: relative;
+  width: 100%;
+}
+/* Cards juegos */
+.games-section {
+    margin-top: -20px;
+    position: relative;
+    z-index: 1;
+}
+.mis-juegos{
+    margin-top: 50px;
+}
+.games-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(19, 23, 41, 0.7);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.games-section > * {
+    position: relative;
+    z-index: 3;
+}
+
+
+.carousel-track {
+    display: flex;
+    width: 100%;                     
+    transition: transform 0.3s ease-in-out; 
+}
+.games-section h4 {
+    margin-left: 35px;
+    color: white;
+}
+
+.game-card {
+    flex: 0 0 300px;               /* No crece, no encoge, 300px fijo */
+                                    /* flex-shrink: 0; también funciona */
+    margin-left: 35px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    height: 200px;
+    width: 300px;
+    background: #131729;
+    border-radius: 5px;
+    border: 1px solid black;
+    overflow: hidden; /* Para que la imagen respete los bordes redondeados */
+    box-shadow: 
+        20px 20px 0px rgba(0, 0, 0, 0.99),      /* Sombra principal */
+        20px 20px 20px rgba(0, 0, 0, 0.99);       /* Sombra sutil adicional */
+    position: relative;
+    transition: transform 0.2s cubic-bezier(0.4,1.6,0.6,1), box-shadow 0.2s;
+}
+/* Animación para NEXT (estiramiento hacia la derecha) */
+.game-card.stretch-next {
+    animation: diagonal-stretch-next 1s ease; 
+    z-index: 3;
+}
+
+@keyframes diagonal-stretch-next {
+    0% {
+        transform: scaleX(1) scaleY(1) skewY(0deg) translateY(0); /* Estado inicial */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    30% {
+        transform: scaleX(1.25) scaleY(0.85) skewY(8deg) translateY(25px); /* Más ancho, más bajo, estirado para la derecha */
+        box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+    60% {
+        transform: scaleX(1.12) scaleY(0.92) skewY(6deg) translateY(18px); /* Un poco menos estirado */
+        box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    }
+    100% {
+        transform: scaleX(1) scaleY(1) skewY(0deg) translateY(0); /* Vuelve a la normalidad */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+}
+
+/* Animación para PREV (estiramiento hacia la izquierda) */
+.game-card.stretch-prev {
+    animation: diagonal-stretch-prev 1s ease;
+    z-index: 3;
+}
+
+@keyframes diagonal-stretch-prev {
+    0% {
+        transform: scaleX(1) scaleY(1) skewY(0deg) translateY(0);   /* Estado inicial */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    30% {
+        transform: scaleX(1.25) scaleY(0.85) skewY(-8deg) translateY(25px); /* Más ancho, más bajo, estirado para la izquierda */
+        box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+    60% {
+        transform: scaleX(1.12) scaleY(0.92) skewY(-6deg) translateY(18px); /* Un poco menos estirado */
+        box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    }
+    100% {
+        transform: scaleX(1) scaleY(1) skewY(0deg) translateY(0); /* Vuelve a la normalidad */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+}
+
+
+.game-card:hover {
+    transform: translateY(-5px);
+    /* Sombra más pronunciada en hover */
+    box-shadow: 
+        20px 20px 0px rgba(0, 0, 0, 0.99),      /* Sombra principal */
+        20px 20px 20px rgba(0, 0, 0, 0.99);       /* Sombra sutil adicional */
+}
+
+
+/* Contenedor de la imagen de la card - PRIMERO EL CONTENEDOR */
+.game-card-img {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    display: block;
+    margin: 0;
+    padding: 0;
+    background: #131729;
+    
+}
+
+/* Imagen dentro del contenedor - DESPUÉS LA IMAGEN */
+.game-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+/* Contenido debajo de la imagen */
+.game-info {
+     padding-top: 5px; 
+    padding-right: 5px;
+    padding-left: 5px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-title {
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+}
+
+.game-hours {
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+.game-price {
+  font-size: 13px;
+}
+
+.game-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.play-button {
+    background: #091A29;
+    color: #D2FCFD;
+    border: 1px solid #5F6FB5;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: -5px;
+}
+
+.buy-button-card {
+  background: #091A29;
+  color: #4DF3F7;             
+  border: 1px solid #4DF3F7;
+  padding: 5px 10px;
+  font-size: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-top: -5px;
+}
+.play-button:hover, .buy-button-card:hover, .free-button-card:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.free-button-card{
+background: #091A29;
+  color: #4DF7A5;             
+  border: 1px solid #4DF7A5;
+  padding: 5px 10px;
+  font-size: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+ /* Botones de navegación del carrusel */
+.carousel__btn--prev,
+.carousel__btn--next {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 2;
+  padding: 10px;
+  border-radius: 10%;
+ 
+} 
+.carousel__btn--prev {
+  left: 10px;
+}
+
+.carousel__btn--next {
+  right: 10px;
+}
+
+.carousel__btn--prev:hover,
+.carousel__btn--next:hover {
+  background: rgba(255, 255, 255, 0.2);
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+.carousel-track {
+    transition: transform 1s ease;
+}
+
+}
