@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/auth.css" />
+    <title>login bmo games</title>
+  </head>
+  <body>
+    <main class="registro-container">
+      <section class="form-box" id="form-box-login">
+        <h1>¡Hola de nuevo!</h1>
+        <form id="loginForm" novalidate>
+          <div class="input-container">
+            <label for="email">Direccion de correo electronico</label>
+            <input type="email" id="email" name="email" />
+            <div class="error-message" id="error-email">
+              <span><b>✖</b> El correo electrónico es obligatorio.</span>
+            </div>
+            <div class="error-message" id="error-email-invalido">
+              <span><b>✖</b> Formato invalido</span>
+            </div>
+            <span class="asterisk">*</span>
+          </div>
+          <div class="input-container">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" />
+            <div class="error-message" id="error-password">
+              <span><b>✖</b> La contraseña es obligatoria.</span>
+            </div>
+            <i class="fa-solid fa-eye toggle-password"></i>
+            <span class="asterisk">*</span>
+          </div>
+
+          <button type="submit" class="btn btn-submit">Continuar</button>
+          <p class="division">O</p>
+          <button type="button" class="btn google">Continuar con Google</button>
+          <button type="button" class="btn facebook">
+            Continuar con Facebook
+          </button>
+        </form>
+
+        <p class="link">
+          ¿No tienes cuenta? <a href="registro.html">Registrate</a>
+        </p>
+      </section>
+    </main>
+    <script src="../js/auth.js"></script>
+  </body>
+</html>
